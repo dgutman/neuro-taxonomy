@@ -372,7 +372,7 @@ regions_mouse:
     label: Olfactory Bulb
     human_homolog: olfactory_bulb
     abbreviations: ["OB", "OLF"]
-    description: Large in mouse (macrosmatic); layered structure: glomerular, external plexiform, mitral cell, granule cell layers.
+    description: "Large in mouse (macrosmatic); layered structure: glomerular, external plexiform, mitral cell, granule cell layers."
     status: stable
     children:
       - id: mus_olfactory_nerve_layer

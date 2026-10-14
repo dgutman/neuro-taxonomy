@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuro-Taxonomy Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #242838;
+    --border: #2e3248;
+    --text: #e2e4ed;
+    --text-dim: #888ca6;
+    --accent: #6c8cff;
+    --accent-dim: #4a6ad8;
+    --green: #4cdf8b;
+    --orange: #f0a85a;
+    --red: #f05a5a;
+    --teal: #5adff0;
+    --purple: #b05af0;
+    --pink: #f05a9a;
+    --radius: 8px;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  
+  /* ── Layout ── */
+  .app { display: flex; height: 100vh; overflow: hidden; }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .sidebar-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sidebar-header span { background: var(--accent); color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 10px; }
+  .sidebar-search {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .sidebar-search input:focus { border-color: var(--accent); }
+  .sidebar-search input::placeholder { color: var(--text-dim); }
+  .sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-left: 3px solid transparent;
+    font-size: 14px;
+  }
+  .nav-item:hover { background: var(--surface2); }
+  .nav-item.active {
+    background: var(--surface2);
+    border-left-color: var(--accent);
+  }
+  .nav-item .icon { font-size: 18px; width: 24px; text-align: center; }
+  .nav-item .count {
+    margin-left: auto;
+    background: var(--surface2);
+    color: var(--text-dim);
+    font-size: 11px;
+    padding: 1px 8px;
+    border-radius: 10px;
+  }
+
+  /* ── Main content ── */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .main-header {
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .main-header h1 { font-size: 20px; font-weight: 600; }
+  .main-header .subtitle { color: var(--text-dim); font-size: 13px; margin-left: auto; }
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 28px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag-stable { background: rgba(76, 223, 139, 0.15); color: var(--green); }
+  .tag-draft { background: rgba(240, 168, 90, 0.15); color: var(--orange); }
+
+  /* ── Stats grid ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--accent); }
+  .stat-card .number { font-size: 28px; font-weight: 700; }
+  .stat-card .label { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+  /* ── Tree view ── */
+  .tree { padding-left: 0; }
+  .tree-node {
+    list-style: none;
+    margin: 2px 0;
+  }
+  .tree-toggle {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+  .tree-toggle:hover { background: var(--surface2); }
+  .tree-toggle .arrow {
+    display: inline-block;
+    width: 12px;
+    text-align: center;
+    transition: transform 0.2s;
+    color: var(--text-dim);
+    font-size: 10px;
+  }
+  .tree-toggle .arrow.open { transform: rotate(90deg); }
+  .tree-toggle .type-icon { font-size: 14px; }
+  .tree-toggle .tag-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    display: inline-block;
+  }
+  .tree-toggle .abbr { color: var(--text-dim); font-size: 11px; font-family: var(--mono); }
+  .tree-children { padding-left: 24px; display: none; }
+  .tree-children.open { display: block; }
+  .tree-node-detail {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin: 8px 0 12px 24px;
+    display: none;
+  }
+  .tree-node-detail.open { display: block; }
+
+  /* ── Search results ── */
+  .search-result {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .search-result:hover { background: var(--surface2); }
+  .search-result .sr-label { font-weight: 500; }
+  .search-result .sr-type { font-size: 11px; color: var(--accent); }
+  .search-result .sr-desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+
+  /* ── Detail panels ── */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 800px) { .detail-grid { grid-template-columns: 1fr; } }
+  .detail-field {
+    margin-bottom: 8px;
+  }
+  .detail-field label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+  .detail-field .value { font-size: 14px; margin-top: 2px; }
+  .detail-field .value code {
+    background: var(--surface2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .vuln-tag {
+    display: inline-block;
+    background: rgba(240, 90, 90, 0.12);
+    color: var(--red);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    margin: 2px;
+  }
+
+  /* ── Image gallery ── */
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .image-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .image-card:hover { border-color: var(--accent); }
+  .image-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    background: var(--surface2);
+  }
+  .image-card .img-caption {
+    padding: 8px 10px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  /* ── Cross-link table ── */
+  .cl-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .cl-table th {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .cl-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cl-table tr:hover td { background: var(--surface2); }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+  /* ── Loading ── */
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--text-dim);
+  }
+  .spinner {
+    width: 24px; height: 24px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 1px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Empty state ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-dim);
+  }
+  .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 700px) {
+    .sidebar { width: 200px; min-width: 200px; }
+    .content { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      🧠 Neuro-Taxonomy
+      <span>v1</span>
+    </div>
+    <div class="sidebar-search">
+      <input type="text" id="searchInput" placeholder="Search regions, cells, pathologies..." oninput="onSearch(this.value)">
+    </div>
+    <div class="sidebar-nav" id="sidebarNav">
+      <div class="nav-item active" data-view="overview" onclick="switchView('overview')">
+        <span class="icon">📊</span> Overview
+        <span class="count">stats</span>
+      </div>
+      <div class="nav-item" data-view="regions" onclick="switchView('regions')">
+        <span class="icon">🧬</span> Human Regions
+        <span class="count" id="countRegions">—</span>
+      </div>
+      <div class="nav-item" data-view="mouse" onclick="switchView('mouse')">
+        <span class="icon">🐭</span> Mouse Regions
+        <span class="count" id="countMouse">—</span>
+      </div>
+      <div class="nav-item" data-view="cell_types" onclick="switchView('cell_types')">
+        <span class="icon">🔬</span> Cell Types
+        <span class="count" id="countCellTypes">—</span>
+      </div>
+      <div class="nav-item" data-view="pathologies" onclick="switchView('pathologies')">
+        <span class="icon">🦠</span> Pathologies
+        <span class="count" id="countPathologies">—</span>
+      </div>
+      <div class="nav-item" data-view="cross_links" onclick="switchView('cross_links')">
+        <span class="icon">🔗</span> Cross-Links
+        <span class="count" id="countCrossLinks">—</span>
+      </div>
+      <div class="nav-item" data-view="images" onclick="switchView('images')">
+        <span class="icon">🖼️</span> Image References
+        <span class="count" id="countImages">—</span>
+      </div>
+      <div class="nav-item" data-view="about" onclick="switchView('about')">
+        <span class="icon">ℹ️</span> About
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="main-header">
+      <h1 id="viewTitle">Overview</h1>
+      <div class="subtitle" id="viewSubtitle"></div>
+    </div>
+    <div class="content" id="content">
+      <div class="loading"><div class="spinner"></div> Loading taxonomy data...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State ──
+const state = { data: {}, stats: {}, view: 'overview' };
+
+// ── API helpers ──
+async function api(path) {
+  const r = await fetch(path);
+  return r.json();
+}
+
+// ── Init ──
+async function init() {
+  try {
+    const [regions, cellTypes, pathologies, crossLinks, mouse, stats] = await Promise.all([
+      api('/api/regions'),
+      api('/api/cell_types'),
+      api('/api/pathologies'),
+      api('/api/cross_links'),
+      api('/api/regions_mouse'),
+      api('/api/stats'),
+    ]);
+    state.data = { regions, cellTypes, pathologies, crossLinks, mouse };
+    state.stats = stats;
+
+    // Update counts
+    document.getElementById('countRegions').textContent = stats.regions || '?';
+    document.getElementById('countMouse').textContent = stats.mouse_regions || '?';
+    document.getElementById('countCellTypes').textContent = stats.cell_types || '?';
+    document.getElementById('countPathologies').textContent = stats.pathologies || '?';
+    document.getElementById('countCrossLinks').textContent = stats.cross_links || '?';
+    document.getElementById('countImages').textContent = stats.images || '?';
+
+    // Show overview
+    switchView('overview');
+  } catch (e) {
+    document.getElementById('content').innerHTML =
+      `<div class="empty-state"><div class="icon">⚠️</div><h3>Failed to load data</h3><p>${e.message}</p></div>`;
+  }
+}
+
+// ── View switching ──
+async function switchView(view) {
+  state.view = view;
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.view === view));
+  const el = document.getElementById('content');
+  el.innerHTML = '<div class="loading"><div class="spinner"></div> Loading...</div>';
+
+  try {
+    switch (view) {
+      case 'overview': await renderOverview(); break;
+      case 'regions': renderTree(el, state.data.regions, 'regions', '🧬'); break;
+      case 'mouse': renderTree(el, state.data.mouse, 'regions_mouse', '🐭'); break;
+      case 'cell_types': renderCellTypes(el); break;
+      case 'pathologies': renderPathologies(el); break;
+      case 'cross_links': renderCrossLinks(el); break;
+      case 'images': renderImages(el); break;
+      case 'about': renderAbout(el); break;
+    }
+  } catch(e) {
+    el.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><h3>Error</h3><p>${e.message}</p></div>`;
+  }
+}
+
+// ── Overview ──
+function renderOverview() {
+  const s = state.stats;
+  document.getElementById('viewTitle').textContent = 'Overview';
+  document.getElementById('viewSubtitle').textContent = 'Neuro-Taxonomy Dashboard';
+
+  const el = document.getElementById('content');
+  el.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card" onclick="switchView('regions')">
+        <div class="number" style="color:var(--accent)">${s.regions || '?'}</div>
+        <div class="label">Human Regions</div>
+      </div>
+      <div class="stat-card" onclick="switchView('mouse')">
+        <div class="number" style="color:var(--teal)">${s.mouse_regions || '?'}</div>
+        <div class="label">Mouse Regions</div>
+      </div>
+      <div class="stat-card" onclick="switchView('cell_types')">
+        <div class="number" style="color:var(--green)">${s.cell_types || '?'}</div>
+        <div class="label">Cell Types</div>
+      </div>
+      <div class="stat-card" onclick="switchView('pathologies')">
+        <div class="number" style="color:var(--orange)">${s.pathologies || '?'}</div>
+        <div class="label">Pathologies</div>
+      </div>
+      <div class="stat-card" onclick="switchView('cross_links')">
+        <div class="number" style="color:var(--purple)">${s.cross_links || '?'}</div>
+        <div class="label">Cross-Links</div>
+      </div>
+      <div class="stat-card" onclick="switchView('images')">
+        <div class="number" style="color:var(--pink)">${s.images || '?'}</div>
+        <div class="label">Image References</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📖 Quick Start</div>
+      <p style="color:var(--text-dim); font-size:14px;">
+        Browse <strong>human brain regions</strong> hierarchically with cortical layers and subnuclei,
+        compare with <strong>mouse homologs</strong>, explore <strong>cell types</strong> with enriched profiles,
+        trace <strong>pathologies</strong> and their staging schemes, and find
+        <strong>image references</strong> from NeuroMorpho and other atlases.
+      </p>
+      <p style="margin-top:12px; font-size:13px;">
+        <span style="color:var(--accent)">💡 Use the search bar</span> to find entries across all datasets.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📁 Repository</div>
+      <p style="color:var(--text-dim); font-size:13px;">
+        <a href="https://github.com/dgutman/neuro-taxonomy" target="_blank" style="color:var(--accent)">
+          github.com/dgutman/neuro-taxonomy
+        </a>
+      </p>
+    </div>
+  `;
+}
+
+// ── Tree rendering ──
+function renderTree(el, data, key, icon) {
+  const items = data[key] || [];
+  if (!items.length) {
+    el.innerHTML = '<div class="empty-state"><div class="icon">📭</div><h3>No data</h3></div>';
+    return;
+  }
+
+  document.getElementById('viewTitle').textContent =
+    key === 'regions' ? 'Human Brain Regions' : 'Mouse Brain Regions';
+  document.getElementById('viewSubtitle').textContent =
+    key === 'regions' ? 'Anatomical hierarchy with BDSA schema mapping' :
+    'Homologous regions mapped to human taxonomy';
+
+  el.innerHTML = `<div class="tree" id="treeRoot"></div>`;
+  const root = document.getElementById('treeRoot');
+
+  for (const item of items) {
+    root.appendChild(buildTreeNode(item, key));
+  }
+}
+
+function buildTreeNode(item, datasetKey, depth = 0) {
+  const li = document.createElement('li');
+  li.className = 'tree-node';
+
+  // Determine if it has children
+  const children = item.children || [];
+  const hasChildren = children.length > 0;
+
+  // Toggle row
+  const toggle = document.createElement('div');
+  toggle.className = 'tree-toggle';
+  toggle.innerHTML = `
+    <span class="arrow ${hasChildren ? '' : 'hidden'}">${hasChildren ? '▶' : ' '}</span>
+    <span class="type-icon">${item.category === 'cortical' ? '🧠' :
+      item.category === 'subcortical' ? '⚙️' :
+      item.category === 'brainstem' ? '🔄' :
+      item.category === 'cerebellar' ? '🌿' :
+      item.category === 'white_matter' ? '🤍' : '📌'}</span>
+    <span class="tag-dot" style="background:${item.status === 'stable' ? 'var(--green)' : 'var(--orange)'}"></span>
+    <strong>${item.label || item.id}</strong>
+    ${item.abbreviations ? `<span class="abbr">${Array.isArray(item.abbreviations) ? item.abbreviations.join(', ') : item.abbreviations}</span>` : ''}
+    ${item.bdsa_key ? `<span class="badge" style="background:rgba(108,140,255,0.12);color:var(--accent);margin-left:6px">BDSA: ${item.bdsa_key}</span>` : ''}
+    ${item.human_homolog ? `<span class="badge" style="background:rgba(90,223,240,0.12);color:var(--teal);margin-left:6px">→ ${item.human_homolog}</span>` : ''}
+    ${item.vulnerable_to ? `<span style="margin-left:6px">${item.vulnerable_to.map(v => `<span class="vuln-tag">${v}</span>`).join('')}</span>` : ''}
+  `;
+  toggle.onclick = (e) => {
+    e.stopPropagation();
+    const arrow = toggle.querySelector('.arrow');
+    const childrenEl = li.querySelector('.tree-children');
+    const detail = li.querySelector('.tree-node-detail');
+    if (childrenEl) {
+      childrenEl.classList.toggle('open');
+      arrow.classList.toggle('open');
+    }
+    if (detail && !childrenEl?.classList.contains('open')) {
+      detail.classList.toggle('open');
+    }
+  };
+  li.appendChild(toggle);
+
+  // Detail panel (on click for leaf nodes)
+  const detail = document.createElement('div');
+  detail.className = 'tree-node-detail';
+  detail.innerHTML = buildDetailPanel(item);
+  li.appendChild(detail);
+
+  // Children
+  if (hasChildren) {
+    const ul = document.createElement('ul');
+    ul.className = 'tree-children';
+    for (const child of children) {
+      ul.appendChild(buildTreeNode(child, datasetKey, depth + 1));
+    }
+    li.appendChild(ul);
+  }
+
+  return li;
+}
+
+function buildDetailPanel(item) {
+  const fields = [];
+  const add = (label, val) => {
+    if (val && val !== 'null' && val !== '') {
+      fields.push({ label, val: typeof val === 'string' ? val : JSON.stringify(val, null, 2).replace(/[{}"]/g, '') });
+    }
+  };
+  add('ID', item.id);
+  add('Label', item.label);
+  add('Description', item.description);
+  add('BDSA Key', item.bdsa_key);
+  add('BDSA Landmarks', item.bdsa_landmarks ? item.bdsa_landmarks.join(', ') : null);
+  add('Abbreviations', item.abbreviations);
+  add('Aliases', item.aliases);
+  add('Category', item.category);
+  add('Layer', item.layer);
+  add('Status', item.status);
+  add('Human Homolog', item.human_homolog);
+  add('Vulnerable To', item.vulnerable_to);
+  add('Evidence', item.evidence);
+
+  return `
+    <div class="detail-grid">
+      ${fields.map(f => `
+        <div class="detail-field">
+          <label>${f.label}</label>
+          <div class="value">${f.val}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// ── Cell Types view ──
+function renderCellTypes() {
+  document.getElementById('viewTitle').textContent = 'Cell Types';
+  document.getElementById('viewSubtitle').textContent = 'Neurons, glia, and their characteristics';
+  const el = document.getElementById('content');
+  const items = state.data.cellTypes?.cell_types || [];
+  if (!items.length) { el.innerHTML = '<div class="empty-state">No data</div>'; return; }
+
+  let html = `<div class="tree" id="ctRoot"></div>`;
+  el.innerHTML = html;
+  const root = document.getElementById('ctRoot');
+  for (const item of items) {
+    root.appendChild(buildCellTypeNode(item));
+  }
+}
+
+function buildCellTypeNode(item) {
+  const li = document.createElement('li');
+  li.className = 'tree-node';
+  const children = item.children || [];
+  const hasChildren = children.length > 0;
+
+  const toggle = document.createElement('div');
+  toggle.className = 'tree-toggle';
+  const icon = item.id?.includes('glutamatergic') ? '⚡' :
+    item.id?.includes('gabaergic') || item.id?.includes('gaba') ? '🔴' :
+    item.id?.includes('neuromodulatory') ? '🌈' :
+    item.id?.includes('glial') ? '💫' :
+    item.id?.includes('neuron') ? '🔬' : '🔬';
+  toggle.innerHTML = `
+    <span class="arrow ${hasChildren ? '' : 'hidden'}">${hasChildren ? '▶' : ' '}</span>
+    <span class="type-icon">${icon}</span>
+    <span class="tag-dot" style="background:${item.status === 'stable' ? 'var(--green)' : 'var(--orange)'}"></span>
+    <strong>${item.label || item.id}</strong>
+    ${item.abbreviations ? `<span class="abbr">${item.abbreviations}</span>` : ''}
+    ${item.vulnerable_to ? item.vulnerable_to.map(v => `<span class="vuln-tag">${v}</span>`).join('') : ''}
+  `;
+  toggle.onclick = (e) => {
+    e.stopPropagation();
+    const arrow = toggle.querySelector('.arrow');
+    const childrenEl = li.querySelector('.tree-children');
+    const detail = li.querySelector('.tree-node-detail');
+    if (childrenEl) {
+      childrenEl.classList.toggle('open');
+      arrow.classList.toggle('open');
+    }
+    if (detail) detail.classList.toggle('open');
+  };
+  li.appendChild(toggle);
+
+  const detail = document.createElement('div');
+  detail.className = 'tree-node-detail';
+  detail.innerHTML = buildDetailPanel(item);
+  li.appendChild(detail);
+
+  if (hasChildren) {
+    const ul = document.createElement('ul');
+    ul.className = 'tree-children';
+    for (const child of children) {
+      ul.appendChild(buildCellTypeNode(child));
+    }
+    li.appendChild(ul);
+  }
+  return li;
+}
+
+// ── Pathologies view ──
+function renderPathologies() {
+  document.getElementById('viewTitle').textContent = 'Pathologies';
+  document.getElementById('viewSubtitle').textContent = 'Proteinopathies, cellular phenotypes, staging schemes';
+  const el = document.getElementById('content');
+  const items = state.data.pathologies?.pathologies || [];
+  if (!items.length) { el.innerHTML = '<div class="empty-state">No data</div>'; return; }
+
+  let html = `<div class="tree" id="pathRoot"></div>`;
+  el.innerHTML = html;
+  const root = document.getElementById('pathRoot');
+  for (const item of items) {
+    root.appendChild(buildPathNode(item));
+  }
+}
+
+function buildPathNode(item) {
+  const li = document.createElement('li');
+  li.className = 'tree-node';
+  const children = item.children || item.lesions || item.diseases || item.staging || item.schemes || [];
+  const childArr = Array.isArray(children) ? children : [];
+  const hasChildren = childArr.length > 0;
+
+  const toggle = document.createElement('div');
+  toggle.className = 'tree-toggle';
+  const icon = item.id?.includes('protein') || item.id?.includes('amyloid') ? '🧫' :
+    item.id?.includes('tau') ? '🟤' :
+    item.id?.includes('synuclein') ? '🔵' :
+    item.id?.includes('tdp') || item.id?.includes('TDP') ? '🟣' :
+    item.id?.includes('cellular') ? '🔴' :
+    item.id?.includes('vascular') ? '🩸' :
+    item.id?.includes('aging') ? '⏳' :
+    item.id?.includes('disease') ? '🏥' :
+    item.id?.includes('staging') ? '📊' : '🦠';
+  toggle.innerHTML = `
+    <span class="arrow ${hasChildren ? '' : 'hidden'}">${hasChildren ? '▶' : ' '}</span>
+    <span class="type-icon">${icon}</span>
+    <strong>${item.label || item.id}</strong>
+    ${item.protein ? `<span class="badge" style="background:rgba(108,140,255,0.12);color:var(--accent);margin-left:6px">${item.protein}</span>` : ''}
+    ${item.staging_scheme ? `<span class="badge" style="background:rgba(240,168,90,0.12);color:var(--orange);margin-left:6px">${item.staging_scheme}</span>` : ''}
+  `;
+  toggle.onclick = (e) => {
+    e.stopPropagation();
+    const arrow = toggle.querySelector('.arrow');
+    const childrenEl = li.querySelector('.tree-children');
+    const detail = li.querySelector('.tree-node-detail');
+    if (childrenEl) {
+      childrenEl.classList.toggle('open');
+      arrow.classList.toggle('open');
+    }
+    if (detail) detail.classList.toggle('open');
+  };
+  li.appendChild(toggle);
+
+  const detail = document.createElement('div');
+  detail.className = 'tree-node-detail';
+  detail.innerHTML = buildDetailPanel(item);
+  li.appendChild(detail);
+
+  if (hasChildren) {
+    const ul = document.createElement('ul');
+    ul.className = 'tree-children';
+    for (const child of childArr) {
+      if (typeof child === 'object') ul.appendChild(buildPathNode(child));
+    }
+    li.appendChild(ul);
+  }
+  return li;
+}
+
+// ── Cross-Links view ──
+function renderCrossLinks() {
+  document.getElementById('viewTitle').textContent = 'Cross-Links';
+  document.getElementById('viewSubtitle').textContent = 'Region ↔ Cell Type ↔ Pathology associations';
+  const el = document.getElementById('content');
+  const items = state.data.crossLinks?.cross_links || [];
+  if (!items.length) { el.innerHTML = '<div class="empty-state">No data</div>'; return; }
+
+  let html = `<table class="cl-table"><thead><tr>
+    <th>Region</th><th>Layer</th><th>Cell Type</th><th>Pathology</th><th>Disease</th><th>Evidence</th>
+  </tr></thead><tbody>`;
+  for (const cl of items) {
+    if (cl.region === undefined && cl.label) continue; // skip spread pathway entries
+    html += `<tr>
+      <td><code>${cl.region || '-'}</code></td>
+      <td style="color:var(--text-dim)">${cl.layer_or_subregion || '-'}</td>
+      <td>${cl.cell_type ? `<code>${cl.cell_type}</code>` : '-'}</td>
+      <td>${cl.pathology ? `<code>${cl.pathology}</code>` : '-'}</td>
+      <td>${cl.disease || '-'}</td>
+      <td style="font-size:12px;color:var(--text-dim)">${(cl.evidence || '').slice(0, 80)}...</td>
+    </tr>`;
+  }
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+// ── Images view ──
+async function renderImages() {
+  document.getElementById('viewTitle').textContent = 'Image References';
+  document.getElementById('viewSubtitle').textContent = 'Cell morphology images from NeuroMorpho and other sources';
+  const el = document.getElementById('content');
+
+  let imgData;
+  try {
+    imgData = await api('/api/cell_image_references');
+  } catch { imgData = {}; }
+
+  const entries = Object.entries(imgData).filter(([k]) => !k.startsWith('_'));
+  if (!entries.length) {
+    el.innerHTML = `<div class="empty-state"><div class="icon">🖼️</div><h3>No images loaded</h3>
+      <p style="font-size:13px;margin-top:8px">Run <code style="background:var(--surface2);padding:2px 8px;border-radius:4px">python3 scripts/fetch_cell_images.py</code> to fetch images from NeuroMorpho.</p>
+    </div>`;
+    return;
+  }
+
+  let html = '';
+  for (const [ctId, ref] of entries) {
+    const imgs = ref.images || [];
+    if (!imgs.length) continue;
+    html += `<div class="card">
+      <div class="card-title">
+        🖼️ ${ctId.replace(/_/g, ' ')}
+        <span class="tag tag-${ref.note?.includes('pip') ? 'draft' : 'stable'}">${imgs.length} images · ${ref.total_available || '?'} total</span>
+      </div>
+      <p style="color:var(--text-dim);font-size:12px;margin-bottom:12px">${ref.note || ''}</p>
+      <div class="image-grid">
+        ${imgs.slice(0, 12).map(img => `
+          <div class="image-card">
+            <a href="${img.url}" target="_blank"><img src="${img.url}" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\\'padding:60px 10px;text-align:center;color:var(--text-dim)\\'><div style=\\'font-size:24px\\'>🖼️</div><div style=\\'font-size:10px;margin-top:4px\\'>Image not available</div></div>'"></a>
+            <div class="img-caption">${img.caption?.slice(0, 80) || ''}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }
+
+  if (!html) {
+    el.innerHTML = '<div class="empty-state">No image references available</div>';
+  } else {
+    el.innerHTML = html;
+  }
+}
+
+// ── About ──
+function renderAbout() {
+  document.getElementById('viewTitle').textContent = 'About';
+  document.getElementById('viewSubtitle').textContent = 'Neuro-Taxonomy Project';
+  const el = document.getElementById('content');
+  el.innerHTML = `
+    <div class="card">
+      <div class="card-title">🧠 Neuro-Taxonomy</div>
+      <p>A structured taxonomy of human brain regions, cell types, and neuropathological features designed for computational neuropathology workflows.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📄 License</div>
+      <p style="color:var(--text-dim);font-size:13px">Open source. Contributions welcome.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">🔗 Sources</div>
+      <ul style="color:var(--text-dim);font-size:13px;padding-left:20px">
+        <li>BDSA Schema (schema.bdsa.io)</li>
+        <li>Allen Human Brain Atlas / Allen Cell Types</li>
+        <li>Cell Ontology (CL)</li>
+        <li>Human Protein Atlas</li>
+        <li>NeuroMorpho.org</li>
+        <li>BICCN / HCA Brain Cell Census</li>
+      </ul>
+    </div>
+  `;
+}
+
+// ── Search ──
+let searchTimeout;
+
+async function onSearch(query) {
+  clearTimeout(searchTimeout);
+  const el = document.getElementById('content');
+  if (!query.trim()) {
+    switchView(state.view);
+    return;
+  }
+
+  searchTimeout = setTimeout(async () => {
+    try {
+      const results = await api(`/api/search?q=${encodeURIComponent(query)}`);
+      document.getElementById('viewTitle').textContent = `Search: "${query}"`;
+      document.getElementById('viewSubtitle').textContent = `${results.length} results`;
+
+      if (!results.length) {
+        el.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>No results</h3><p>Try a different search term</p></div>';
+        return;
+      }
+
+      let html = '';
+      for (const r of results) {
+        html += `<div class="search-result" onclick="switchView('${r.type === 'regions' ? 'regions' : r.type.includes('mouse') ? 'mouse' : r.type.startsWith('cell') ? 'cell_types' : r.type.startsWith('path') ? 'pathologies' : 'cross_links'}')">
+          <div class="sr-label">${r.label} <span class="sr-type">${r.type}</span></div>
+          <div class="sr-desc">${r.description || ''}</div>
+        </div>`;
+      }
+      el.innerHTML = html;
+    } catch(e) {
+      el.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><p>Search error: ${e.message}</p></div>`;
+    }
+  }, 300);
+}
+
+// ── Boot ──
+init();
+</script>
+</body>
+</html>
