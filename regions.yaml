@@ -1,0 +1,813 @@
+# =============================================================================
+# Neuro-Taxonomy: Regions
+# =============================================================================
+# Hierarchical human brain regions.
+#
+# BDSA region keys (from schema.bdsa.io) are referenced where applicable as
+# bdsa_key.  Where the taxonomy here is finer-grained than the BDSA schema,
+# we add subregions with a parent pointer back to the BDSA region.
+#
+# Conventions:
+#   id: lowercase_with_underscores
+#   layer: roman numeral with letter where applicable (III, IV, V, VI, etc.)
+#   status: draft | stable | needs_review
+#
+# Sources:
+#   - BDSA Region Schema (schema.bdsa.io/api/schemas/region)
+#   - Allen Human Brain Atlas (brain-map.org)
+#   - NeuroNames (braininfo.org)
+#   - HBP Human Brain Parcellation
+# =============================================================================
+
+regions:
+
+  # --------------------------------------------------------------------------
+  # TELENCEPHALON — Cerebral Cortex + Subcortical Telencephalic Nuclei
+  # --------------------------------------------------------------------------
+
+  - id: cerebral_cortex
+    label: Cerebral Cortex
+    bdsa_key: null
+    part_of: telencephalon
+    category: cortical
+    description: The outer layer of neural tissue of the cerebrum.
+    status: stable
+    children:
+      - id: frontal_lobe
+        label: Frontal Lobe
+        bdsa_key: Frontal
+        category: cortical
+        description: The largest lobe, involved in executive function, motor control, and language.
+        status: stable
+        children:
+          - id: prefrontal_cortex
+            label: Prefrontal Cortex
+            description: Anterior frontal cortex; executive function, working memory, decision-making.
+            status: stable
+            children:
+              - id: dorsolateral_prefrontal_cortex
+                label: Dorsolateral Prefrontal Cortex (DLPFC)
+                bdsa_landmarks: ["BA9", "BA46"]
+                aliases: ["DLPFC"]
+                status: stable
+                children:
+                  - id: dlpfc_layer_ii
+                    label: DLPFC Layer II
+                    layer: II
+                    description: Superficial granular layer; vulnerable to tau pathology in AD, PSP.
+                    status: draft
+                  - id: dlpfc_layer_iii
+                    label: DLPFC Layer III
+                    layer: III
+                    description: Medium/large pyramidal neurons; cortico-cortical projections.
+                    status: draft
+                  - id: dlpfc_layer_va
+                    label: DLPFC Layer Va
+                    layer: Va
+                    description: Large pyramidal neurons projecting to striatum.
+                    status: draft
+                  - id: dlpfc_layer_vb
+                    label: DLPFC Layer Vb
+                    layer: Vb
+                    description: Corticospinal and corticobulbar projection neurons.
+                    status: draft
+                  - id: dlpfc_layer_vi
+                    label: DLPFC Layer VI
+                    layer: VI
+                    description: Corticothalamic projection neurons.
+                    status: draft
+              - id: medial_prefrontal_cortex
+                label: Medial Prefrontal Cortex (mPFC)
+                bdsa_landmarks: ["BA10", "BA32"]
+                aliases: ["mPFC", "anterior cingulate (medial aspect)"]
+                status: stable
+              - id: orbitofrontal_cortex
+                label: Orbitofrontal Cortex (OFC)
+                bdsa_landmarks: ["BA11", "BA47"]
+                aliases: ["OFC"]
+                description: Involved in reward, decision-making, and social cognition.
+                status: stable
+          - id: premotor_cortex
+            label: Premotor Cortex
+            bdsa_key: Motor_cortex
+            bdsa_landmarks: ["BA6"]
+            aliases: ["premotor area"]
+            description: Planning and selection of movements.
+            status: stable
+          - id: primary_motor_cortex
+            label: Primary Motor Cortex (M1)
+            bdsa_key: Motor_cortex
+            bdsa_landmarks: ["BA4"]
+            aliases: ["M1", "precentral gyrus"]
+            description: Execution of voluntary movement; large Betz cells in layer V.
+            status: stable
+            children:
+              - id: m1_layer_v
+                label: M1 Layer V (Betz cell layer)
+                layer: V
+                description: Giant pyramidal cells (Betz cells); corticospinal tract origin.
+                vulnerable_to: ["ALS", "tauopathy"]
+                status: stable
+          - id: broca_area
+            label: Broca's Area
+            bdsa_landmarks: ["BA44", "BA45"]
+            aliases: ["pars opercularis", "pars triangularis"]
+            description: Expressive language production (dominant hemisphere).
+            status: draft
+          - id: frontal_pole
+            label: Frontal Pole
+            bdsa_key: Frontal_pole
+            bdsa_landmarks: ["BA10"]
+            description: Most anterior prefrontal region.
+            status: draft
+
+      - id: parietal_lobe
+        label: Parietal Lobe
+        bdsa_key: Parietal
+        category: cortical
+        description: Somatosensory processing, spatial orientation, attention.
+        status: stable
+        children:
+          - id: primary_somatosensory_cortex
+            label: Primary Somatosensory Cortex (S1)
+            bdsa_landmarks: ["BA3", "BA1", "BA2"]
+            aliases: ["S1", "postcentral gyrus"]
+            status: stable
+          - id: superior_parietal_lobule
+            label: Superior Parietal Lobule
+            bdsa_landmarks: ["BA5", "BA7"]
+            aliases: ["SPL"]
+            status: draft
+          - id: inferior_parietal_lobule
+            label: Inferior Parietal Lobule
+            bdsa_landmarks: ["BA39", "BA40"]
+            aliases: ["IPL"]
+            status: draft
+            children:
+              - id: angular_gyrus
+                label: Angular Gyrus
+                bdsa_landmarks: ["BA39"]
+                aliases: ["AG"]
+                status: draft
+              - id: supramarginal_gyrus
+                label: Supramarginal Gyrus
+                bdsa_landmarks: ["BA40"]
+                aliases: ["SMG"]
+                status: draft
+
+      - id: temporal_lobe
+        label: Temporal Lobe
+        bdsa_key: Temporal
+        category: cortical
+        description: Auditory processing, language comprehension, memory (medial temporal).
+        status: stable
+        children:
+          - id: superior_temporal_gyrus
+            label: Superior Temporal Gyrus
+            bdsa_landmarks: ["BA22", "BA42"]
+            aliases: ["STG"]
+            status: stable
+            children:
+              - id: primary_auditory_cortex
+                label: Primary Auditory Cortex (A1)
+                bdsa_landmarks: ["BA41", "BA42"]
+                aliases: ["Heschl's gyrus"]
+                status: stable
+              - id: wernicke_area
+                label: Wernicke's Area
+                bdsa_landmarks: ["BA22"]
+                description: Receptive language (dominant hemisphere posterior STG).
+                status: draft
+          - id: middle_temporal_gyrus
+            label: Middle Temporal Gyrus
+            bdsa_landmarks: ["BA21"]
+            aliases: ["MTG"]
+            status: stable
+          - id: inferior_temporal_gyrus
+            label: Inferior Temporal Gyrus
+            bdsa_landmarks: ["BA20", "BA37"]
+            aliases: ["ITG", "inferior temporal area"]
+            status: stable
+          - id: fusiform_gyrus
+            label: Fusiform Gyrus
+            bdsa_landmarks: ["BA37"]
+            aliases: ["occipitotemporal gyrus"]
+            description: Face and object recognition.
+            status: draft
+          - id: temporal_pole
+            label: Temporal Pole
+            bdsa_key: Temporal_pole
+            bdsa_landmarks: ["BA20", "BA38"]
+            aliases: ["temporopolar cortex"]
+            description: Emotional processing, semantic memory.
+            status: draft
+          - id: entorhinal_cortex
+            label: Entorhinal Cortex
+            bdsa_landmarks: ["BA28", "BA34"]
+            aliases: ["EC", "Brodmann area 28"]
+            description: Major hub between hippocampus and neocortex; early site of tau pathology in AD.
+            status: stable
+            children:
+              - id: ec_layer_ii
+                label: Entorhinal Cortex Layer II
+                layer: II
+                description: Stellate cells; give rise to perforant pathway; extremely vulnerable to tau tangles (Braak stage I).
+                vulnerable_to: ["tauopathy", "AD"]
+                status: stable
+              - id: ec_layer_iii
+                label: Entorhinal Cortex Layer III
+                layer: III
+                description: Pyramidal neurons projecting to CA1 and subiculum.
+                vulnerable_to: ["tauopathy", "AD"]
+                status: draft
+              - id: ec_layer_v_vi
+                label: Entorhinal Cortex Layers V–VI
+                layer: V_VI
+                description: Deep layers with hippocampal and cortical projections.
+                status: draft
+          - id: perirhinal_cortex
+            label: Perirhinal Cortex
+            bdsa_landmarks: ["BA35", "BA36"]
+            aliases: ["perirhinal area"]
+            description: Adjacent to entorhinal; involved in object recognition memory.
+            status: draft
+          - id: parahippocampal_cortex
+            label: Parahippocampal Cortex
+            bdsa_key: Hippocampus  # BDSA includes PHG under Hippocampus
+            bdsa_landmarks: ["BA35", "BA36"]
+            aliases: ["PHC", "parahippocampal gyrus"]
+            description: Surrounds hippocampus; polymodal sensory integration.
+            status: stable
+
+      - id: occipital_lobe
+        label: Occipital Lobe
+        bdsa_key: Occipital
+        category: cortical
+        description: Visual processing.
+        status: stable
+        children:
+          - id: primary_visual_cortex
+            label: Primary Visual Cortex (V1)
+            bdsa_landmarks: ["BA17"]
+            aliases: ["V1", "striate cortex", "calcarine cortex", "Line of Gennari"]
+            status: stable
+            children:
+              - id: v1_layer_iv
+                label: V1 Layer IV (stripe of Gennari)
+                layer: IV
+                description: Dense myelinated band; thalamorecipient layer.
+                status: draft
+          - id: secondary_visual_cortex
+            label: Secondary Visual Cortex
+            bdsa_landmarks: ["BA18", "BA19"]
+            aliases: ["V2", "V3", "extrastriate cortex"]
+            status: stable
+
+      - id: insular_cortex
+        label: Insular Cortex (Insula)
+        bdsa_key: Insula
+        bdsa_landmarks: ["BA13", "BA14"]
+        category: cortical
+        description: Interoception, emotion, pain processing; vulnerable to TDP-43 in FTLD.
+        status: stable
+        children:
+          - id: anterior_insula
+            label: Anterior Insula
+            description: Emotion and awareness.
+            vulnerable_to: ["FTLD-TDP", "tauopathy"]
+            status: draft
+          - id: posterior_insula
+            label: Posterior Insula
+            description: Somatosensory and interoceptive integration.
+            status: draft
+
+      - id: cingulate_cortex
+        label: Cingulate Cortex
+        bdsa_key: null  # split across Ant_Cingulate and Post_Cingulate in BDSA
+        category: cortical
+        description: Limbic cortex; emotion, memory, attention.
+        status: stable
+        children:
+          - id: anterior_cingulate_cortex
+            label: Anterior Cingulate Cortex
+            bdsa_key: Ant_Cingulate
+            bdsa_landmarks: ["BA24", "BA32"]
+            aliases: ["ACC"]
+            description: Conflict monitoring, error detection, autonomic control.
+            status: stable
+          - id: posterior_cingulate_cortex
+            label: Posterior Cingulate Cortex
+            bdsa_key: Post_Cingulate
+            bdsa_landmarks: ["BA23", "BA31"]
+            aliases: ["PCC"]
+            description: Default mode network hub; metabolism reduced early in AD.
+            status: stable
+
+      - id: hippocampal_formation
+        label: Hippocampal Formation
+        bdsa_key: Hippocampus
+        category: subcortical
+        description: Medial temporal structure essential for episodic memory.
+        status: stable
+        children:
+          - id: dentate_gyrus
+            label: Dentate Gyrus
+            aliases: ["DG"]
+            description: Granule cell layer; adult neurogenesis; relatively resistant to tau in AD until late stages.
+            status: stable
+            children:
+              - id: dg_granule_cell_layer
+                label: DG Granule Cell Layer
+                layer: granule
+                description: Densely packed granule cells; mossy fiber projections to CA3.
+                status: stable
+              - id: dg_polymorphic_layer
+                label: DG Polymorphic Layer (hilus)
+                layer: polymorphic
+                description: Mossy cells and interneurons.
+                status: draft
+          - id: cornu_ammonis
+            label: Cornu Ammonis (Hippocampus Proper)
+            description: Subdivided into CA1–CA3 (and sometimes CA4).
+            status: stable
+            children:
+              - id: ca1
+                label: CA1
+                aliases: ["Sommer's sector"]
+                description: Pyramidal neurons; extremely vulnerable to anoxia and tau pathology.
+                vulnerable_to: ["tauopathy", "AD", "ischemia"]
+                status: stable
+                children:
+                  - id: ca1_stratum_pyramidale
+                    label: CA1 Stratum Pyramidale
+                    layer: pyramidale
+                    description: Pyramidal cell body layer.
+                    status: draft
+                  - id: ca1_stratum_radiatum
+                    label: CA1 Stratum Radiatum
+                    layer: radiatum
+                    description: Dendrites of pyramidal cells; input from CA3 Schaffer collaterals.
+                    status: draft
+                  - id: ca1_stratum_lacunosum_moleculare
+                    label: CA1 Stratum Lacunosum-Moleculare
+                    layer: lacunosum_moleculare
+                    description: Distal dendrites; input from entorhinal cortex (temporoammonic path).
+                    status: draft
+              - id: ca2
+                label: CA2
+                description: Small zone between CA1 and CA3; resistant to tau but vulnerable to TDP-43 in FTLD.
+                vulnerable_to: ["FTLD-TDP", "tauopathy"]
+                status: draft
+              - id: ca3
+                label: CA3
+                description: Pyramidal cells receive mossy fiber input from DG; auto-associative network.
+                status: stable
+          - id: subiculum
+            label: Subiculum
+            description: Major output structure of hippocampus; transitional to entorhinal.
+            status: stable
+            children:
+              - id: subiculum_pyramidal_layer
+                label: Subiculum Pyramidal Layer
+                layer: pyramidale
+                status: draft
+
+      - id: amygdala
+        label: Amygdala
+        bdsa_key: Amygdala
+        bdsa_landmarks: ["Entorhinal cortex"]  # BDSA lists EC as amygdala landmark
+        category: subcortical
+        description: Emotion processing, fear learning; vulnerable to tau (AD), TDP-43 (FTLD), α-synuclein (LBD).
+        status: stable
+        children:
+          - id: basolateral_amygdala
+            label: Basolateral Amygdala
+            aliases: ["BLA"]
+            description: Sensory-emotional integration; projection target for tau spreading.
+            status: stable
+          - id: centromedial_amygdala
+            label: Centromedial Amygdala
+            aliases: ["CMA"]
+            description: Autonomic and behavioral output.
+            status: draft
+          - id: cortical_amygdaloid_nucleus
+            label: Cortical Amygdaloid Nucleus
+            aliases: ["CoA"]
+            description: Olfactory input; early vulnerability to tau.
+            status: draft
+
+      - id: basal_ganglia
+        label: Basal Ganglia
+        bdsa_key: Basal_Ganglia
+        bdsa_landmarks: ["Caudate", "Putamen", "Globus Pallidus", "Nucleus Accumbens",
+                         "Nucleus Basalis of Meynert", "Internal Capsule", "External Capsule",
+                         "Anterior Commissure"]
+        category: subcortical
+        description: Motor control, procedural learning, action selection.
+        status: stable
+        children:
+          - id: striatum
+            label: Striatum
+            description: Major input nucleus of basal ganglia.
+            status: stable
+            children:
+              - id: caudate_nucleus
+                label: Caudate Nucleus
+                bdsa_landmarks: ["Caudate", "Caudate head"]
+                aliases: ["caudate"]
+                description: C-shaped nucleus adjacent to lateral ventricle; involved in motor learning and cognition.
+                status: stable
+                children:
+                  - id: caudate_head
+                    label: Caudate Head
+                    bdsa_landmarks: ["Caudate head"]
+                    description: Anterior portion bulging into frontal horn of lateral ventricle.
+                    status: draft
+                  - id: caudate_body
+                    label: Caudate Body
+                    status: draft
+                  - id: caudate_tail
+                    label: Caudate Tail
+                    description: Extends into temporal horn.
+                    status: draft
+              - id: putamen
+                label: Putamen
+                bdsa_landmarks: ["Putamen"]
+                description: Lateral striatal structure; motor function.
+                status: stable
+              - id: nucleus_accumbens
+                label: Nucleus Accumbens
+                bdsa_landmarks: ["Nucleus Accumbens"]
+                aliases: ["NAc", "ventral striatum"]
+                description: Reward and motivation hub.
+                status: stable
+          - id: globus_pallidus
+            label: Globus Pallidus
+            bdsa_landmarks: ["Globus Pallidus"]
+            aliases: ["pallidum"]
+            description: Output nucleus of basal ganglia; external (GPe) and internal (GPi) segments.
+            status: stable
+            children:
+              - id: globus_pallidus_externa
+                label: Globus Pallidus Externa (GPe)
+                aliases: ["external pallidum"]
+                status: draft
+              - id: globus_pallidus_interna
+                label: Globus Pallidus Interna (GPi)
+                aliases: ["internal pallidum"]
+                status: draft
+          - id: subthalamic_nucleus
+            label: Subthalamic Nucleus
+            bdsa_key: Thalamus  # BDSA includes STN under Thalamus
+            aliases: ["STN", "Luys' body"]
+            description: Glutamatergic nucleus; hyperactive in Parkinson's (DBS target).
+            status: stable
+          - id: substantia_nigra
+            label: Substantia Nigra
+            bdsa_key: Midbrain
+            bdsa_landmarks: ["Substantia nigra"]
+            category: brainstem
+            description: Midbrain nucleus with two subdivisions; pars compacta (dopamine) and pars reticulata (GABA).
+            status: stable
+            children:
+              - id: substantia_nigra_pars_compacta
+                label: Substantia Nigra Pars Compacta (SNc)
+                aliases: ["SNc"]
+                description: Dopaminergic neurons project to striatum; severely degenerated in Parkinson's disease.
+                vulnerable_to: ["synucleinopathy", "PD", "MSA"]
+                status: stable
+              - id: substantia_nigra_pars_reticulata
+                label: Substantia Nigra Pars Reticulata (SNr)
+                aliases: ["SNr"]
+                description: GABAergic output neurons; similar to GPi.
+                status: stable
+          - id: nucleus_basalis_of_meynert
+            label: Nucleus Basalis of Meynert
+            bdsa_key: Basal_Ganglia
+            bdsa_landmarks: ["Nucleus Basalis of Meynert"]
+            aliases: ["NBM", "cholinergic basal forebrain"]
+            description: Major source of cholinergic innervation to cortex; degenerates in AD.
+            vulnerable_to: ["tauopathy", "AD"]
+            status: stable
+
+      # --------------------------------------------------------------------------
+      # DIENCEPHALON
+      # --------------------------------------------------------------------------
+
+      - id: thalamus
+        label: Thalamus
+        bdsa_key: Thalamus
+        bdsa_landmarks: ["Mammillary body", "Subthalamic nucleus", "Mammilo-thalamic tract",
+                         "Anterior nucleus of thalamus", "Pulvinar"]
+        category: subcortical
+        description: Major sensory relay and integration hub.
+        status: stable
+        children:
+          - id: anterior_nucleus_of_thalamus
+            label: Anterior Nucleus of Thalamus
+            bdsa_landmarks: ["Anterior nucleus of thalamus"]
+            description: Part of Papez circuit; connected to hippocampus and cingulate.
+            status: draft
+          - id: pulvinar
+            label: Pulvinar
+            bdsa_landmarks: ["Pulvinar"]
+            description: Posterior thalamic nucleus; visual attention.
+            status: draft
+          - id: ventrolateral_thalamus
+            label: Ventrolateral Thalamus
+            aliases: ["VL"]
+            description: Motor thalamus; receives cerebellar and pallidal input.
+            status: draft
+          - id: centromedian_parafascicular_complex
+            label: Centromedian–Parafascicular Complex
+            aliases: ["CM-Pf"]
+            description: Intralaminar nuclei; projects to striatum; degenerates in PSP and HD.
+            vulnerable_to: ["tauopathy", "PSP", "HD"]
+            status: draft
+
+      - id: hypothalamus
+        label: Hypothalamus
+        bdsa_key: Hypothalamus
+        category: special
+        description: Homeostatic regulation (temperature, hunger, circadian rhythm, autonomic).
+        status: stable
+        children:
+          - id: mammillary_body
+            label: Mammillary Body
+            bdsa_landmarks: ["Mammillary body"]
+            description: Part of Papez circuit; involved in memory; degenerates in Wernicke–Korsakoff.
+            status: draft
+          - id: suprachiasmatic_nucleus
+            label: Suprachiasmatic Nucleus
+            aliases: ["SCN"]
+            description: Circadian pacemaker.
+            status: draft
+          - id: tuberomammillary_nucleus
+            label: Tuberomammillary Nucleus
+            aliases: ["TMN"]
+            description: Histaminergic neurons; wakefulness.
+            status: draft
+          - id: lateral_hypothalamus
+            label: Lateral Hypothalamus
+            aliases: ["LH"]
+            description: Orexin/hypocretin neurons; feeding, arousal; degenerates in narcolepsy.
+            status: draft
+
+      # --------------------------------------------------------------------------
+      # BRAINSTEM
+      # --------------------------------------------------------------------------
+
+      - id: midbrain
+        label: Midbrain (Mesencephalon)
+        bdsa_key: Midbrain
+        category: brainstem
+        description: Upper brainstem connecting forebrain to hindbrain.
+        status: stable
+        children:
+          - id: tectum
+            label: Tectum
+            description: Dorsal midbrain.
+            children:
+              - id: superior_colliculus
+                label: Superior Colliculus
+                bdsa_landmarks: ["Superior colliculus"]
+                description: Visual orienting and saccades.
+                status: draft
+              - id: inferior_colliculus
+                label: Inferior Colliculus
+                description: Auditory processing.
+                status: draft
+          - id: tegmentum
+            label: Tegmentum
+            description: Ventral midbrain; contains SNc, VTA, RN, cranial nerve nuclei.
+            children:
+              - id: periaqueductal_gray
+                label: Periaqueductal Gray (PAG)
+                aliases: ["PAG"]
+                description: Pain modulation, defensive behavior.
+                status: draft
+              - id: ventral_tegmental_area
+                label: Ventral Tegmental Area
+                aliases: ["VTA"]
+                description: Dopaminergic (A10) neurons; reward and motivation.
+                vulnerable_to: ["synucleinopathy"]
+                status: stable
+              - id: red_nucleus
+                label: Red Nucleus
+                bdsa_landmarks: ["Red nucleus"]
+                description: Motor coordination; rubrospinal tract.
+                status: draft
+              - id: oculomotor_nucleus
+                label: Oculomotor Nucleus
+                description: CN III; eye movement.
+                status: draft
+              - id: edinger_westphal_nucleus
+                label: Edinger–Westphal Nucleus
+                description: Parasympathetic; pupillary constriction.
+                status: draft
+
+      - id: pons
+        label: Pons
+        bdsa_key: Pons
+        category: brainstem
+        description: Middle brainstem; relays between cortex and cerebellum, cranial nerve nuclei.
+        status: stable
+        children:
+          - id: locus_coeruleus
+            label: Locus Coeruleus
+            bdsa_landmarks: ["Locus coeruleus"]
+            aliases: ["LC"]
+            description: Major noradrenergic nucleus; early site of tau pathology (Braak stage I/II) and α-synuclein pathology.
+            vulnerable_to: ["tauopathy", "synucleinopathy", "AD", "PD"]
+            status: stable
+          - id: raphe_nuclei
+            label: Raphe Nuclei
+            description: Serotonergic nuclei; project widely to forebrain.
+            vulnerable_to: ["synucleinopathy"]
+            status: stable
+            children:
+              - id: dorsal_raphe_nucleus
+                label: Dorsal Raphe Nucleus
+                aliases: ["DRN"]
+                description: Largest serotonergic nucleus.
+                status: draft
+          - id: pontine_nuclei
+            label: Pontine Nuclei
+            bdsa_landmarks: ["Pontine base / fibers"]
+            description: Corticopontine relay to cerebellum.
+            status: draft
+          - id: trigeminal_motor_nucleus
+            label: Trigeminal Motor Nucleus
+            description: CN V motor.
+            status: draft
+          - id: facial_nucleus
+            label: Facial Nucleus
+            description: CN VII motor.
+            status: draft
+
+      - id: medulla_oblongata
+        label: Medulla Oblongata
+        bdsa_key: Medulla
+        category: brainstem
+        description: Lower brainstem; autonomic control (respiratory, cardiovascular), cranial nerve nuclei.
+        status: stable
+        children:
+          - id: dorsal_motor_nucleus_of_vagus
+            label: Dorsal Motor Nucleus of Vagus
+            bdsa_landmarks: ["Dorsal motor nucleus of vagus"]
+            aliases: ["DMNV"]
+            description: Parasympathetic preganglionic neurons; one of the earliest sites of α-synuclein pathology in PD (Braak stage 1).
+            vulnerable_to: ["synucleinopathy", "PD"]
+            status: stable
+          - id: hypoglossal_nucleus
+            label: Hypoglossal Nucleus
+            bdsa_landmarks: ["Hypoglossal nucleus"]
+            description: CN XII; tongue movement.
+            status: draft
+          - id: inferior_olivary_nucleus
+            label: Inferior Olivary Nucleus
+            bdsa_landmarks: ["Inferior olive"]
+            aliases: ["ION"]
+            description: Climbing fiber input to cerebellar Purkinje cells; degenerates in MSA, MND.
+            vulnerable_to: ["MSA", "MND"]
+            status: draft
+          - id: nucleus_ambiguus
+            label: Nucleus Ambiguus
+            description: Motor neurons for CN IX, X, XI; swallowing, phonation.
+            status: draft
+          - id: solitary_nucleus
+            label: Solitary Nucleus (NTS)
+            aliases: ["NTS", "nucleus tractus solitarius"]
+            description: Visceral sensory integration.
+            status: draft
+          - id: area_postrema
+            label: Area Postrema
+            description: Chemoreceptor trigger zone (vomiting); circumventricular organ.
+            status: draft
+
+      # --------------------------------------------------------------------------
+      # CEREBELLUM
+      # --------------------------------------------------------------------------
+
+      - id: cerebellum
+        label: Cerebellum
+        bdsa_key: Cerebellum
+        bdsa_landmarks: ["Dentate", "Vermis", "Cortex"]
+        category: cerebellar
+        description: Motor coordination, balance, and some cognitive functions.
+        status: stable
+        children:
+          - id: cerebellar_cortex
+            label: Cerebellar Cortex
+            description: Outer layer with three distinct strata.
+            status: stable
+            children:
+              - id: molecular_layer_cerebellum
+                label: Molecular Layer
+                layer: molecular
+                description: Outer layer; parallel fibers (granule cell axons), Purkinje dendrites, stellate/basket cells.
+                status: stable
+              - id: purkinje_cell_layer
+                label: Purkinje Cell Layer
+                layer: purkinje
+                description: Large GABAergic projection neurons; sole output of cerebellar cortex; vulnerable to anoxia, MSA, ataxias.
+                vulnerable_to: ["MSA", "SCA", "anoxia"]
+                status: stable
+              - id: granule_cell_layer_cerebellum
+                label: Granule Cell Layer
+                layer: granular
+                description: Most numerous neurons in the brain; receive mossy fiber input.
+                status: stable
+          - id: cerebellar_nuclei
+            label: Deep Cerebellar Nuclei
+            description: Output nuclei of the cerebellum.
+            status: stable
+            children:
+              - id: dentate_nucleus
+                label: Dentate Nucleus
+                bdsa_landmarks: ["Dentate"]
+                description: Largest cerebellar nucleus; motor coordination and cognition; vulnerable to tau in PSP and MSA.
+                vulnerable_to: ["tauopathy", "PSP", "MSA"]
+                status: stable
+              - id: emboliform_nucleus
+                label: Emboliform Nucleus (Anterior Interposed)
+                description: Motor coordination.
+                status: draft
+              - id: globose_nucleus
+                label: Globose Nucleus (Posterior Interposed)
+                status: draft
+              - id: fastigial_nucleus
+                label: Fastigial Nucleus
+                description: Balance and eye movements.
+                status: draft
+          - id: cerebellar_vermis
+            label: Vermis
+            bdsa_landmarks: ["Vermis"]
+            description: Midline cerebellum; truncal coordination; vulnerable to SCA and MSA.
+            vulnerable_to: ["MSA", "SCA"]
+            status: draft
+          - id: cerebellar_hemispheres
+            label: Cerebellar Hemispheres
+            description: Lateral cerebellum; coordinated limb movements, cognitive cerebellum.
+            status: draft
+
+      # --------------------------------------------------------------------------
+      # WHITE MATTER
+      # --------------------------------------------------------------------------
+
+      - id: white_matter
+        label: White Matter
+        bdsa_key: White_matter
+        bdsa_landmarks: ["Frontal", "Parietal", "Temporal", "Occipital"]
+        category: white_matter
+        description: Myelinated axon tracts connecting brain regions.
+        status: stable
+        children:
+          - id: corpus_callosum
+            label: Corpus Callosum
+            description: Largest commissural tract; interhemispheric.
+            status: stable
+          - id: internal_capsule
+            label: Internal Capsule
+            bdsa_landmarks: ["Internal Capsule"]
+            description: Major projection tract between cortex and brainstem/spinal cord.
+            status: draft
+          - id: external_capsule
+            label: External Capsule
+            bdsa_landmarks: ["External Capsule"]
+            description: Contains claustrum, extreme capsule fibers.
+            status: draft
+          - id: fornix
+            label: Fornix
+            description: Primary hippocampal output tract (to mammillary bodies, septal nuclei).
+            status: draft
+          - id: optic_tract
+            label: Optic Tract
+            description: Visual pathway from retina via LGN to V1.
+            status: draft
+
+      # --------------------------------------------------------------------------
+      # SPECIAL / OTHER
+      # --------------------------------------------------------------------------
+
+      - id: olfactory_bulb
+        label: Olfactory Bulb
+        bdsa_key: Olfactory
+        bdsa_landmarks: ["Bulb", "Tract"]
+        category: special
+        description: First cranial nerve; early vulnerability to α-synuclein and tau pathology.
+        vulnerable_to: ["synucleinopathy", "tauopathy"]
+        status: stable
+
+      - id: spinal_cord_regions  # placeholder for future spinal cord subdivisions
+        label: Spinal Cord
+        bdsa_key: Spinal_cord
+        category: special
+        status: draft
+
+      - id: other_region
+        label: Other / Custom Region
+        bdsa_key: Other
+        category: special
+        description: Free-text region not covered by the standard hierarchy.
+        status: draft

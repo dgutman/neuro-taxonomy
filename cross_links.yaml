@@ -1,0 +1,352 @@
+# =============================================================================
+# Neuro-Taxonomy: Cross-Links
+# =============================================================================
+# Known associations between brain regions, cell types, and pathologies.
+#
+# Each entry ties together a region (or region+layer) with a cell type
+# and the pathological protein/lesion it is vulnerable to.
+#
+# Conventions:
+#   region:      id from regions.yaml
+#   cell_type:   id from cell_types.yaml (optional — may be pathology-region only)
+#   pathology:   id from pathologies.yaml
+#   specificity: known | predicted | suspected | unknown
+#   evidence:    citation or brief rationale
+# =============================================================================
+
+cross_links:
+
+  # ===== ALZHEIMER'S DISEASE =====
+
+  # — Early tau vulnerability (Braak I–II) —
+  - region: entorhinal_cortex
+    layer_or_subregion: ec_layer_ii
+    cell_type: entorhinal_stellate_cells
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "Braak stage I; stellate cells of entorhinal layer II give rise to perforant path; earliest cortical tau."
+    status: stable
+
+  - region: locus_coeruleus
+    cell_type: locus_coeruleus_noradrenergic
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "Braak stage I; noradrenergic neurons accumulate tau early, may be site of initial pathology."
+    status: stable
+
+  - region: ca1
+    cell_type: null  # pyramidal neurons in CA1
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "CA1 pyramidal neurons are among the first hippocampal cells to develop NFTs (Braak III–IV)."
+    status: stable
+
+  # — Limbic tau (Braak III–IV) —
+  - region: amygdala
+    cell_type: null
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "Amygdala heavily involved by Braak III–IV; basolateral nuclei especially vulnerable."
+    status: stable
+
+  - region: nucleus_basalis_of_meynert
+    cell_type: basal_forebrain_cholinergic_neurons
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "Cholinergic NB neurons accumulate NFTs and degenerate; basis for cholinergic deficit in AD."
+    status: stable
+
+  # — Neocortical tau (Braak V–VI) —
+  - region: dlpfc_layer_ii
+    cell_type: layer_ii_iii_pyramidal
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "Braak V; superficial layers accumulate NFT in neocortical stages."
+    status: stable
+
+  - region: dlpfc_layer_va
+    cell_type: layer_v_pyramidal
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "Braak V–VI; deep layer pyramidal neurons develop flame-shaped NFTs."
+    status: stable
+
+  # — Aβ plaque distribution —
+  - region: cerebral_cortex
+    cell_type: null
+    pathology: neuritic_plaques
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "Neocortex earliest (Thal phase 1); diffuse → neuritic plaque progression."
+    status: stable
+
+  # — Selective vulnerability of inhibitory interneurons in AD —
+  - region: cerebral_cortex
+    cell_type: parvalbumin_positive_interneurons
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "PV+ interneurons accumulate tau and are lost in AD; especially in frontal and temporal cortex."
+    status: stable
+
+  - region: cerebral_cortex
+    cell_type: somatostatin_positive_interneurons
+    pathology: neurofibrillary_tangles
+    disease: alzheimer_disease
+    specificity: known
+    evidence: "SST+ interneurons vulnerable to tau in AD; reductions in several cortical regions."
+    status: stable
+
+  # ===== PARKINSON'S DISEASE / LEWY BODY DISEASE =====
+
+  # — Braak α-synuclein stage 1 —
+  - region: dorsal_motor_nucleus_of_vagus
+    cell_type: null
+    pathology: lewy_bodies
+    specificity: known
+    evidence: "Braak synuclein stage 1; DMNV neurons first to show Lewy pathology."
+    status: stable
+
+  # — Braak α-synuclein stage 2 —
+  - region: locus_coeruleus
+    cell_type: locus_coeruleus_noradrenergic
+    pathology: lewy_bodies
+    specificity: known
+    evidence: "Braak stage 2; LC neurons accumulate Lewy bodies early."
+    status: stable
+
+  - region: pons
+    cell_type: raphe_serotonergic_neurons
+    pathology: lewy_bodies
+    specificity: known
+    evidence: "Raphe nuclei involved in Braak stage 2."
+    status: stable
+
+  # — Braak α-synuclein stage 3 —
+  - region: substantia_nigra_pars_compacta
+    cell_type: snc_dopaminergic_neurons
+    pathology: lewy_bodies
+    specificity: known
+    evidence: "Braak stage 3; SNc dopamine neurons degenerate; cardinal motor symptoms of PD."
+    status: stable
+
+  - region: amygdala
+    cell_type: null
+    pathology: lewy_bodies
+    specificity: known
+    evidence: "Basolateral amygdala involved by stage 3."
+    status: stable
+
+  # — Braak stage 4 (limbic) —
+  - region: hippocampal_formation
+    cell_type: null
+    pathology: lewy_bodies
+    specificity: known
+    evidence: "CA2–3, entorhinal: Lewy pathology in limbic stage (DLB)."
+    status: stable
+
+  # — Neocortical (stages 5–6) —
+  - region: cerebral_cortex
+    cell_type: null
+    pathology: lewy_bodies
+    specificity: known
+    evidence: "DLB has greater neocortical Lewy bodies; frontal, temporal, cingulate."
+    status: stable
+
+  # ===== FTLD-TDP =====
+
+  - region: frontal_lobe
+    cell_type: cortical_pyramidal_neurons
+    pathology: tdp43_neuronal_cytoplasmic_inclusions
+    specificity: known
+    evidence: "FTLD-TDP types A–E show TDP-43 NCIs and DNs in frontal cortex."
+    status: stable
+
+  - region: temporal_lobe
+    cell_type: cortical_pyramidal_neurons
+    pathology: tdp43_dystrophic_neurites
+    specificity: known
+    evidence: "Temporal cortex heavily involved; type C especially prominent in temporal pole."
+    status: stable
+
+  - region: hippocampal_formation
+    cell_type: dentate_granule_cells
+    pathology: tdp43_neuronal_cytoplasmic_inclusions
+    specificity: known
+    evidence: "Dentate gyrus granule cells show TDP-43 pathology in FTLD and LATE-NC."
+    status: stable
+
+  - region: ca1
+    cell_type: null
+    pathology: tdp43_neuronal_cytoplasmic_inclusions
+    specificity: known
+    evidence: "CA1 subiculum transitional zone: TDP-43 pathology in LATE-NC."
+    status: stable
+
+  - region: insular_cortex
+    cell_type: null
+    pathology: tdp43_neuronal_cytoplasmic_inclusions
+    specificity: known
+    evidence: "Insula commonly affected in FTLD-TDP."
+    status: stable
+
+  # ===== MSA =====
+
+  - region: cerebellum
+    cell_type: oligodendrocytes
+    pathology: glial_cytoplasmic_inclusions
+    specificity: known
+    evidence: "GCIs in cerebellar WM; Purkinje cell loss in MSA-C."
+    status: stable
+
+  - region: striatum
+    cell_type: oligodendrocytes
+    pathology: glial_cytoplasmic_inclusions
+    specificity: known
+    evidence: "Putamen GCIs + neuronal loss in MSA-P."
+    status: stable
+
+  - region: substantia_nigra_pars_compacta
+    cell_type: snc_dopaminergic_neurons
+    pathology: glial_cytoplasmic_inclusions
+    specificity: known
+    evidence: "SNc degeneration in MSA-P (less severe than PD in terms of Lewy bodies, but GCI prominent)."
+    status: stable
+
+  - region: inferior_olivary_nucleus
+    cell_type: null
+    pathology: glial_cytoplasmic_inclusions
+    specificity: known
+    evidence: "ION involved in MSA-C."
+    status: stable
+
+  # ===== PSP =====
+
+  - region: subthalamic_nucleus
+    cell_type: null
+    pathology: neurofibrillary_tangles  # globose in PSP
+    specificity: known
+    evidence: "STN severely affected; globose NFTs and tau threads."
+    status: stable
+
+  - region: substantia_nigra_pars_compacta
+    cell_type: null
+    pathology: neurofibrillary_tangles
+    specificity: known
+    evidence: "SNc degeneration; globose NFTs; may be confused with PD on gross exam."
+    status: stable
+
+  - region: globus_pallidus
+    cell_type: null
+    pathology: tau_neuropil_threads
+    specificity: known
+    evidence: "Dense tau threads and coiled bodies in GP."
+    status: stable
+
+  - region: pons
+    cell_type: null
+    pathology: tufted_astrocytes
+    specificity: known
+    evidence: "Tufted astrocytes in pontine nuclei; characteristic of PSP."
+    status: stable
+
+  - region: dentate_nucleus
+    cell_type: null
+    pathology: neurofibrillary_tangles
+    specificity: known
+    evidence: "Dentate nucleus involvement in PSP (and MSA)."
+    status: stable
+
+  # ===== CBD =====
+
+  - region: cerebral_cortex
+    cell_type: null
+    pathology: astrocytic_plaques
+    specificity: known
+    evidence: "Frontal and parietal cortex; hallmark of CBD."
+    status: stable
+
+  - region: substantia_nigra_pars_compacta
+    cell_type: null
+    pathology: tau_pathology
+    specificity: known
+    evidence: "SNc tau pathology in CBD."
+    status: stable
+
+  # ===== ALS =====
+
+  - region: spinal_cord_regions
+    cell_type: betz_cells  # though spinal motor neurons are not betz
+    pathology: tdp43_neuronal_cytoplasmic_inclusions
+    specificity: known
+    evidence: "ALS: TDP-43 inclusions in spinal motor neurons + cortical Betz cells."
+    status: stable
+
+  # ===== HUNTINGTON'S DISEASE =====
+
+  - region: striatum
+    cell_type: striatal_medium_spiny_neurons
+    pathology: null  # huntingtin inclusions (separate, not in proteinopathy list)
+    specificity: known
+    evidence: "Selective loss of MSNs (especially D2 indirect pathway) in HD; huntingtin aggregates."
+    status: stable
+
+  - region: caudate_nucleus
+    cell_type: striatal_medium_spiny_neurons
+    pathology: null
+    specificity: known
+    evidence: "Caudate atrophy; MSN loss progresses from dorsal to ventral."
+    status: stable
+
+  # ===== PART / LATE =====
+
+  - region: entorhinal_cortex
+    cell_type: null
+    pathology: primary_age_related_tauopathy
+    specificity: known
+    evidence: "PART: tau restricted to medial temporal lobe (Braak ≤IV), no Aβ."
+    status: stable
+
+  - region: hippocampal_formation
+    cell_type: null
+    pathology: aging_tdp43
+    specificity: known
+    evidence: "LATE-NC: TDP-43 deposits in hippocampus, amygdala; mimics AD."
+    status: stable
+
+  # ===== CROSS-REGIONAL SPREAD PATTERNS =====
+
+  - id: tau_spread_pathway_ad
+    label: Tau Spread in AD (Braak Pathway)
+    description: "Tau spreads along anatomical connectivity: LC/EC → hippocampal formation → limbic → neocortical."
+    evidence: "Braak & Braak 1991; Braak et al. 2006; trans-synaptic spread."
+    status: stable
+    sequence:
+      - region: locus_coeruleus
+      - region: entorhinal_cortex
+      - region: ca1
+      - region: amygdala
+      - region: temporal_lobe
+      - region: frontal_lobe
+      - region: parietal_lobe
+      - region: primary_motor_cortex
+
+  - id: synuclein_spread_pathway_pd
+    label: α-Synuclein Spread in PD (Braak Pathway)
+    description: "α-Synuclein spreads caudo-rostrally: DMNV → pons → midbrain → limbic → neocortex."
+    evidence: "Braak et al. 2003; gut-brain axis hypothesis."
+    status: stable
+    sequence:
+      - region: dorsal_motor_nucleus_of_vagus
+      - region: locus_coeruleus
+      - region: substantia_nigra_pars_compacta
+      - region: amygdala
+      - region: hippocampal_formation
+      - region: cerebral_cortex

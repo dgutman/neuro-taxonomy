@@ -1,0 +1,482 @@
+# =============================================================================
+# Neuro-Taxonomy: Pathologies
+# =============================================================================
+# Pathological protein inclusions, cellular phenotypes, and staging schemes
+# for human neurodegenerative diseases.
+#
+# Sources:
+#   - NIA-AA / ADNC criteria (Hyman et al. 2012, Montine et al. 2012)
+#   - Braak staging for NFTs (Braak & Braak 1991, Braak et al. 2006)
+#   - Thal phases for Aβ (Thal et al. 2002)
+#   - Braak α-synuclein staging (Braak et al. 2003)
+#   - FTLD-TDP subtypes (Mackenzie et al. 2010, Lee et al. 2017)
+#   - MSA staging (Wenning et al. 2008, Brettschneider et al. 2012)
+#   - PSP staging (Dickson et al. 2010, Kovacs et al. 2020)
+#   - CBD staging (Kouri et al. 2011)
+#   - MONDO disease ontology
+#   - PATO phenotype ontology
+#   - NACC neuropathology variable definitions
+# =============================================================================
+
+pathologies:
+
+  # --------------------------------------------------------------------------
+  # PROTEIN AGGREGATES — the core molecular lesions
+  # --------------------------------------------------------------------------
+
+  - id: amyloid_beta_pathology
+    label: Amyloid-β (Aβ) Pathology
+    description: "Extracellular accumulation of 40-42 amino-acid amyloid-β peptides; hallmark of Alzheimer's disease."
+    protein: APP-derived Aβ
+    status: stable
+    lesions:
+      - id: diffuse_plaques
+        label: Diffuse Aβ Plaques
+        description: "Non-compact, poorly circumscribed Aβ aggregates; early phase (Thal phase 1)."
+        stain: ["Aβ IHC (4G8, 6E10, 6F/3D)", "thioflavin S (weak)"]
+        status: stable
+      - id: neuritic_plaques
+        label: Neuritic (Dense-Core) Plaques
+        description: "Compact Aβ core with dystrophic neurites (phospho-tau positive); correlate with cognitive decline."
+        stain: ["Aβ IHC", "Bielschowsky", "thioflavin S (bright)", "CERAD rating"]
+        status: stable
+      - id: cored_plaques
+        label: Cored (Compact) Aβ Plaques
+        description: "Dense spherical Aβ core; subtype of neuritic plaque."
+        status: draft
+      - id: cerebral_amyloid_angiopathy
+        label: Cerebral Amyloid Angiopathy (CAA)
+        description: "Aβ deposition in cerebral blood vessel walls; can cause lobar hemorrhage."
+        status: stable
+      - id: subpial_amyloid_deposition
+        label: Subpial / Leptomeningeal Aβ
+        description: "Aβ deposition in pial/subpial compartment."
+        status: draft
+    staging:
+      - id: thal_phases
+        label: Thal Phases (Aβ Staging)
+        description: |
+          Neocortical (phase 1) → Allocortical (phase 2, hippocampus/cingulate) →
+          Diencephalon/striatum (phase 3) → Brainstem (phase 4) → Cerebellum (phase 5).
+        source: "Thal et al. 2002 ('Phases of Aβ-deposition in the human brain')"
+        phases:
+          - {phase: 1, label: "Neocortical", description: "Aβ in frontal, temporal, parietal, occipital neocortex"}
+          - {phase: 2, label: "Allocortical", description: "Hippocampus, entorhinal cortex, cingulate gyrus, insula"}
+          - {phase: 3, label: "Subcortical (diencephalon/striatum)", description: "Basal ganglia, thalamus, hypothalamus"}
+          - {phase: 4, label: "Brainstem", description: "Midbrain, pons, medulla (substantia nigra, red nucleus, reticular formation)"}
+          - {phase: 5, label: "Cerebellum", description: "Cerebellar cortex, dentate nucleus"}
+        status: stable
+
+  - id: tau_pathology
+    label: Tau (Neurofibrillary) Pathology
+    description: "Intraneuronal aggregates of hyperphosphorylated tau protein (MAPT); hallmark of Alzheimer's disease and primary tauopathies."
+    protein: MAPT (3R + 4R in AD; predominantly 4R in PSP/CBD; predominantly 3R in PiD)
+    status: stable
+    lesions:
+      - id: neurofibrillary_tangles
+        label: Neurofibrillary Tangles (NFTs)
+        description: "Fibrillar intraneuronal tau aggregates; flame-shaped (pyramidal) or globose (subcortical)."
+        stain: ["AT8 IHC", "tau-5 IHC", "Gallyas silver", "thioflavin S"]
+        status: stable
+        subtypes:
+          - id: flame_shaped_nft
+            label: Flame-Shaped NFT
+            description: "Classic in cortical pyramidal neurons."
+            status: stable
+          - id: globose_nft
+            label: Globose NFT
+            description: "Rounded tangles in subcortical nuclei (locus coeruleus, raphe, SNc)."
+            status: stable
+      - id: pretangles
+        label: Pretangles / Pre-Tangle Tau
+        description: "Diffuse, non-fibrillar phospho-tau accumulation; precedes mature NFTs."
+        stain: ["AT8 IHC (diffuse)", "CP13 IHC"]
+        status: stable
+      - id: tau_neuropil_threads
+        label: Tau Neuropil Threads
+        description: "Tau-positive processes in the neuropil; dendritic tau accumulations."
+        status: stable
+      - id: tau_in_astrocytes
+        label: Astrocytic Tau Inclusions
+        description: "Tau aggregates in astrocytes; characteristic of PSP and CBD."
+        status: stable
+        subtypes:
+          - id: tufted_astrocytes
+            label: Tufted Astrocytes
+            description: "Perinuclear tau aggregates with fine radiating processes; characteristic of PSP."
+            stain: ["AT8", "Gallyas"]
+            status: stable
+          - id: astrocytic_plaques
+            label: Astrocytic Plaques
+            description: "Ring-like tau deposits in astrocytic processes; characteristic of CBD."
+            stain: ["AT8", "Gallyas"]
+            status: stable
+      - id: tau_in_oligodendroglia
+        label: Oligodendroglial Tau Inclusions
+        status: stable
+        subtypes:
+          - id: coiled_bodies
+            label: Coiled Bodies
+            description: "Tau aggregates in oligodendrocytes; seen in PSP, CBD, AD."
+            status: stable
+      - id: pick_bodies
+        label: Pick Bodies
+        description: "Round, argyrophilic, 3R-tau-positive inclusions in Pick's disease (PiD)."
+        status: stable
+      - id: globular_glial_tau_inclusions
+        label: Globular Glial Tau Inclusions (GGTs)
+        description: "Tau inclusions in astrocytes and oligodendrocytes; hallmark of GGT."
+        status: draft
+    staging:
+      - id: braak_nft_staging
+        label: Braak NFT Stages (I–VI)
+        description: |
+          Stages I–II: Transentorhinal (entorhinal cortex, locus coeruleus)
+          Stages III–IV: Limbic (hippocampus, amygdala, thalamus)
+          Stages V–VI: Neocortical (isocortical association areas)
+        source: "Braak & Braak 1991; Braak et al. 2006"
+        phases:
+          - {phase: "I",  label: "Transentorhinal (early)", description: "Entorhinal cortex, locus coeruleus (pre-alpha layer)"}
+          - {phase: "II", label: "Transentorhinal (advanced)", description: "Entorhinal cortex CA1, subiculum, locus coeruleus"}
+          - {phase: "III", label: "Limbic (early)", description: "Hippocampus, amygdala, insula, cingulate, basal forebrain"}
+          - {phase: "IV", label: "Limbic (advanced)", description: "Temporal neocortex, striatum, thalamus, hypothalamus"}
+          - {phase: "V",  label: "Neocortical (early)", description: "Extensive neocortical involvement (frontal, parietal, occipital)}"}
+          - {phase: "VI", label: "Neocortical (advanced)", description: "Primary motor, sensory, and visual cortices"}
+        status: stable
+
+  - id: alpha_synuclein_pathology
+    label: α-Synuclein Pathology
+    description: "Intraneuronal/intraglial aggregates of α-synuclein (SNCA) protein; hallmark of Parkinson's disease, DLB, and MSA."
+    protein: SNCA (α-synuclein)
+    status: stable
+    lesions:
+      - id: lewy_bodies
+        label: Lewy Bodies
+        description: "Intracytoplasmic, round, eosinophilic inclusions composed of α-synuclein; brainstem (classic) vs cortical types."
+        stain: ["pS129 α-synuclein IHC", "ubiquitin IHC", "H&E (pale eosinophilic)"]
+        status: stable
+        subtypes:
+          - id: classical_brainstem_lewy_body
+            label: Classical Brainstem Lewy Body
+            description: "Dense core with pale halo; in SNc, LC, DMNV."
+            status: stable
+          - id: cortical_lewy_body
+            label: Cortical Lewy Body
+            description: "Less well-defined, smaller, more diffuse; higher density in DLB vs PD."
+            status: stable
+      - id: lewy_neurites
+        label: Lewy Neurites
+        description: "α-Synuclein aggregates in axons and dendrites; thread-like or dot-like."
+        stain: ["pS129 α-synuclein IHC"]
+        status: stable
+      - id: glial_cytoplasmic_inclusions
+        label: Glial Cytoplasmic Inclusions (GCIs)
+        description: "α-Synuclein aggregates in oligodendrocytes; hallmark of MSA."
+        stain: ["pS129 α-synuclein IHC", "Gallyas"]
+        status: stable
+      - id: neuronal_cytoplasmic_inclusions_alpha_syn
+        label: α-Synuclein NCIs (non-Lewy)
+        description: "Non-Lewy α-synuclein neuronal cytoplasmic inclusions; described in MSA but less characteristic."
+        status: draft
+    staging:
+      - id: braak_synuclein_staging
+        label: Braak α-Synuclein Stages (1–6)
+        description: |
+          Stage 1: DMNV / medulla
+          Stage 2: Pons (LC, raphe)
+          Stage 3: Midbrain (SNc, amygdala)
+          Stage 4: Limbic (hippocampus, entorhinal, cingulate)
+          Stage 5–6: Neocortical (frontal, temporal, parietal)
+        source: "Braak et al. 2003 ('Staging of brain pathology related to sporadic Parkinson's disease')"
+        phases:
+          - {phase: 1, label: "Medullary", description: "Dorsal motor nucleus of vagus, intermediate reticular zone"}
+          - {phase: 2, label: "Pontine", description: "Locus coeruleus, raphe nuclei, gigantocellular reticular nucleus"}
+          - {phase: 3, label: "Midbrain", description: "Substantia nigra pars compacta, amygdala (basolateral), basal forebrain"}
+          - {phase: 4, label: "Limbic", description: "Hippocampus (CA2–3), entorhinal, insula, cingulate, temporal neocortex"}
+          - {phase: 5, label: "Neocortical (high)", description: "Prefrontal, parietal, occipital neocortex, striatum"}
+          - {phase: 6, label: "Neocortical (maximal)", description: "Primary motor and sensory cortices; near-complete"}
+        status: stable
+
+  - id: tdp43_pathology
+    label: TDP-43 Pathology
+    description: "Cytoplasmic/nuclear aggregates of TDP-43 (TARDBP) protein; hallmark of most FTLD-TDP subtypes and ALS."
+    protein: TARDBP (TDP-43)
+    status: stable
+    lesions:
+      - id: tdp43_neuronal_cytoplasmic_inclusions
+        label: TDP-43 Neuronal Cytoplasmic Inclusions (NCI)
+        description: "Round or skein-like (ALS) cytoplasmic TDP-43 aggregates; also crescent-shaped (FTLD)."
+        stain: ["TDP-43 IHC", "phospho-TDP-43 IHC (pS409/410)"]
+        status: stable
+      - id: tdp43_dystrophic_neurites
+        label: TDP-43 Dystrophic Neurites (DN)
+        description: "TDP-43-positive processes in neuropil; hallmark of FTLD-TDP type A."
+        status: stable
+      - id: tdp43_neuronal_intranuclear_inclusions
+        label: TDP-43 Neuronal Intranuclear Inclusions (NII)
+        description: "TDP-43 aggregates within the nucleus; characteristic of FTLD-TDP type B and VCPopathy."
+        status: stable
+      - id: tdp43_glial_inclusions
+        label: TDP-43 Glial Inclusions
+        description: "TDP-43 aggregates in oligodendrocytes; less common but seen in FTLD-TDP."
+        status: draft
+    subtypes:
+      - id: ftld_tdp_subtypes
+        label: FTLD-TDP Subtypes (A–E)
+        description: |
+          Based on morphology and laminar distribution of TDP-43 pathology.
+        source: "Mackenzie et al. 2010; Lee et al. 2017"
+        status: stable
+        children:
+          - id: ftld_tdp_type_a
+            label: FTLD-TDP Type A
+            description: "Numerous DNs + NCIs; cortical layers II–III; associated with GRN mutations."
+            status: stable
+          - id: ftld_tdp_type_b
+            label: FTLD-TDP Type B
+            description: "Numerous NCIs, moderate DNs; all cortical layers; associated with C9orf72 expansion."
+            status: stable
+          - id: ftld_tdp_type_c
+            label: FTLD-TDP Type C
+            description: "Long DNs, few NCIs; layers II–III; associated with semantic dementia (usually sporadic)."
+            status: stable
+          - id: ftld_tdp_type_d
+            label: FTLD-TDP Type D
+            description: "NIIs prevalent; associated with VCP mutations."
+            status: stable
+          - id: ftld_tdp_type_e
+            label: FTLD-TDP Type E
+            description: "Small NCIs, granular; layer II; severe; associated with C9orf72 (rapidly progressive)."
+            status: stable  # added by Lee et al. 2017
+    staging:
+      - id: ftld_tdp_staging
+        label: FTLD-TDP Staging
+        description: "Proposed staging: Orbitofrontal/polar (early) → Temporal (mid) → Frontal/parietal (late)."
+        source: "Brettschneider et al. 2014"
+        status: draft
+
+  - id: fus_pathology
+    label: FUS Pathology
+    description: "Cytoplasmic aggregates of FUS protein; rare cause of FTLD (FTLD-FUS) and ALS (rare)."
+    protein: FUS
+    status: draft
+    lesions:
+      - id: fus_nci
+        label: FUS Neuronal Cytoplasmic Inclusions
+        description: "Round or crescent-shaped; strongly immunoreactive."
+        status: draft
+      - id: fus_nii
+        label: FUS Neuronal Intranuclear Inclusions
+        description: "Rod-like or round."
+        status: draft
+
+  - id: prion_pathology
+    label: Prion (PrP) Pathology
+    description: "Accumulation of misfolded prion protein (PrPSc); hallmark of Creutzfeldt-Jakob disease and other prionopathies."
+    protein: PRNP (PrPSc)
+    status: draft
+    lesions:
+      - id: prp_plaques
+        label: PrP Plaques (Kuru-type florid plaques)
+        status: draft
+      - id: prp_synaptic_deposition
+        label: Synaptic PrPSc Deposition
+        description: "Punctate PrP immunoreactivity in neuropil; most common pattern."
+        status: draft
+
+  # --------------------------------------------------------------------------
+  # CELLULAR AND TISSUE PHENOTYPES
+  # --------------------------------------------------------------------------
+
+  - id: cellular_phenotypes
+    label: Cellular / Tissue-Level Phenotypes
+    description: "Non-proteinopathy tissue changes observed in neurodegeneration."
+    status: stable
+    lesions:
+      - id: neuronal_loss
+        label: Neuronal Loss
+        description: "Loss of neurons — the ultimate correlate of clinical deficits."
+        status: stable
+      - id: synaptic_loss
+        label: Synaptic / Dendritic Loss
+        description: "Loss of synapses and dendritic spines; early correlate of cognitive decline."
+        status: stable
+      - id: reactive_gliosis
+        label: Reactive Gliosis
+        description: "Increased GFAP expression and hypertrophy of astrocytes; universal response to injury."
+        status: stable
+      - id: microglial_activation
+        label: Microglial Activation
+        description: "Iba1/CD68 upregulation, morphological shift; neuroinflammatory response."
+        status: stable
+      - id: myelin_loss
+        label: Myelin Loss / Leukodystrophy
+        description: "Loss of myelin; seen in WM tracts in AD, MSA, and various leukodystrophies."
+        status: stable
+      - id: vacuolation
+        label: Spongiform Vacuolation / Status Spongiosus
+        description: "Microvacuoles in neuropil; CJD (prion), also some FTLD subtypes."
+        status: stable
+      - id: granulovacuolar_degeneration
+        label: Granulovacuolar Degeneration (GVD)
+        description: "Basophilic granular vacuoles in hippocampal pyramidal neurons; common in aging and AD."
+        status: stable
+      - id: hirano_bodies
+        label: Hirano Bodies
+        description: "Eosinophilic rod-like inclusions in CA1; aging and AD."
+        status: stable
+      - id: bunina_bodies
+        label: Bunina Bodies
+        description: "Small eosinophilic intraneuronal inclusions; specific to ALS."
+        status: stable
+      - id: axonal_spheroids
+        label: Axonal Spheroids / Dystrophic Axons
+        description: "Swollen axons; associated with amyloid plaques, and primary axonal degenerations."
+        status: draft
+
+  # --------------------------------------------------------------------------
+  # VASCULAR PATHOLOGY
+  # --------------------------------------------------------------------------
+
+  - id: vascular_pathology
+    label: Vascular Pathology
+    description: "Cerebrovascular lesions common in aging and contributing to neurodegeneration."
+    status: stable
+    lesions:
+      - id: infarct
+        label: Infarct / Large Artery Infarct
+        description: "Gross tissue necrosis due to arterial occlusion."
+        status: stable
+      - id: microinfarct
+        label: Microinfarct
+        description: "Microscopic ischemic lesion; associated with cognitive decline."
+        status: stable
+      - id: lacune
+        label: Lacune
+        description: "Small cavitary infarcts (deep perforator territory)."
+        status: stable
+      - id: white_matter_rarefaction
+        label: White Matter Rarefaction / Leukoaraiosis
+        description: "Pallor and myelin loss of deep WM; small vessel disease correlate."
+        status: stable
+      - id: atherosclerosis
+        label: Atherosclerosis (Circle of Willis)
+        description: "Large artery atherosclerotic disease."
+        status: draft
+      - id: arteriolosclerosis
+        label: Arteriolosclerosis
+        description: "Hyalinization of small vessels."
+        status: draft
+
+  # --------------------------------------------------------------------------
+  # AGING-RELATED PATHOLOGY
+  # --------------------------------------------------------------------------
+
+  - id: aging_related
+    label: Aging-Related Changes
+    description: "Pathology commonly seen in aged brains without overt neurodegenerative disease."
+    status: stable
+    lesions:
+      - id: primary_age_related_tauopathy
+        label: Primary Age-Related Tauopathy (PART)
+        description: "Tau NFTs confined to medial temporal lobe (Braak ≤ IV) without significant Aβ; PART."
+        status: stable
+      - id: aging_tdp43
+        label: Age-Related TDP-43 (LATE-NC)
+        description: "Limbic-predominant TDP-43 pathology in advanced age; LATE-NC."
+        status: stable
+      - id: cerebral_white_matter_injury
+        label: Age-Related White Matter Injury
+        description: "Subtle white matter changes of aging."
+        status: draft
+      - id: hippocampal_sclerosis
+        label: Hippocampal Sclerosis (HS)
+        description: "Neuronal loss and gliosis in CA1/subiculum, out of proportion to Alzheimer pathology."
+        status: stable
+
+  # --------------------------------------------------------------------------
+  # DISEASE ENTITIES — composite diagnoses (linked to lesions above)
+  # --------------------------------------------------------------------------
+
+  - id: disease_entities
+    label: Neurodegenerative Disease Entities
+    description: "Composite clinicopathological diagnoses; each defined by a characteristic constellation of proteinopathies, regional vulnerability, and clinical phenotype."
+    status: stable
+    diseases:
+      - id: alzheimer_disease
+        label: Alzheimer's Disease (AD)
+        description: "Most common neurodegenerative disease; requires both Aβ (amyloid plaques) + tau (NFTs) for diagnosis. Defined by NIA-AA / ABC score."
+        required_lesions: ["amyloid_beta_pathology", "tau_pathology"]
+        staging_scheme: "ABC (A = Thal, B = Braak NFT, C = CERAD neuritic plaque); ADNC (none/low/intermediate/high)"
+        status: stable
+      - id: lewy_body_disease
+        label: Lewy Body Disease (PD / DLB)
+        description: "α-Synucleinopathy spectrum; PD (brainstem-predominant), DLB (diffuse/cortical)."
+        required_lesions: ["alpha_synuclein_pathology"]
+        staging_scheme: "Braak α-synuclein stages 1–6"
+        status: stable
+      - id: multiple_system_atrophy
+        label: Multiple System Atrophy (MSA)
+        description: "α-Synucleinopathy with GCIs; MSA-P (striatonigral) and MSA-C (olivopontocerebellar) subtypes."
+        required_lesions: ["glial_cytoplasmic_inclusions"]
+        status: stable
+      - id: progressive_supranuclear_palsy
+        label: Progressive Supranuclear Palsy (PSP)
+        description: "4R-tauopathy; tufted astrocytes, globose NFTs in subcortical nuclei (STN, GP, SNc)."
+        required_lesions: ["tufted_astrocytes"]
+        status: stable
+      - id: corticobasal_degeneration
+        label: Corticobasal Degeneration (CBD)
+        description: "4R-tauopathy; astrocytic plaques, balloon neurons (achromatic)."
+        required_lesions: ["astrocytic_plaques"]
+        status: stable
+      - id: pick_disease
+        label: Pick's Disease (PiD)
+        description: "3R-tauopathy; Pick bodies; frontotemporal lobar degeneration."
+        required_lesions: ["pick_bodies"]
+        status: stable
+      - id: ftld_tdp
+        label: FTLD-TDP (Frontotemporal Lobar Degeneration with TDP-43)
+        description: "FTLD due to TDP-43 pathology; includes subtypes A–E (see tdp43_pathology.subtypes)."
+        required_lesions: ["tdp43_pathology"]
+        status: stable
+      - id: ftld_fus
+        label: FTLD-FUS
+        description: "Rare FTLD with FUS inclusions; includes atypical FTLD-U, basophilic inclusion body disease."
+        required_lesions: ["fus_pathology"]
+        status: draft
+      - id: amyotrophic_lateral_sclerosis
+        label: Amyotrophic Lateral Sclerosis (ALS)
+        description: "Motor neuron disease with TDP-43 inclusions in upper and lower motor neurons."
+        required_lesions: ["tdp43_pathology"]
+        status: stable
+      - id: huntington_disease
+        label: Huntington's Disease (HD)
+        description: "CAG repeat in HTT; intranuclear huntingtin inclusions; prominent loss of striatal MSNs."
+        status: stable
+      - id: prion_disease
+        label: Prion Disease (CJD, etc.)
+        description: "PrPSc accumulation; spongiform change; rapidly progressive."
+        required_lesions: ["prion_pathology", "vacuolation"]
+        status: stable
+      - id: limbic_age_related_tdp_encephalopathy
+        label: LATE (Limbic Age-Related TDP-43 Encephalopathy)
+        description: "Limbic-predominant TDP-43 pathology in the elderly; mimics AD clinically."
+        required_lesions: ["aging_tdp43"]
+        status: stable
+
+  # --------------------------------------------------------------------------
+  # STAGING / RATING SCHEMES (index only; detailed phases in parent entries)
+  # --------------------------------------------------------------------------
+
+  - id: staging_schemes
+    label: Staging and Rating Schemes
+    description: "Summary of consensus neuropathological staging/rating systems. Full staging details are given under each pathology entry."
+    status: stable
+    schemes:
+      - {id: "nia_aa_abc", label: "NIA-AA ABC Score", description: "Combined A (Thal Aβ), B (Braak NFT), C (CERAD neuritic plaque) score; yields none/low/intermediate/high ADNC."}
+      - {id: "cerad", label: "CERAD Neuritic Plaque Score", description: "Semiquantitative rating of neuritic plaque density (none/sparse/moderate/frequent), age-adjusted."}
+      - {id: "braak_nft", label: "Braak NFT Stage (I–VI)", description: "Progressive tau spreading: transentorhinal → limbic → neocortical."}
+      - {id: "thal_a_beta", label: "Thal Aβ Phase (1–5)", description: "Aβ progression: neocortex → allocortex → subcortex → brainstem → cerebellum."}
+      - {id: "braak_synuclein", label: "Braak α-Synuclein Stage (1–6)", description: "α-Syn progression from medulla to neocortex."}
+      - {id: "msa_staging", label: "MSA Staging", description: "Oligodendroglial pathology distributed along axonal pathways."}

@@ -1,0 +1,300 @@
+# =============================================================================
+# Neuro-Taxonomy: Cell Types
+# =============================================================================
+# Cell types relevant to human brain function and neurodegeneration.
+#
+# Sources:
+#   - Cell Ontology (CL) — obophenotype.github.io/cell-ontology
+#   - Allen Cell Types Database — celltypes.brain-map.org
+#   - Human Cell Atlas — humancellatlas.org
+#   - Established neuropathology literature
+# =============================================================================
+
+cell_types:
+
+  # --------------------------------------------------------------------------
+  # NEURONS — by neurotransmitter system
+  # --------------------------------------------------------------------------
+
+  - id: glutamatergic_neurons
+    label: Glutamatergic (Excitatory) Neurons
+    description: Principal excitatory neurons; the majority of cortical neurons.
+    status: stable
+    children:
+
+      - id: cortical_pyramidal_neurons
+        label: Cortical Pyramidal Neurons
+        description: Excitatory projection neurons of the cerebral cortex; distinct layer-specific subtypes.
+        status: stable
+        children:
+          - id: layer_ii_iii_pyramidal
+            label: Layers II–III Pyramidal Neurons
+            description: "Corticocortical (associational) projection neurons; superficial layers."
+            vulnerable_to: ["tauopathy", "AD"]
+            status: stable
+          - id: layer_v_pyramidal
+            label: Layer V Pyramidal Neurons
+            description: "Large pyramidal neurons projecting to striatum, brainstem, spinal cord; vulnerable to tau."
+            vulnerable_to: ["tauopathy", "AD", "ALS"]
+            status: stable
+          - id: betz_cells
+            label: Betz Cells (Layer V Giant Pyramidal)
+            description: "Giant pyramidal neurons in primary motor cortex; corticospinal tract origin; vulnerable in ALS."
+            vulnerable_to: ["ALS", "FTLD"]
+            status: stable
+          - id: layer_vi_pyramidal
+            label: Layer VI Pyramidal Neurons
+            description: "Corticothalamic projection neurons."
+            status: draft
+
+      - id: granule_neurons
+        label: Granule Neurons
+        description: Small excitatory neurons; diverse subtypes in hippocampus and cerebellum.
+        status: stable
+        children:
+          - id: dentate_granule_cells
+            label: Dentate Granule Cells
+            description: "Glutamatergic principal cells of the dentate gyrus; mossy fiber projection to CA3."
+            status: stable
+          - id: cerebellar_granule_cells
+            label: Cerebellar Granule Cells
+            description: "Most numerous neurons in the brain; parallel fiber input to Purkinje cells."
+            status: stable
+          - id: olfactory_granule_cells
+            label: Olfactory Granule Cells
+            description: "Interneurons of olfactory bulb."
+            status: draft
+
+      - id: stellate_neurons
+        label: Stellate Neurons
+        description: "Spiny stellate neurons in cortical layer IV (sensory cortex); major thalamorecipient cells."
+        status: draft
+
+      - id: entorhinal_stellate_cells
+        label: Entorhinal Stellate Cells (Layer II)
+        description: "Spiny stellate cells in entorhinal cortex layer II; give rise to perforant pathway; extremely vulnerable to tau."
+        vulnerable_to: ["tauopathy", "AD"]
+        status: stable
+
+  - id: gabaergic_neurons
+    label: GABAergic (Inhibitory) Interneurons
+    description: Local inhibitory interneurons; ~15-20% of cortical neurons; diverse subtypes by marker expression.
+    status: stable
+    children:
+
+      - id: parvalbumin_positive_interneurons
+        label: Parvalbumin-Positive (PV+) Interneurons
+        description: "Fast-spiking basket and chandelier cells; target somata and axon initial segments; vulnerable in AD and schizophrenia."
+        vulnerable_to: ["tauopathy", "AD", "TDP-43"]
+        status: stable
+        children:
+          - id: basket_cells_pv
+            label: Basket Cells (PV+)
+            description: "Perisomatic inhibition; fast-spiking."
+            status: stable
+          - id: chandelier_cells
+            label: Chandelier Cells (PV+)
+            description: "Axon initial segment innervation; unique cortical interneuron."
+            status: stable
+
+      - id: somatostatin_positive_interneurons
+        label: Somatostatin-Positive (SST+) Interneurons
+        description: "Martinotti cells; target distal dendrites; vulnerable in AD."
+        vulnerable_to: ["tauopathy", "AD"]
+        status: stable
+
+      - id: vasoactive_intestinal_peptide_interneurons
+        label: VIP+ Interneurons
+        description: "Small bipolar interneurons targeting other interneurons (disinhibition); relatively spared in AD."
+        status: stable
+
+      - id: calretinin_positive_interneurons
+        label: Calretinin-Positive (CR+) Interneurons
+        description: "Dendrite-targeting interneurons; may be spared in AD."
+        status: draft
+
+      - id: striatal_medium_spiny_neurons
+        label: Striatal Medium Spiny Neurons (MSNs)
+        description: "GABAergic principal neurons of striatum; two main subtypes — D1 direct pathway and D2 indirect pathway; vulnerable in HD."
+        vulnerable_to: ["HD", "Huntington's disease"]
+        status: stable
+        children:
+          - id: msn_d1
+            label: D1 Dopamine Receptor MSNs
+            description: "Direct pathway (striatonigral); express D1 receptors, substance P."
+            status: stable
+          - id: msn_d2
+            label: D2 Dopamine Receptor MSNs
+            description: "Indirect pathway (striatopallidal); express D2 receptors, enkephalin."
+            status: stable
+
+      - id: purkinje_cells
+        label: Purkinje Cells
+        description: "Large GABAergic projection neurons of the cerebellar cortex; sole output of cerebellar cortex; vulnerable to SCA, MSA."
+        vulnerable_to: ["SCA", "MSA", "ataxia"]
+        status: stable
+
+      - id: globus_pallidus_gabaergic
+        label: Globus Pallidus GABAergic Neurons
+        description: "GABAergic output neurons of GPe and GPi; also SNr."
+        status: draft
+
+  - id: neuromodulatory_neurons
+    label: Neuromodulatory Neurons
+    description: "Small populations of neurons with widespread projections using monoamines or acetylcholine."
+    status: stable
+    children:
+
+      - id: dopaminergic_neurons
+        label: Dopaminergic Neurons
+        description: "Neurons synthesizing dopamine; three main groups: A8 (retrorubral), A9 (SNc), A10 (VTA)."
+        status: stable
+        children:
+          - id: snc_dopaminergic_neurons
+            label: SNc Dopaminergic Neurons (A9)
+            description: "Substantia nigra pars compacta; project to dorsal striatum (nigrostriatal); severely lost in PD."
+            vulnerable_to: ["synucleinopathy", "PD", "MPP+"]
+            status: stable
+          - id: vta_dopaminergic_neurons
+            label: VTA Dopaminergic Neurons (A10)
+            description: "Ventral tegmental area; project to ventral striatum, cortex (mesolimbic/mesocortical); relatively spared in PD compared to SNc."
+            vulnerable_to: ["synucleinopathy", "PD"]
+            status: stable
+
+      - id: noradrenergic_neurons
+        label: Noradrenergic (Norepinephrine) Neurons
+        description: "Neurons releasing norepinephrine; primarily in locus coeruleus."
+        status: stable
+        children:
+          - id: locus_coeruleus_noradrenergic
+            label: Locus Coeruleus (A6) Noradrenergic Neurons
+            description: "Widespread projections throughout CNS; early vulnerability to tau (Braak I/II) and α-synuclein; degenerate in AD and PD."
+            vulnerable_to: ["tauopathy", "synucleinopathy", "AD", "PD"]
+            status: stable
+
+      - id: serotonergic_neurons
+        label: Serotonergic (5-HT) Neurons
+        description: "Neurons releasing serotonin; primarily in raphe nuclei (B1–B9)."
+        status: stable
+        children:
+          - id: raphe_serotonergic_neurons
+            label: Raphe Serotonergic Neurons
+            description: "Widespread projections; involved in mood, sleep, appetite; degenerate in PD and AD."
+            vulnerable_to: ["synucleinopathy", "tauopathy"]
+            status: stable
+
+      - id: cholinergic_neurons
+        label: Cholinergic Neurons
+        description: "Neurons releasing acetylcholine; major groups in basal forebrain and brainstem."
+        status: stable
+        children:
+          - id: basal_forebrain_cholinergic_neurons
+            label: Basal Forebrain Cholinergic Neurons (Ch1–Ch4)
+            description: "Medial septal nuclei (Ch1–2), NB! (Ch4), diagonal band; cortical ACh innervation; severely degenerated in AD."
+            vulnerable_to: ["tauopathy", "AD"]
+            status: stable
+          - id: brainstem_cholinergic_neurons
+            label: Brainstem Cholinergic Neurons (Ch5–Ch6)
+            description: "Pedunculopontine (PPTg) and laterodorsal tegmental (LDT) nuclei; sleep–wake regulation."
+            vulnerable_to: ["synucleinopathy", "PD"]
+            status: draft
+
+      - id: histaminergic_neurons
+        label: Histaminergic Neurons
+        description: "Primarily in tuberomammillary nucleus of hypothalamus; wakefulness."
+        status: draft
+
+      - id: orexinergic_neurons
+        label: Orexin/Hypocretin Neurons
+        description: "Lateral hypothalamus; feeding, arousal, sleep–wake stability; lost in narcolepsy."
+        status: draft
+
+  # --------------------------------------------------------------------------
+  # GLIAL CELLS
+  # --------------------------------------------------------------------------
+
+  - id: glial_cells
+    label: Glial Cells
+    description: "Non-neuronal support cells; subtypes with distinct roles in neurodegeneration."
+    status: stable
+    children:
+
+      - id: astrocytes
+        label: Astrocytes
+        description: "Homeostatic support, neurotransmitter recycling, blood–brain barrier maintenance."
+        status: stable
+        children:
+          - id: protoplasmic_astrocytes
+            label: Protoplasmic Astrocytes
+            description: "Grey matter astrocytes; end-feet contact synapses and vasculature; reactive in neurodegeneration."
+            status: stable
+          - id: fibrous_astrocytes
+            label: Fibrous Astrocytes
+            description: "White matter astrocytes; contact nodes of Ranvier."
+            status: draft
+          - id: reactive_astrocytes
+            label: Reactive Astrocytes
+            description: "Hypertrophic, GFAP-upregulated state in response to injury or neurodegeneration; A1 (pro-inflammatory) and A2 (protective) subtypes."
+            status: stable
+
+      - id: microglia
+        label: Microglia
+        description: "Resident immune cells of the CNS; surveilling, activated (M1/pro-inflammatory, M2/alternative), and phagocytic states."
+        status: stable
+        children:
+          - id: surveilling_microglia
+            label: Surveilling (Ramified) Microglia
+            description: "Resting state with branched processes; constant environment sampling."
+            status: stable
+          - id: activated_microglia
+            label: Activated Microglia
+            description: "Ameboid morphology; pro-inflammatory (M1) or alternative (M2) activation depending on context."
+            vulnerable_to: null  # microglial activation is a response, not a vulnerability
+            status: stable
+          - id: microglial_nodules
+            label: Microglial (Glial) Nodules
+            description: "Focal aggregates of microglia; associated with viral encephalitis, but seen in some neurodegenerative contexts."
+            status: draft
+          - id: microglial_clusters_tdp
+            label: Microglial Clusters (TDP-43 Associated)
+            description: "Clusters of activated microglia near TDP-43 pathology; may be a marker of FTLD-TDP type A."
+            status: draft
+
+      - id: oligodendrocytes
+        label: Oligodendrocytes
+        description: "Myelinating cells of the CNS; support axon integrity."
+        status: stable
+        children:
+          - id: myelinating_oligodendrocytes
+            label: Myelinating Oligodendrocytes
+            description: "Produce and maintain myelin sheaths; vulnerable to ischemia, inflammation."
+            status: stable
+          - id: oligodendrocyte_precursor_cells
+            label: Oligodendrocyte Precursor Cells (OPCs)
+            description: "Adult OPCs; can differentiate into myelinating oligodendrocytes; proliferation in demyelination."
+            status: draft
+
+      - id: ependymal_cells
+        label: Ependymal Cells
+        description: "Line the ventricular system; involved in CSF production and circulation."
+        status: draft
+
+  # --------------------------------------------------------------------------
+  # OTHER CNS CELL TYPES
+  # --------------------------------------------------------------------------
+
+  - id: other_cns_cells
+    label: Other CNS Cell Types
+    status: draft
+    children:
+      - id: vascular_cells
+        label: Vascular / Endothelial Cells (BBB)
+        description: "Blood–brain barrier; pericyte, endothelial cell, smooth muscle cell subtypes."
+        status: draft
+      - id: meningeal_cells
+        label: Meningeal Cells
+        status: draft
+      - id: choroid_plexus_cells
+        label: Choroid Plexus Epithelial Cells
+        description: "CSF production."
+        status: draft
