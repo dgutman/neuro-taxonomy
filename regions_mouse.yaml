@@ -1,0 +1,943 @@
+# =============================================================================
+# Neuro-Taxonomy: Mouse Brain Regions
+# =============================================================================
+# Homologous mouse brain regions mapped to the human neuroanatomy hierarchy.
+#
+# The mouse brain is generally lissencephalic (no gyri/sulci), has a much
+# smaller neocortex, no Brodmann areas, and different subcortical organization
+# in some regions.  This file provides the major mouse homologs/analogs for
+# each human region.
+#
+# Conventions:
+#   mouse_id:    lowercase_with_underscores, prefixed "mus_"
+#   human_homolog: id from regions.yaml (optional)
+#   abbreviations: commonly used mouse brain atlas abbreviations
+#   aliases: alternative names in mouse literature
+#
+# Sources:
+#   - Allen Mouse Brain Atlas (mouse.brain-map.org)
+#   - Paxinos & Franklin Mouse Brain Atlas
+#   - Allen Common Coordinate Framework (CCFv3)
+#   - MOBEChem Atlas (geneexpression.ninds.nih.gov)
+#   - Allen Developing Mouse Brain Atlas
+#
+# Major differences from human:
+#   - No frontal/parietal/temporal/occipital lobe distinction in isocortex
+#   - Primary motor (MOp) and primary somatosensory (SSp) are contiguous
+#   - Thalamus has well-conserved nuclei
+#   - Hippocampal formation is more elongated (dorsal/septal vs ventral/temporal)
+#   - Substantia nigra is less pigmented
+#   - Cerebellum has similar foliation but smaller hemispheres
+#   - No gyrification; smooth (lissencephalic) surface
+# =============================================================================
+
+regions_mouse:
+
+  # --------------------------------------------------------------------------
+  # ISOCORTEX (neocortex homolog)
+  # --------------------------------------------------------------------------
+  # In the mouse, the isocortex is not divided into frontal/parietal/temporal/
+  # occipital lobes. Instead, regions are named by function and position:
+  #   - Frontal / motor areas (anterior)
+  #   - Somatosensory (middorsal)
+  #   - Auditory (lateral)
+  #   - Visual (posterior)
+  #   - Retrosplenial / cingulate (medial)
+  #   - Piriform / olfactory (ventral)
+  # The Allen CCFv3 defines ~40 isocortical areas.
+
+  - id: mus_isocortex
+    label: Mouse Isocortex (Neocortex)
+    human_homolog: cerebral_cortex
+    description: The six-layered neocortex of the mouse; lissencephalic, no gyri.
+    status: stable
+    children:
+
+      # --- Prefrontal / Frontal areas ---
+      - id: mus_prefrontal_cortex
+        label: Prefrontal Cortex
+        human_homolog: prefrontal_cortex
+        description: Anterior cortical areas; includes prelimbic (PL), infralimbic (IL), medial/ventral orbitofrontal.
+        aliases: ["PFC"]
+        abbreviations: ["PL", "IL", "MOs", "ORBm", "ORBv", "ORBl"]
+        status: stable
+        children:
+          - id: mus_prelimbic_cortex
+            label: Prelimbic Cortex
+            human_homolog: medial_prefrontal_cortex
+            abbreviations: ["PL"]
+            description: Medial prefrontal area; working memory, attention.
+            status: stable
+          - id: mus_infralimbic_cortex
+            label: Infralimbic Cortex
+            human_homolog: medial_prefrontal_cortex
+            abbreviations: ["IL"]
+            description: Ventromedial prefrontal; fear extinction, autonomic regulation.
+            status: stable
+          - id: mus_medial_orbitofrontal_cortex
+            label: Medial Orbitofrontal Cortex
+            human_homolog: orbitofrontal_cortex
+            abbreviations: ["ORBm"]
+            description: Reward-guided behavior.
+            status: stable
+          - id: mus_ventral_orbitofrontal_cortex
+            label: Ventral Orbitofrontal Cortex
+            human_homolog: orbitofrontal_cortex
+            abbreviations: ["ORBv"]
+            status: draft
+          - id: mus_lateral_orbitofrontal_cortex
+            label: Lateral Orbitofrontal Cortex
+            abbreviations: ["ORBl"]
+            human_homolog: orbitofrontal_cortex
+            status: draft
+
+      - id: mus_secondary_motor_cortex
+        label: Secondary Motor Cortex
+        human_homolog: premotor_cortex
+        abbreviations: ["MOs"]
+        description: Premotor-like area; planning and selection of movements.
+        status: stable
+
+      - id: mus_primary_motor_cortex
+        label: Primary Motor Cortex
+        human_homolog: primary_motor_cortex
+        abbreviations: ["MOp"]
+        description: Execution of voluntary movement; layer V Betz-like cells (smaller than human).
+        status: stable
+
+      # --- Somatosensory areas ---
+      - id: mus_somatosensory_cortex
+        label: Somatosensory Cortex
+        human_homolog: primary_somatosensory_cortex
+        description: Major sensory area; subdivided into barrel fields (SSp-bfd) for whisker representation.
+        status: stable
+        children:
+          - id: mus_ssp_barrel_field
+            label: Primary Somatosensory Cortex — Barrel Field
+            abbreviations: ["SSp-bfd"]
+            description: Barrel field; whisker representation — a defining feature of rodent somatosensory cortex.
+            status: stable
+          - id: mus_ssp_upper_limb
+            label: Primary Somatosensory Cortex — Upper Limb
+            abbreviations: ["SSp-ul"]
+            status: draft
+          - id: mus_ssp_lower_limb
+            label: Primary Somatosensory Cortex — Lower Limb
+            abbreviations: ["SSp-ll"]
+            status: draft
+          - id: mus_ssp_trunk
+            label: Primary Somatosensory Cortex — Trunk
+            abbreviations: ["SSp-tr"]
+            status: draft
+          - id: mus_ssp_nose
+            label: Primary Somatosensory Cortex — Nose
+            abbreviations: ["SSp-n"]
+            status: draft
+          - id: mus_ssp_mouth
+            label: Primary Somatosensory Cortex — Mouth
+            abbreviations: ["SSp-m"]
+            status: draft
+          - id: mus_supplementary_somatosensory
+            label: Supplementary Somatosensory Cortex
+            abbreviations: ["SSs"]
+            human_homolog: secondary_somatosensory_cortex
+            status: draft
+
+      # --- Auditory areas ---
+      - id: mus_auditory_cortex
+        label: Auditory Cortex
+        human_homolog: primary_auditory_cortex
+        description: Temporal auditory area.
+        status: stable
+        children:
+          - id: mus_primary_auditory_cortex
+            label: Primary Auditory Cortex
+            abbreviations: ["AUDp"]
+            description: Core auditory area; tonotopic organization.
+            status: stable
+          - id: mus_auditory_cortex_dorsal
+            label: Auditory Cortex — Dorsal Zone
+            abbreviations: ["AUDd"]
+            status: draft
+          - id: mus_auditory_cortex_ventral
+            label: Auditory Cortex — Ventral Zone
+            abbreviations: ["AUDv"]
+            status: draft
+          - id: mus_auditory_cortex_posterior
+            label: Auditory Cortex — Posterior Zone
+            abbreviations: ["AUDpo"]
+            status: draft
+
+      # --- Visual areas ---
+      - id: mus_visual_cortex
+        label: Visual Cortex
+        human_homolog: primary_visual_cortex
+        status: stable
+        children:
+          - id: mus_primary_visual_cortex
+            label: Primary Visual Cortex
+            abbreviations: ["VISp"]
+            description: Layer IV input from LGNd; ~2×2 mm in mouse.
+            status: stable
+          - id: mus_visual_cortex_anterolateral
+            label: Anterolateral Visual Area
+            abbreviations: ["VISal"]
+            status: draft
+          - id: mus_visual_cortex_anteromedial
+            label: Anteromedial Visual Area
+            abbreviations: ["VISam"]
+            status: draft
+          - id: mus_visual_cortex_posterolateral
+            label: Posterolateral Visual Area
+            abbreviations: ["VISpl"]
+            status: draft
+          - id: mus_visual_cortex_posteromedial
+            label: Posteromedial Visual Area
+            abbreviations: ["VISpm"]
+            status: draft
+          - id: mus_visual_cortex_lateral
+            label: Lateral Visual Area
+            abbreviations: ["VISl"]
+            status: draft
+          - id: mus_visual_cortex_rostrolateral
+            label: Rostrolateral Visual Area
+            abbreviations: ["VISrl"]
+            status: draft
+
+      # --- Cingulate / Retrosplenial ---
+      - id: mus_anterior_cingulate_cortex
+        label: Anterior Cingulate Cortex
+        human_homolog: anterior_cingulate_cortex
+        abbreviations: ["ACA"]
+        description: Dorsal ACC; involved in conflict monitoring, autonomic control.
+        status: stable
+
+      - id: mus_retrosplenial_cortex
+        label: Retrosplenial Cortex
+        human_homolog: posterior_cingulate_cortex
+        abbreviations: ["RSP"]
+        description: Major default-mode network hub; heavily interconnected with hippocampus.
+        status: stable
+        children:
+          - id: mus_retrosplenial_granular
+            label: Retrosplenial Granular Cortex
+            abbreviations: ["RSPg"]
+            status: draft
+          - id: mus_retrosplenial_agranular
+            label: Retrosplenial Agranular Cortex
+            abbreviations: ["RSPag"]
+            status: draft
+
+      # --- Insular areas ---
+      - id: mus_insular_cortex
+        label: Insular Cortex
+        human_homolog: insular_cortex
+        abbreviations: ["AI", "GI", "DI"]
+        description: Gustatory (GI), visceral (AI), and other interoceptive areas.
+        status: stable
+        children:
+          - id: mus_agranular_insular
+            label: Agranular Insular Cortex
+            abbreviations: ["AI"]
+            human_homolog: anterior_insula
+            status: stable
+          - id: mus_granular_insular
+            label: Granular Insular Cortex
+            abbreviations: ["GI"]
+            human_homolog: posterior_insula
+            status: draft
+          - id: mus_dysgranular_insular
+            label: Dysgranular Insular Cortex
+            abbreviations: ["DI"]
+            status: draft
+
+      # --- Ectorhinal / Perirhinal ---
+      - id: mus_perirhinal_cortex
+        label: Perirhinal Cortex
+        human_homolog: perirhinal_cortex
+        abbreviations: ["PERI"]
+        description: Adjacent to entorhinal; object recognition.
+        status: stable
+
+      - id: mus_ectorhinal_cortex
+        label: Ectorhinal Cortex
+        abbreviations: ["ECT"]
+        description: Lateral cortical area between perirhinal and temporal association.
+        status: draft
+
+      - id: mus_temporal_association_cortex
+        label: Temporal Association Cortex
+        abbreviations: ["TEa"]
+        human_homolog: temporal_lobe  # loose homolog
+        description: Higher-order visual/auditory association.
+        status: draft
+
+      - id: mus_piriform_cortex
+        label: Piriform Cortex
+        human_homolog: olfactory_bulb  # olfactory projection
+        abbreviations: ["PIR"]
+        description: Primary olfactory cortex; three-layer paleocortex.
+        status: stable
+
+      # --- Hippocampal formation ---
+      - id: mus_hippocampal_formation
+        label: Hippocampal Formation
+        human_homolog: hippocampal_formation
+        description: Curved, elongated structure; dorsal (septal) and ventral (temporal) poles.
+        status: stable
+        children:
+          - id: mus_dentate_gyrus
+            label: Dentate Gyrus
+            human_homolog: dentate_gyrus
+            abbreviations: ["DG"]
+            description: Granule cell layer; inner (suprapyramidal) and outer (infrapyramidal) blades.
+            status: stable
+            children:
+              - id: mus_dg_granule_cell_layer
+                label: DG Granule Cell Layer
+                layer: granule
+                status: stable
+              - id: mus_dg_hilus
+                label: DG Hilus (CA4)
+                description: Polymorphic layer; mossy cells.
+                status: stable
+          - id: mus_cornu_ammonis
+            label: Cornu Ammonis
+            status: stable
+            children:
+              - id: mus_ca1
+                label: CA1
+                human_homolog: ca1
+                description: Pyramidal cell layer; vulnerable to ischemia; elongated in mouse.
+                status: stable
+                children:
+                  - id: mus_ca1_stratum_pyramidale
+                    label: CA1 Stratum Pyramidale
+                    layer: pyramidale
+                    status: stable
+                  - id: mus_ca1_stratum_radiatum
+                    label: CA1 Stratum Radiatum
+                    layer: radiatum
+                    status: stable
+                  - id: mus_ca1_stratum_lacunosum_moleculare
+                    label: CA1 Stratum Lacunosum-Moleculare
+                    layer: lacunosum_moleculare
+                    status: stable
+              - id: mus_ca2
+                label: CA2
+                human_homolog: ca2
+                status: draft
+              - id: mus_ca3
+                label: CA3
+                human_homolog: ca3
+                status: stable
+          - id: mus_subiculum
+            label: Subiculum
+            human_homolog: subiculum
+            abbreviations: ["SUB"]
+            status: stable
+          - id: mus_presubiculum
+            label: Presubiculum
+            abbreviations: ["PRE"]
+            status: draft
+          - id: mus_parasubiculum
+            label: Parasubiculum
+            abbreviations: ["PARA"]
+            status: draft
+
+      # --- Entorhinal cortex ---
+      - id: mus_entorhinal_cortex
+        label: Entorhinal Cortex
+        human_homolog: entorhinal_cortex
+        abbreviations: ["ENT"]
+        description: Divided into medial (ENTm) and lateral (ENTl) subdivisions.
+        status: stable
+        children:
+          - id: mus_entorhinal_medial
+            label: Medial Entorhinal Cortex
+            abbreviations: ["ENTm"]
+            description: Grid cells, head-direction cells; reciprocally connected with dorsal hippocampus.
+            status: stable
+          - id: mus_entorhinal_lateral
+            label: Lateral Entorhinal Cortex
+            abbreviations: ["ENTl"]
+            description: Object- and cue-related input to ventral hippocampus.
+            status: stable
+
+  # --------------------------------------------------------------------------
+  # OLFACTORY BULB
+  # --------------------------------------------------------------------------
+
+  - id: mus_olfactory_bulb
+    label: Olfactory Bulb
+    human_homolog: olfactory_bulb
+    abbreviations: ["OB", "OLF"]
+    description: Large in mouse (macrosmatic); layered structure: glomerular, external plexiform, mitral cell, granule cell layers.
+    status: stable
+    children:
+      - id: mus_olfactory_nerve_layer
+        label: Olfactory Nerve Layer
+        layer: nerve
+        status: stable
+      - id: mus_glomerular_layer
+        label: Glomerular Layer
+        layer: glomerular
+        description: Synaptic input from olfactory sensory neurons.
+        status: stable
+      - id: mus_external_plexiform_layer
+        label: External Plexiform Layer
+        layer: external_plexiform
+        status: stable
+      - id: mus_mitral_cell_layer
+        label: Mitral Cell Layer
+        layer: mitral
+        description: Principal output neurons of the OB.
+        status: stable
+      - id: mus_internal_plexiform_layer
+        label: Internal Plexiform Layer
+        layer: internal_plexiform
+        status: draft
+      - id: mus_granule_cell_layer_ob
+        label: Granule Cell Layer (OB)
+        layer: granule
+        description: Numerous local interneurons.
+        status: stable
+
+  # --------------------------------------------------------------------------
+  # STRIATUM / BASAL GANGLIA
+  # --------------------------------------------------------------------------
+
+  - id: mus_striatum
+    label: Striatum
+    human_homolog: striatum
+    description: Major input nucleus; subdivided into dorsal (caudate-putamen) and ventral (nucleus accumbens/olfactory tubercle).
+    abbreviations: ["STR", "CP", "ACB"]
+    status: stable
+    children:
+      - id: mus_caudate_putamen
+        label: Caudate-Putamen (Dorsal Striatum)
+        human_homolog: caudate_nucleus  # + putamen (no internal capsule in mouse)
+        abbreviations: ["CP", "STRd"]
+        description: Single structure (no internal capsule separating caudate/putamen as in primate).
+        status: stable
+        children:
+          - id: mus_cp_dorsomedial
+            label: Dorsomedial Striatum
+            abbreviations: ["DMS"]
+            description: Associative striatum; homologous to human caudate head.
+            status: stable
+          - id: mus_cp_dorsolateral
+            label: Dorsolateral Striatum
+            abbreviations: ["DLS"]
+            description: Sensorimotor striatum; homologous to human putamen.
+            status: stable
+      - id: mus_nucleus_accumbens
+        label: Nucleus Accumbens
+        human_homolog: nucleus_accumbens
+        abbreviations: ["ACB", "NAc"]
+        description: Ventral striatum; core (AcbC) and shell (AcbSh) subdivisions.
+        status: stable
+        children:
+          - id: mus_accumbens_core
+            label: Accumbens Core
+            abbreviations: ["AcbC"]
+            status: stable
+          - id: mus_accumbens_shell
+            label: Accumbens Shell
+            abbreviations: ["AcbSh"]
+            status: stable
+      - id: mus_olfactory_tubercle
+        label: Olfactory Tubercle
+        abbreviations: ["OT"]
+        description: Ventral striatal structure; part of reward circuit.
+        status: stable
+
+  - id: mus_globus_pallidus
+    label: Globus Pallidus
+    human_homolog: globus_pallidus
+    abbreviations: ["GP"]
+    description: Mouse has a single GP (external segment homolog); internal segment is the entopeduncular nucleus (EP).
+    status: stable
+    children:
+      - id: mus_globus_pallidus_externa
+        label: Globus Pallidus, External Segment
+        abbreviations: ["GPe"]
+        human_homolog: globus_pallidus_externa
+        status: stable
+      - id: mus_entopeduncular_nucleus
+        label: Entopeduncular Nucleus
+        abbreviations: ["EP"]
+        human_homolog: globus_pallidus_interna
+        description: Homolog of primate GPi; located in the internal capsule.
+        status: stable
+
+  - id: mus_subthalamic_nucleus
+    label: Subthalamic Nucleus
+    human_homolog: subthalamic_nucleus
+    abbreviations: ["STN", "STh"]
+    description: Glutamatergic; hyperactive in parkinsonism; well-conserved across species.
+    status: stable
+
+  - id: mus_substantia_nigra
+    label: Substantia Nigra
+    human_homolog: substantia_nigra
+    description: Less pigmented than human; compacta (SNc) and reticulata (SNr) present.
+    status: stable
+    children:
+      - id: mus_substantia_nigra_compacta
+        label: Substantia Nigra, Pars Compacta
+        human_homolog: substantia_nigra_pars_compacta
+        abbreviations: ["SNc"]
+        description: Dopaminergic; vulnerable to MPTP; less pigmented than human.
+        status: stable
+      - id: mus_substantia_nigra_reticulata
+        label: Substantia Nigra, Pars Reticulata
+        human_homolog: substantia_nigra_pars_reticulata
+        abbreviations: ["SNr"]
+        status: stable
+
+  - id: mus_ventral_tegmental_area
+    label: Ventral Tegmental Area
+    human_homolog: ventral_tegmental_area
+    abbreviations: ["VTA"]
+    description: Dopaminergic (A10); reward, motivation; well-conserved.
+    status: stable
+
+  # --------------------------------------------------------------------------
+  # AMYGDALA
+  # --------------------------------------------------------------------------
+
+  - id: mus_amygdala
+    label: Amygdala
+    human_homolog: amygdala
+    abbreviations: ["AMY"]
+    description: Well-conserved across mammals; basolateral, centromedial, and cortical subdivisions.
+    status: stable
+    children:
+      - id: mus_basolateral_amygdala
+        label: Basolateral Amygdala
+        human_homolog: basolateral_amygdala
+        abbreviations: ["BLA", "BMA", "LA"]
+        description: Includes lateral (LA), basolateral (BLA), and basomedial (BMA) nuclei.
+        status: stable
+      - id: mus_centromedial_amygdala
+        label: Centromedial Amygdala
+        human_homolog: centromedial_amygdala
+        abbreviations: ["CEA", "MEA"]
+        description: Central (CEA) and medial (MEA) nuclei; autonomic output.
+        status: stable
+      - id: mus_cortical_amygdaloid_nucleus
+        label: Cortical Amygdaloid Nucleus
+        human_homolog: cortical_amygdaloid_nucleus
+        abbreviations: ["COA"]
+        status: draft
+
+  # --------------------------------------------------------------------------
+  # SEPTUM
+  # --------------------------------------------------------------------------
+
+  - id: mus_septum
+    label: Septum
+    description: Medial septum (MS) and diagonal band (DB); major source of cholinergic input to hippocampus.
+    human_homolog: nucleus_basalis_of_meynert  # cholinergic forebrain (partial)
+    abbreviations: ["MS", "DB", "LS"]
+    status: stable
+    children:
+      - id: mus_medial_septum
+        label: Medial Septal Nucleus
+        abbreviations: ["MS"]
+        description: Cholinergic and GABAergic projections to hippocampus.
+        status: stable
+      - id: mus_lateral_septum
+        label: Lateral Septal Nucleus
+        abbreviations: ["LS"]
+        description: Major target of hippocampal CA3 output; GABAergic.
+        status: draft
+      - id: mus_diagonal_band
+        label: Nucleus of Diagonal Band (Broca)
+        abbreviations: ["NDB", "DBB"]
+        description: Cholinergic and GABAergic; vertical and horizontal limbs.
+        status: stable
+
+  # --------------------------------------------------------------------------
+  # THALAMUS
+  # --------------------------------------------------------------------------
+
+  - id: mus_thalamus
+    label: Thalamus
+    human_homolog: thalamus
+    description: Relatively larger proportion of mouse brain than human; all major nuclei conserved.
+    status: stable
+    children:
+      - id: mus_anterior_thalamic_nuclei
+        label: Anterior Thalamic Group
+        human_homolog: anterior_nucleus_of_thalamus
+        abbreviations: ["ATN"]
+        description: AV, AM, AD nuclei; part of Papez circuit.
+        status: stable
+      - id: mus_mediodorsal_thalamus
+        label: Mediodorsal Thalamus
+        abbreviations: ["MD"]
+        description: Prefrontal-projecting; cognition.
+        status: stable
+      - id: mus_ventrolateral_thalamus
+        label: Ventrolateral Thalamus
+        human_homolog: ventrolateral_thalamus
+        abbreviations: ["VL"]
+        description: Motor thalamus.
+        status: stable
+      - id: mus_ventroposterior_thalamus
+        label: Ventroposterior Thalamus
+        abbreviations: ["VP"]
+        description: Somatosensory relay (VPm, VPl).
+        status: stable
+      - id: mus_lateral_geniculate
+        label: Lateral Geniculate Complex
+        abbreviations: ["LGN", "LGd"]
+        description: Dorsal LGN (visual relay); conserved.
+        status: stable
+      - id: mus_medial_geniculate
+        label: Medial Geniculate Complex
+        abbreviations: ["MGN", "MG"]
+        description: Auditory relay; conserved.
+        status: stable
+      - id: mus_pulvinar
+        label: Pulvinar / Lateral Posterior Nucleus
+        human_homolog: pulvinar
+        abbreviations: ["LP", "Po"]
+        description: Mouse LP is homologous to primate pulvinar; visual attention.
+        status: draft
+      - id: mus_centromedian_thalamus
+        label: Centromedian / Central Lateral Thalamus
+        human_homolog: centromedian_parafascicular_complex
+        abbreviations: ["CM", "CL"]
+        description: Intralaminar nuclei; striatal-projecting.
+        status: draft
+
+  # --------------------------------------------------------------------------
+  # HYPOTHALAMUS
+  # --------------------------------------------------------------------------
+
+  - id: mus_hypothalamus
+    label: Hypothalamus
+    human_homolog: hypothalamus
+    description: Small but all major nuclei conserved.
+    status: stable
+    children:
+      - id: mus_mammillary_body
+        label: Mammillary Body
+        human_homolog: mammillary_body
+        abbreviations: ["MB", "MBO"]
+        description: Medial and lateral mammillary nuclei.
+        status: stable
+      - id: mus_suprachiasmatic_nucleus
+        label: Suprachiasmatic Nucleus
+        human_homolog: suprachiasmatic_nucleus
+        abbreviations: ["SCN"]
+        description: Master circadian pacemaker; conserved.
+        status: stable
+      - id: mus_tuberomammillary_nucleus
+        label: Tuberomammillary Nucleus
+        human_homolog: tuberomammillary_nucleus
+        abbreviations: ["TMN"]
+        description: Histaminergic; wakefulness.
+        status: stable
+      - id: mus_lateral_hypothalamic_area
+        label: Lateral Hypothalamic Area
+        human_homolog: lateral_hypothalamus
+        abbreviations: ["LHA"]
+        description: Orexin/hypocretin neurons.
+        status: stable
+      - id: mus_paraventricular_hypothalamus
+        label: Paraventricular Hypothalamus
+        abbreviations: ["PVH"]
+        description: Stress response (CRH), autonomic regulation.
+        status: stable
+      - id: mus_ventromedial_hypothalamus
+        label: Ventromedial Hypothalamus
+        abbreviations: ["VMH"]
+        description: Satiety, aggression.
+        status: stable
+      - id: mus_arcuate_hypothalamus
+        label: Arcuate Hypothalamus
+        abbreviations: ["ARH"]
+        description: Feeding regulation (AgRP/NPY, POMC neurons).
+        status: stable
+
+  # --------------------------------------------------------------------------
+  # BRAINSTEM
+  # --------------------------------------------------------------------------
+
+  - id: mus_midbrain
+    label: Midbrain
+    human_homolog: midbrain
+    description: Well-conserved; tectum (superior/inferior colliculi) relatively larger in mouse.
+    status: stable
+    children:
+      - id: mus_superior_colliculus
+        label: Superior Colliculus
+        human_homolog: superior_colliculus
+        abbreviations: ["SC", "SUP"]
+        description: Visual orienting; relatively large in mouse.
+        status: stable
+      - id: mus_inferior_colliculus
+        label: Inferior Colliculus
+        human_homolog: inferior_colliculus
+        abbreviations: ["IC", "INF"]
+        description: Auditory processing; prominent midbrain structure.
+        status: stable
+      - id: mus_periaqueductal_gray
+        label: Periaqueductal Gray
+        human_homolog: periaqueductal_gray
+        abbreviations: ["PAG"]
+        status: stable
+      - id: mus_red_nucleus
+        label: Red Nucleus
+        human_homolog: red_nucleus
+        abbreviations: ["RN"]
+        description: Smaller than in primates; rubrospinal tract present.
+        status: stable
+      - id: mus_oculomotor_nucleus
+        label: Oculomotor Nucleus
+        abbreviations: ["III", "OCN"]
+        status: draft
+      - id: mus_edinger_westphal
+        label: Edinger-Westphal Nucleus
+        abbreviations: ["EW"]
+        status: draft
+      # SNc, SNr, VTA listed under basal ganglia above
+
+  - id: mus_pons
+    label: Pons
+    human_homolog: pons
+    status: stable
+    children:
+      - id: mus_locus_coeruleus
+        label: Locus Coeruleus
+        human_homolog: locus_coeruleus
+        abbreviations: ["LC"]
+        description: Noradrenergic; well-conserved; early vulnerability in tau and α-synuclein models.
+        status: stable
+      - id: mus_raphe_nuclei
+        label: Raphe Nuclei
+        human_homolog: raphe_nuclei
+        abbreviations: ["DR", "MR", "RPO"]
+        description: Dorsal raphe (DR), median raphe (MR), pontine raphe (RPO); serotonergic.
+        status: stable
+      - id: mus_pontine_nuclei
+        label: Pontine Nuclei
+        human_homolog: pontine_nuclei
+        abbreviations: ["PN"]
+        description: Corticopontine relay to cerebellum.
+        status: stable
+      - id: mus_trigeminal_nuclei
+        label: Trigeminal Nuclei
+        abbreviations: ["V", "PR5", "MV5", "SP5"]
+        description: Sensory (Pr5, SP5) and motor (MV5) trigeminal nuclei.
+        status: draft
+      - id: mus_facial_nucleus
+        label: Facial Nucleus
+        abbreviations: ["VII"]
+        status: draft
+      - id: mus_vestibular_nuclei
+        label: Vestibular Nuclei
+        abbreviations: ["VNC"]
+        status: draft
+      - id: mus_cochlear_nuclei
+        label: Cochlear Nuclei
+        abbreviations: ["CN", "CB"]
+        status: draft
+
+  - id: mus_medulla
+    label: Medulla Oblongata
+    human_homolog: medulla_oblongata
+    status: stable
+    children:
+      - id: mus_dorsal_motor_vagus
+        label: Dorsal Motor Nucleus of Vagus
+        human_homolog: dorsal_motor_nucleus_of_vagus
+        abbreviations: ["DMX"]
+        description: Conserved; early α-synuclein pathology site in PD models.
+        status: stable
+      - id: mus_hypoglossal_nucleus
+        label: Hypoglossal Nucleus
+        human_homolog: hypoglossal_nucleus
+        abbreviations: ["XII"]
+        status: draft
+      - id: mus_inferior_olive
+        label: Inferior Olivary Nucleus
+        human_homolog: inferior_olivary_nucleus
+        abbreviations: ["IO"]
+        description: Climbing fiber input to Purkinje cells.
+        status: stable
+      - id: mus_nucleus_ambiguus
+        label: Nucleus Ambiguus
+        abbreviations: ["AMB"]
+        status: draft
+      - id: mus_solitary_nucleus
+        label: Nucleus of the Solitary Tract
+        human_homolog: solitary_nucleus
+        abbreviations: ["NTS"]
+        status: stable
+      - id: mus_area_postrema
+        label: Area Postrema
+        abbreviations: ["AP"]
+        status: draft
+
+  # --------------------------------------------------------------------------
+  # CEREBELLUM
+  # --------------------------------------------------------------------------
+
+  - id: mus_cerebellum
+    label: Cerebellum
+    human_homolog: cerebellum
+    description: Smaller hemispheres relative to vermis; similar layered cortex; all nuclei present.
+    status: stable
+    children:
+      - id: mus_cerebellar_cortex
+        label: Cerebellar Cortex
+        human_homolog: cerebellar_cortex
+        status: stable
+        children:
+          - id: mus_molecular_layer_cb
+            label: Cerebellar Molecular Layer
+            human_homolog: molecular_layer_cerebellum
+            layer: molecular
+            status: stable
+          - id: mus_purkinje_cell_layer
+            label: Cerebellar Purkinje Cell Layer
+            human_homolog: purkinje_cell_layer
+            layer: purkinje
+            status: stable
+          - id: mus_granule_cell_layer_cb
+            label: Cerebellar Granule Cell Layer
+            human_homolog: granule_cell_layer_cerebellum
+            layer: granular
+            status: stable
+      - id: mus_cerebellar_nuclei
+        label: Deep Cerebellar Nuclei
+        human_homolog: cerebellar_nuclei
+        status: stable
+        children:
+          - id: mus_dentate_nucleus
+            label: Dentate Nucleus (Lateral Nucleus)
+            human_homolog: dentate_nucleus
+            abbreviations: ["DN", "Lat"]
+            description: Largest cerebellar nucleus; less folded than human.
+            status: stable
+          - id: mus_interposed_nucleus
+            label: Interposed Nucleus
+            human_homolog: emboliform_nucleus  # anterior + posterior interposed
+            abbreviations: ["IntA", "IntP"]
+            description: Anterior (emboliform) and posterior (globose) subdivisions.
+            status: stable
+          - id: mus_fastigial_nucleus
+            label: Fastigial Nucleus (Medial Nucleus)
+            human_homolog: fastigial_nucleus
+            abbreviations: ["FN", "Med"]
+            status: stable
+      - id: mus_cerebellar_vermis
+        label: Cerebellar Vermis
+        human_homolog: cerebellar_vermis
+        description: Lobules I–X; relatively larger in mouse than human.
+        status: stable
+      - id: mus_cerebellar_hemispheres
+        label: Cerebellar Hemispheres
+        human_homolog: cerebellar_hemispheres
+        description: Smaller than human; Crura I–II, paramedian lobule.
+        status: stable
+      - id: mus_flocculonodular_lobe
+        label: Flocculonodular Lobe
+        descriptions: Vestibular cerebellum; flocculus and nodulus (lobule X).
+        status: stable
+
+  # --------------------------------------------------------------------------
+  # WHITE MATTER
+  # --------------------------------------------------------------------------
+
+  - id: mus_white_matter
+    label: White Matter
+    human_homolog: white_matter
+    status: stable
+    children:
+      - id: mus_corpus_callosum
+        label: Corpus Callosum
+        human_homolog: corpus_callosum
+        abbreviations: ["cc", "CC"]
+        description: Relatively thinner in mouse; connects hemispheres.
+        status: stable
+      - id: mus_internal_capsule
+        label: Internal Capsule
+        abbreviations: ["ic", "IC"]
+        status: stable
+      - id: mus_anterior_commissure
+        label: Anterior Commissure
+        abbreviations: ["ac", "AC"]
+        status: stable
+      - id: mus_hippocampal_commissure
+        label: Hippocampal Commissure / Dorsal Fornix
+        abbreviations: ["df", "hc"]
+        status: draft
+      - id: mus_cerebral_peduncle
+        label: Cerebral Peduncle
+        abbreviations: ["cp", "CP"]
+        status: stable
+      - id: mus_medial_lemniscus
+        label: Medial Lemniscus
+        abbreviations: ["ml"]
+        status: draft
+      - id: mus_optic_tract
+        label: Optic Tract
+        abbreviations: ["opt", "OPT"]
+        status: stable
+
+  # --------------------------------------------------------------------------
+  # VENTRICULAR SYSTEM
+  # --------------------------------------------------------------------------
+
+  - id: mus_ventricles
+    label: Ventricular System
+    status: draft
+    children:
+      - id: mus_lateral_ventricle
+        label: Lateral Ventricle
+        abbreviations: ["LV"]
+        status: stable
+      - id: mus_third_ventricle
+        label: Third Ventricle
+        abbreviations: ["3V"]
+        status: stable
+      - id: mus_cerebral_aqueduct
+        label: Cerebral Aqueduct
+        abbreviations: ["AQ"]
+        status: stable
+      - id: mus_fourth_ventricle
+        label: Fourth Ventricle
+        abbreviations: ["4V"]
+        status: stable
+
+  # --------------------------------------------------------------------------
+  # SPINAL CORD
+  # --------------------------------------------------------------------------
+
+  - id: mus_spinal_cord
+    label: Spinal Cord
+    human_homolog: spinal_cord_regions
+    status: draft
+    children:
+      - id: mus_cervical_spinal
+        label: Cervical Spinal Cord
+        abbreviations: ["C1–C8"]
+        status: draft
+      - id: mus_thoracic_spinal
+        label: Thoracic Spinal Cord
+        abbreviations: ["T1–T13"]
+        status: draft
+      - id: mus_lumbar_spinal
+        label: Lumbar Spinal Cord
+        abbreviations: ["L1–L6"]
+        status: draft
+      - id: mus_sacral_spinal
+        label: Sacral Spinal Cord
+        abbreviations: ["S1–S4"]
+        status: draft

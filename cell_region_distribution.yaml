@@ -1,0 +1,353 @@
+# =============================================================================
+# Neuro-Taxonomy: Cell Type × Region Distribution
+# =============================================================================
+# Which cell types are found in which brain regions.
+#
+# This is a many-to-many mapping. Each entry indicates that a cell type is
+# present in a region, with optional notes on density, layer, or subtype.
+#
+# Conventions:
+#   cell_type: id from cell_types.yaml
+#   region:    id from regions.yaml
+#   mouse_region: id from regions_mouse.yaml (optional)
+#   density: sparse | moderate | dense | principal
+#   layer:  which cortical layer or subregion
+#   notes:  additional context
+#
+# Status key:
+#   known      — well-established in the literature
+#   suspected  — indirect evidence
+#   draft      — needs verification
+# =============================================================================
+
+cell_region_distribution:
+
+  # ====================================================================
+  # CEREBRAL CORTEX — Neocortex (all lobes)
+  # ====================================================================
+
+  # --- Glutamatergic neurons ---
+  - cell_type: layer_ii_iii_pyramidal
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: principal
+    layer: "II–III"
+    notes: "Superficial pyramidal; corticocortical projections. Layers II/III defined in all neocortical areas."
+    status: known
+
+  - cell_type: layer_v_pyramidal
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: principal
+    layer: "Va–Vb"
+    notes: "Deep layer pyramidal; subcortical projections. Layer V present in all neocortex."
+    status: known
+
+  - cell_type: layer_vi_pyramidal
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: principal
+    layer: "VI"
+    notes: "Corticothalamic; all neocortical areas."
+    status: draft
+
+  - cell_type: stellate_neurons
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: moderate
+    layer: "IV"
+    notes: "Spiny stellate neurons in layer IV of primary sensory areas (V1, S1, A1)."
+    status: known
+
+  # --- GABAergic interneurons (pan-cortical) ---
+  - cell_type: basket_cells_pv
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: moderate
+    notes: "PV+ basket cells in all neocortical areas and layers; ~40% of all interneurons."
+    status: known
+
+  - cell_type: chandelier_cells
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: sparse
+    notes: "PV+ chandelier cells in layers II–VI; most dense in layers II–III."
+    status: known
+
+  - cell_type: somatostatin_positive_interneurons
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: moderate
+    notes: "SST+ Martinotti cells; ~30% of interneurons; most dense in layers II–III/V–VI."
+    status: known
+
+  - cell_type: vasoactive_intestinal_peptide_interneurons
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: moderate
+    notes: "VIP+ bipolar interneurons; ~30% of interneurons."
+    status: known
+
+  - cell_type: calretinin_positive_interneurons
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: sparse
+    notes: "CR+ interneurons; mainly in layers II–III."
+    status: draft
+
+  # --- Cortical layer II stellate cells (entorhinal) ---
+  - cell_type: entorhinal_stellate_cells
+    region: entorhinal_cortex
+    mouse_region: mus_entorhinal_cortex
+    density: principal
+    layer: "II"
+    notes: "Layer II stellate cells; specialized to entorhinal cortex. Give rise to perforant pathway."
+    status: known
+
+  # --- Specific motor cortex ---
+  - cell_type: betz_cells
+    region: primary_motor_cortex
+    mouse_region: mus_primary_motor_cortex
+    density: sparse
+    layer: "V"
+    notes: "Giant pyramidal cells (Betz cells) in layer V of M1. Smaller in mouse but present."
+    status: known
+
+  # ====================================================================
+  # HIPPOCAMPUS
+  # ====================================================================
+
+  - cell_type: dentate_granule_cells
+    region: dentate_gyrus
+    mouse_region: mus_dentate_gyrus
+    density: principal
+    notes: "Granule cell layer of DG. Densely packed. Mossy fiber projections to CA3."
+    status: known
+
+  - cell_type: layer_ii_iii_pyramidal  # CA3/CA1 pyramidal are distinct subtypes
+    region: ca1
+    mouse_region: mus_ca1
+    density: principal
+    notes: "CA1 pyramidal neurons. Vulnerable to tau and anoxia."
+    status: known
+
+  - cell_type: layer_v_pyramidal
+    region: ca3
+    mouse_region: mus_ca3
+    density: principal
+    notes: "CA3 pyramidal neurons. Auto-associative network. Mossy fiber input from DG."
+    status: known
+
+  # ====================================================================
+  # BASAL GANGLIA
+  # ====================================================================
+
+  - cell_type: striatal_medium_spiny_neurons
+    region: striatum
+    mouse_region: mus_striatum
+    density: principal
+    notes: "~95% of striatal neurons. D1 direct and D2 indirect pathway subtypes."
+    status: known
+
+  - cell_type: striatal_medium_spiny_neurons
+    region: caudate_nucleus
+    density: principal
+    notes: "MSNs in caudate (more associative/dorsomedial in function)."
+    status: known
+
+  - cell_type: striatal_medium_spiny_neurons
+    region: putamen
+    mouse_region: mus_caudate_putamen  # mouse has single CP
+    density: principal
+    notes: "MSNs in putamen (more sensorimotor/dorsolateral)."
+    status: known
+
+  - cell_type: striatal_medium_spiny_neurons
+    region: nucleus_accumbens
+    mouse_region: mus_nucleus_accumbens
+    density: principal
+    notes: "MSNs in ventral striatum (NAc core and shell)."
+    status: known
+
+  - cell_type: msn_d1
+    region: striatum
+    mouse_region: mus_striatum
+    density: moderate
+    notes: "~50% of MSNs. Direct pathway. D1 receptor, substance P."
+    status: known
+
+  - cell_type: msn_d2
+    region: striatum
+    mouse_region: mus_striatum
+    density: moderate
+    notes: "~50% of MSNs. Indirect pathway. D2 receptor, enkephalin."
+    status: known
+
+  - cell_type: globus_pallidus_gabaergic
+    region: globus_pallidus_interna
+    mouse_region: mus_entopeduncular_nucleus
+    density: principal
+    notes: "GPi (entopeduncular nucleus in mouse) output neurons."
+    status: draft
+
+  - cell_type: globus_pallidus_gabaergic
+    region: globus_pallidus_externa
+    mouse_region: mus_globus_pallidus_externa
+    density: principal
+    notes: "GPe neurons; parvalbumin-positive, fast-firing."
+    status: draft
+
+  - cell_type: snc_dopaminergic_neurons
+    region: substantia_nigra_pars_compacta
+    mouse_region: mus_substantia_nigra_compacta
+    density: principal
+    notes: "~200,000 dopaminergic neurons in human, ~10,000 in mouse. Severely lost in PD."
+    status: known
+
+  - cell_type: vta_dopaminergic_neurons
+    region: ventral_tegmental_area
+    mouse_region: mus_ventral_tegmental_area
+    density: principal
+    notes: "~40,000 dopaminergic neurons in human VTA. Relatively spared in PD."
+    status: known
+
+  # ====================================================================
+  # BASAL FOREBRAIN
+  # ====================================================================
+
+  - cell_type: basal_forebrain_cholinergic_neurons
+    region: nucleus_basalis_of_meynert
+    mouse_region: mus_diagonal_band  # partial homolog
+    density: principal
+    notes: "Cholinergic neurons of the NBM (Ch4) and diagonal band. Degenerate in AD."
+    status: known
+
+  - cell_type: basal_forebrain_cholinergic_neurons
+    region: null  # medial septum
+    note: "Also present in medial septum (Ch1) projecting to hippocampus."
+    status: known
+
+  # ====================================================================
+  # BRAINSTEM
+  # ====================================================================
+
+  - cell_type: locus_coeruleus_noradrenergic
+    region: locus_coeruleus
+    mouse_region: mus_locus_coeruleus
+    density: principal
+    notes: "~30,000 neurons in human, ~1,500 in mouse. Widespread projections."
+    status: known
+
+  - cell_type: raphe_serotonergic_neurons
+    region: raphe_nuclei
+    mouse_region: mus_raphe_nuclei
+    density: principal
+    notes: "~250,000 serotonergic neurons in human. Dorsal and median raphe."
+    status: known
+
+  - cell_type: brainstem_cholinergic_neurons
+    region: pons  # PPTg / LDT
+    mouse_region: mus_pons
+    density: sparse
+    notes: "PPTg and LDT cholinergic neurons; sleep-wake regulation."
+    status: draft
+
+  # ====================================================================
+  # HYPOTHALAMUS
+  # ====================================================================
+
+  - cell_type: histaminergic_neurons
+    region: tuberomammillary_nucleus
+    mouse_region: mus_tuberomammillary_nucleus
+    density: moderate
+    notes: "~64,000 histaminergic neurons in human, ~4,000 in mouse."
+    status: draft
+
+  - cell_type: orexinergic_neurons
+    region: lateral_hypothalamus
+    mouse_region: mus_lateral_hypothalamic_area
+    density: sparse
+    notes: "~50,000–70,000 orexin neurons in human; ~3,000 in mouse."
+    status: known
+
+  # ====================================================================
+  # CEREBELLUM
+  # ====================================================================
+
+  - cell_type: purkinje_cells
+    region: cerebellar_cortex
+    mouse_region: mus_cerebellar_cortex
+    density: principal
+    notes: "~15M Purkinje cells in human, ~0.2M in mouse. Single layer between ML and GL."
+    status: known
+
+  - cell_type: cerebellar_granule_cells
+    region: granule_cell_layer_cerebellum
+    mouse_region: mus_granule_cell_layer_cb
+    density: principal
+    notes: "~50B granule cells in human (most numerous), ~10B in mouse. Dense parallel fiber system."
+    status: known
+
+  - cell_type: basket_cells_pv
+    region: cerebellar_cortex
+    mouse_region: mus_molecular_layer_cb
+    density: moderate
+    notes: "Basket and stellate cells of cerebellar molecular layer (GABAergic, PV+)."
+    status: known
+
+  # ====================================================================
+  # OLFACTORY BULB
+  # ====================================================================
+
+  - cell_type: null  # mitral cells
+    region: olfactory_bulb
+    mouse_region: mus_olfactory_bulb
+    density: principal
+    notes: "Mitral cells are the principal output neurons; tufted cells are a second excitatory type."
+    status: known
+
+  - cell_type: olfactory_granule_cells
+    region: olfactory_bulb
+    mouse_region: mus_olfactory_bulb
+    density: principal
+    notes: "Numerous granule cells in the OB granule cell layer; local interneurons."
+    status: draft
+
+  # ====================================================================
+  # GLIAL CELLS (pan-CNS)
+  # ====================================================================
+
+  - cell_type: protoplasmic_astrocytes
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: moderate
+    notes: "Grey matter astrocytes; end-feet contact synapses. Each astrocyte contacts ~100,000 synapses in human."
+    status: known
+
+  - cell_type: fibrous_astrocytes
+    region: white_matter
+    mouse_region: mus_white_matter
+    density: moderate
+    notes: "White matter astrocytes; contact nodes of Ranvier."
+    status: draft
+
+  - cell_type: surveilling_microglia
+    region: cerebral_cortex
+    mouse_region: mus_isocortex
+    density: moderate
+    notes: "~5–12% of CNS cells; surveilling state with fine ramified processes."
+    status: known
+
+  - cell_type: myelinating_oligodendrocytes
+    region: white_matter
+    mouse_region: mus_white_matter
+    density: principal
+    notes: "Myelinate CNS axons; each oligodendrocyte wraps ~30–50 internodes."
+    status: known
+
+  - cell_type: ependymal_cells
+    region: null
+    mouse_region: mus_ventricles
+    density: moderate
+    notes: "Line the ventricles. Cuboidal/columnar epithelium."
+    status: draft

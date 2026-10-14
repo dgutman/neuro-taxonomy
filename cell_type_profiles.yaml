@@ -1,0 +1,462 @@
+# =============================================================================
+# Neuro-Taxonomy: Cell Type Profiles — Enriched
+# =============================================================================
+# Detailed profiles for each cell type: morphology, molecular markers,
+# electrophysiology, developmental origin, regional distribution, and
+# example image references.
+#
+# Each profile expands on the entry in cell_types.yaml with fields:
+#   morphology:   soma shape/size, dendritic arbor, axon trajectory
+#   markers:      IHC/RNA markers that define the cell type
+#   electrophysiology: firing properties, ion channels
+#   synapse_target: pre- and post-synaptic targets
+#   developmental_origin: embryonic origin
+#   example_image: URL or citation for a reference image
+#   notes:        distinguishing characteristics
+#
+# Sources:
+#   - Cell Ontology (CL)
+#   - Blue Brain Project / Allen Cell Types DB
+#   - NeuroMorpho.org — 3D reconstructions
+#   - Published IHC and transcriptomic atlases
+#   - Electron microscopy literature
+# =============================================================================
+
+cell_type_profiles:
+
+  # ==========================================================================
+  # GLUTAMATERGIC NEURONS
+  # ==========================================================================
+
+  - id: layer_ii_iii_pyramidal
+    label: "Layers II–III Cortical Pyramidal Neurons"
+    morphology:
+      soma: "Medium-sized (10–20 µm) triangular or pyramidal"
+      dendrites: "Apical dendrite extends to layer I with tuft; basal dendrites radiate from soma"
+      axon: "Corticocortical (association) projections; axon enters white matter toward other cortical areas"
+      spine_type: "Dense spiny (dendritic spines on basal and apical dendrites)"
+    markers:
+      protein: ["Cux1", "Cux2", "Satb2", "Tbr1 (weak)", "Ctip2 (layers V–VI; absent in II–III)"]
+      rna: ["Cux2 high", "Rorb intermediate"]
+      transcription_factors: ["Cux1", "Cux2", "Satb2"]
+      ion_channels: ["HCN1 (distal apical)", "Kv4.2 (A-type K+ current)"]
+    electrophysiology:
+      firing: "Regular-spiking (RS); adapting to sustained input"
+      input_resistance: "~150–300 MΩ"
+      resting_potential: "~-70 to -75 mV"
+    synapse_target:
+      postsynaptic: "Multilayer II/III pyramidal and inhibitory neurons"
+      neurotransmitter: "Glutamate (AMPA > NMDA at local synapses)"
+    developmental_origin: "Cortical ventricular zone; deep-layer-born (E12–E14 in mouse), migrate radially"
+    example_image: "https://neuromorpho.org/images/image.jsp?image_id=1143"
+    notes: >
+      "These are the major corticocortical projection neurons. Their involvement in
+      tau pathology (Braak stages V–VI) underlies the spread of tau across cortical
+      regions. Their superficial position makes them prominent in IHC images of AD cortex."
+    status: stable
+
+  - id: layer_v_pyramidal
+    label: "Layer V Cortical Pyramidal Neurons"
+    morphology:
+      soma: "Large (15–25 µm), triangular; largest in Betz cells"
+      dendrites: "Prominent thick apical dendrite with extensive tuft in layer I; elaborate basal tree"
+      axon: "Subcerebral projections: striatum, brainstem, spinal cord; collaterals within cortex"
+      spine_type: "Dense spiny"
+    markers:
+      protein: ["Ctip2 (Bcl11b)", "Smi32 (non-phosphorylated neurofilament)", "Tbr1", "Otx1"]
+      rna: ["Bcl11b high", "Fezf2", "Sulf1"]
+      transcription_factors: ["Ctip2/Bcl11b", "Fezf2", "Otx1"]
+      ion_channels: ["Nav1.6 (high density at AIS)", "Kv1.1", "Kv7.2 (M-current)"]
+    electrophysiology:
+      firing: "Regular-spiking, some burst-firing; high firing rates"
+      input_resistance: "~80–200 MΩ"
+      action_potential: "Broad APs (1–2 ms); large afterhyperpolarization"
+    synapse_target:
+      postsynaptic: "Striatal medium spiny neurons (corticostriatal), brainstem, spinal cord"
+      neurotransmitter: "Glutamate"
+    developmental_origin: "Cortical ventricular zone; early-born (E11–E13 in mouse)"
+    example_image: "https://neuromorpho.org/images/image.jsp?image_id=336"
+    notes: >
+      "Layer V pyramidal neurons are the major output neurons of the cortex. Subtypes include
+      corticostriatal (projecting to striatum), corticospinal (to spinal cord), and corticobulbar.
+      Betz cells are the largest subtype. Vulnerable to tau pathology (Braak V–VI) and ALS (Betz cells)."
+    status: stable
+
+  - id: betz_cells
+    label: "Betz Cells (Layer V Giant Pyramidal)"
+    morphology:
+      soma: "Very large (50–100 µm in human), 'giganto-pyramidal'; triangular"
+      dendrites: "Thick apical dendrite with extensive tuft; many basal dendrites"
+      axon: "Corticospinal tract (CST); long axon with large diameter, heavily myelinated"
+      spine_type: "Spiny; fewer spines per area than smaller pyramids"
+    markers:
+      protein: ["Smi32 (non-phosphorylated neurofilament) strongly positive", "Ctip2", "Fezf2", "NNF"]
+      rna: ["SLC17A7 (VGlut1)", "Fezf2", "Bcl11b"]
+      ion_channels: ["Nav1.6 high density"]
+    electrophysiology:
+      firing: "Slow regular-spiking; low firing rate"
+      input_resistance: "~40–80 MΩ (low due to large size)"
+      action_potential: "Large amplitude; fast conduction velocity (50–70 m/s in corticospinal tract)"
+    synapse_target:
+      postsynaptic: "Spinal motor neurons (direct monosynaptic), brainstem motor nuclei"
+      neurotransmitter: "Glutamate"
+    developmental_origin: "Cortical ventricular zone; among earliest born (E11 in mouse)"
+    example_image: "https://en.wikipedia.org/wiki/Betz_cell#/media/File:Betz_cells_Pyramidal.png"
+    notes: >
+      "Betz cells are the largest neurons in the human CNS. Found exclusively in layer V of
+      primary motor cortex (M1, BA4). They are selectively vulnerable in ALS, where TDP-43
+      inclusions and neuronal loss are prominent. Human Betz cells are significantly larger
+      than rodent equivalents."
+    status: stable
+
+  - id: dentate_granule_cells
+    label: "Dentate Gyrus Granule Cells"
+    morphology:
+      soma: "Small (8–12 µm), round-to-oval"
+      dendrites: "Short apical dendrites extending into molecular layer; 'cone-shaped' arbor"
+      axon: "Mossy fiber: unmyelinated, large boutons (mossy fiber boutons) projecting to CA3"
+      spine_type: "Spiny; especially in outer two-thirds of molecular layer"
+    markers:
+      protein: ["Prox1 (definitive marker)", "NeuN (weak in mature)", "Calbindin", "DCX (immature)"]
+      rna: ["Prox1 high", "Sst (subpopulation)", "Dcx (immature)"]
+      transcription_factors: ["Prox1", "Tbr2"]
+    electrophysiology:
+      firing: "Strong frequency facilitation; normally silent in vivo, burst during context discrimination"
+      input_resistance: "~200–400 MΩ"
+      resting_potential: "~-75 mV"
+      channel: "HCN (Ih current); T-type Ca2+ channels"
+    synapse_target:
+      postsynaptic: "CA3 pyramidal cells (mossy fiber–CA3 synapse)"
+      neurotransmitter: "Glutamate"
+      presynaptic_input: "Entorhinal cortex layer II (perforant path), mossy cells, interneurons"
+    developmental_origin: "Dentate neuroepithelium; persistent adult neurogenesis (unique in mammals)"
+    example_image: "https://neuromorpho.org/images/image.jsp?image_id=483"
+    notes: >
+      "Granule cells are the principal neurons of the dentate gyrus. They are generated
+      postnatally and throughout life (adult neurogenesis). Their mossy fibers form
+      uniquely large boutons (3–5 µm) onto CA3 pyramidal cells, a synapse with robust
+      LTP. TDP-43 pathology frequently affects these cells in FTLD-TDP and LATE-NC."
+    status: stable
+
+  - id: cerebellar_granule_cells
+    label: "Cerebellar Granule Cells"
+    morphology:
+      soma: "Very small (5–8 µm); the smallest neurons in the brain"
+      dendrites: "2–4 short 'claw-like' dendrites; each receives input from one mossy fiber rosette"
+      axon: "Ascending axon bifurcates into parallel fiber (~2–5 mm in human); traverses thousands of Purkinje cells"
+      spine_type: "No spines; fine filopodia"
+    markers:
+      protein: ["NeuN (strong)", "PCP2 (L7, subset)", "GLAST/EAAT1", "GABAA α6 subunit"]
+      rna: ["Grin2C (NR2C subunit)", "GABRA6", "PAX6"]
+      transcription_factors: ["Pax6", "Tbr2", "Atoh1 (Math1)"]
+    electrophysiology:
+      firing: "Tonic high-frequency firing (~10–50 Hz in vivo)"
+      input_resistance: "~300–600 MΩ"
+      resting_potential: "~-65 mV"
+    synapse_target:
+      postsynaptic: "Purkinje cell dendrites (~150,000 parallel fiber–Purkinje cell synapses per granule cell)"
+      neurotransmitter: "Glutamate"
+      presynaptic_input: "Mossy fibers from pontine nuclei, spinal cord, vestibular nuclei"
+    developmental_origin: "Cerebellar rhombic lip; migration via external granule layer"
+    example_image: "https://neuromorpho.org/images/image.jsp?image_id=1082"
+    notes: >
+      "Cerebellar granule cells are the most numerous neurons in the vertebrate brain
+      (~50 billion in human, ~10 billion in mouse). Their parallel fibers form the
+      excitatory input to Purkinje cells. They are generally resistant to degeneration
+      in most neurodegenerative diseases except for some genetic ataxias."
+    status: stable
+
+  - id: entorhinal_stellate_cells
+    label: "Entorhinal Stellate Cells (Layer II)"
+    morphology:
+      soma: "Stellate (star-shaped), 15–20 µm"
+      dendrites: "Tufted, radiating dendrites; mostly within layer II–III border"
+      axon: "Perforant pathway: projects to dentate gyrus and CA3 (temporoammonic path)"
+      spine_type: "Spiny (moderate density)"
+    markers:
+      protein: ["Reelin", "Calbindin", "Parvalbumin (subset)", "COUP-TFII (proposed)"]
+      rna: ["RELN", "CALB1", "SP (substance P)"]
+    electrophysiology:
+      firing: "Regular-spiking; persistent firing (minutes-long plateau potentials) in vitro"
+      input_resistance: "~100–200 MΩ"
+      special: "Grid cell firing in vivo (in awake, behaving animals)"
+    synapse_target:
+      postsynaptic: "Dentate granule cell dendrites (perforant path)"
+      neurotransmitter: "Glutamate"
+      presynaptic_input: "Deep layers of EC, perirhinal, amygdala, hippocampus (CA1/subiculum)"
+    developmental_origin: "Layer II of entorhinal cortex; derived from cortical neuroepithelium"
+    example_image: "https://neuromorpho.org/neuron_info.jsp?neuron_id=4333"
+    notes: >
+      "Stellate cells of entorhinal cortex layer II give rise to the perforant pathway, the
+      major cortical input to the hippocampus. They are among the earliest neurons to develop
+      tau pathology in Alzheimer's disease (Braak stage I), making them a crucial cell type
+      for understanding AD progression. Their persistent firing properties may support memory."
+    status: stable
+
+  # ==========================================================================
+  # GABAERGIC INTERNEURONS
+  # ==========================================================================
+
+  - id: basket_cells_pv
+    label: "Parvalbumin-Positive Basket Cells (Fast-Spiking)"
+    morphology:
+      soma: "Medium (15–25 µm), round-to-oval"
+      dendrites: "Multipolar; branching near soma; aspiry"
+      axon: "Dense local arbor; forms 'baskets' around pyramidal somata"
+      spine_type: "Aspiny or very sparse spines"
+    markers:
+      protein: ["Parvalbumin", "GAD67", "Kv3.1", "CART"]
+      rna: ["PVALB", "GAD1", "KCNC1"]
+      calcium_binding: "Parvalbumin (fast Ca2+ buffer)"
+    electrophysiology:
+      firing: "Fast-spiking (FS): >200 Hz; brief afterhyperpolarization"
+      input_resistance: "~80–150 MΩ"
+      action_potential: "Narrow (<0.5 ms)"
+    synapse_target:
+      postsynaptic: "Perisomatic region of pyramidal neurons and other interneurons"
+      neurotransmitter: "GABA (GABAA receptors); fast, powerful inhibition"
+    developmental_origin: "Medial ganglionic eminence (MGE)"
+    example_image: "https://neuromorpho.org/images/image.jsp?image_id=4043"
+    notes: >
+      "PV+ basket cells are the most common cortical interneuron subtype (~40% of interneurons).
+      Their fast-spiking, perisomatic inhibition controls cortical output. They require high
+      energy and mitochondrial activity, making them vulnerable to metabolic stress. Tau
+      pathology accumulates in PV+ interneurons in AD."
+    status: stable
+
+  - id: chandelier_cells
+    label: "Parvalbumin-Positive Chandelier Cells (Axo-Axonic)"
+    morphology:
+      soma: "Small-to-medium (12–20 µm), oval"
+      dendrites: "Bipolar/vertical; aspiry"
+      axon: "Characteristic 'chandelier' or 'candelabra' arbor; synapsing exclusively on axon initial segments (AIS)"
+      spine_type: "Aspiny"
+    markers:
+      protein: ["Parvalbumin", "GAD67", "Kv3.1b", "GAT1"]
+      rna: ["PVALB", "CNTNAP2", "ADARB2"]
+    electrophysiology:
+      firing: "Fast-spiking (FS); narrow APs; similar to basket cells"
+    synapse_target:
+      postsynaptic: "Pyramidal neuron axon initial segment (AIS); uniquely powerful 'gatekeeper' inhibition"
+      neurotransmitter: "GABA (GABAA receptors at AIS)"
+    developmental_origin: "Medial ganglionic eminence (MGE)"
+    example_image: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9945212/"
+    notes: >
+      "Chandelier cells are unique to the neocortex and hippocampus. Their exclusive
+      innervation of the axon initial segment allows them to control action potential
+      generation, making them 'gatekeepers' of pyramidal output. They are lost or
+      dysfunctional in schizophrenia and may be affected in tauopathies."
+    status: stable
+
+  - id: somatostatin_positive_interneurons
+    label: "Somatostatin-Positive Martinotti Cells"
+    morphology:
+      soma: "Medium (15–25 µm), fusiform/oval"
+      dendrites: "Bipolar or multipolar; descending dendrites prominent"
+      axon: "Ascends to layer I, then arborizes horizontally ('Martinotti' axon)"
+      spine_type: "Spiny or sparsely spiny; some are aspiry"
+    markers:
+      protein: ["Somatostatin", "GAD67", "NPY (subset)", "Calretinin (subset)", "mGluR1"]
+      rna: ["SST", "GAD1", "CALB2 (subset)", "NPY"]
+    electrophysiology:
+      firing: "Regular-spiking with strong adaptation (RS non-fast-spiking); some low-threshold burst (LTS)"
+      input_resistance: "~200–400 MΩ"
+    synapse_target:
+      postsynaptic: "Pyramidal distal dendrites in layer I (dendritic-targeting)"
+      neurotransmitter: "GABA (GABAA and GABAB receptors)"
+    developmental_origin: "Medial ganglionic eminence (MGE)"
+    example_image: "https://neuromorpho.org/images/image.jsp?image_id=4530"
+    notes: >
+      "SST+ Martinotti cells are the second most common interneuron type (~30% of interneurons).
+      Their ascending axon to layer I allows them to inhibit the apical tufts of pyramidal
+      neurons, controlling dendritic integration. They are vulnerable to tau accumulation in AD."
+    status: stable
+
+  - id: striatal_medium_spiny_neurons
+    label: "Striatal Medium Spiny Neurons (MSNs)"
+    morphology:
+      soma: "Medium (12–20 µm), oval-to-round"
+      dendrites: "Densely spiny; radial dendritic tree (up to 500 µm)"
+      axon: "Projects within striatum and to pallidum/SNr; extensive collaterals"
+      spine_type: "Densely spiny (mushroom and thin spines)"
+    markers:
+      protein: "DARPP-32 (universal MSN marker), GAD67"
+      # D1 subtype
+      d1: ["D1 dopamine receptor", "Substance P", "Dynorphin", "Sst (Golf subunit)"]
+      # D2 subtype
+      d2: ["D2 dopamine receptor", "Enkephalin", "A2A adenosine receptor", "Gpr6"]
+    electrophysiology:
+      firing: "Up-state/down-state bistability; low spontaneous firing (in vivo); burst with depolarization"
+      input_resistance: "~100–200 MΩ"
+      resting_potential: "~-80 to -90 mV (down state); -60 to -50 mV (up state)"
+      channels: "Kir2 (maintains down state), L-type Ca2+, Nav1"
+    synapse_target:
+      postsynaptic: "GPi/SNr (D1 direct), GPe (D2 indirect); local collaterals onto other MSNs"
+      neurotransmitter: "GABA"
+      presynaptic_input: "Cortical layer V pyramidal (glutamate), SNc (dopamine), thalamus (CM-Pf)"
+    developmental_origin: "Lateral ganglionic eminence (LGE)"
+    example_image: "https://neuromorpho.org/neuron_info.jsp?neuron_id=3860"
+    notes: >
+      "MSNs constitute ~95% of striatal neurons. Their D1/D2 dichotomy mediates the direct
+      (Go) and indirect (No-Go) pathways of basal ganglia. D2 MSNs are preferentially lost
+      in Huntington's disease. Their spine density changes dynamically with dopamine tone."
+    status: stable
+
+  # ==========================================================================
+  # NEUROMODULATORY NEURONS
+  # ==========================================================================
+
+  - id: snc_dopaminergic_neurons
+    label: "SNc Dopaminergic Neurons (A9, Nigrostriatal)"
+    morphology:
+      soma: "Medium-to-large (20–35 µm), multipolar; dark pigment (neuromelanin) in human"
+      dendrites: "Multipolar; dendritic bundles in pars compacta; ventrally into SNr"
+      axon: "Unmyelinated, thinly myelinated; long projection to dorsal striatum (caudate/putamen)"
+      spine_type: "Spiny (moderate)"
+    markers:
+      protein: ["Tyrosine Hydroxylase (TH)", "Neuromelanin (human)", "DAT (SLC6A3)", "VAMP2", "Aldh1a1"]
+      rna: ["TH", "SLC6A3", "NR4A2 (Nurr1)", "PITX3", "LMX1A/B", "CALB1 (subset)"]
+      transcription_factors: ["Nurr1/NR4A2", "Pitx3", "Lmx1a", "Lmx1b", "Foxa2"]
+    electrophysiology:
+      firing: "Regular, slow (2–6 Hz) pacemaker; broad AP (2–3 ms)"
+      input_resistance: "~200–400 MΩ"
+      ion_channels: "HCN (sag/pacemaker current), T-type Ca2+ (low-threshold spikes), SK channels"
+      special: "Spontaneous pacemaking; Ca2+-dependent dendritic release"
+    synapse_target:
+      postsynaptic: "D1 and D2 MSNs in dorsal striatum (modulatory, volume transmission)"
+      neurotransmitter: "Dopamine (DA) through volume transmission; co-transmitters: calbindin, VGLUT3 (subset)"
+      presynaptic_input: "Striatal GABA (via SNr collaterals), pedunculopontine (ACh), cortex (glutamate)"
+    developmental_origin: "Midbrain floor plate; isthmus organizer; Shh- and FGF8-dependent"
+    example_image: "https://neuromorpho.org/neuron_info.jsp?neuron_id=532"
+    notes: >
+      "SNc dopamine neurons in A9 are ~200,000 in humans (~10,000 in mouse). They are
+      heavily pigmented (neuromelanin) — the darkest regions of the human brain. They
+      degenerate selectively in Parkinson's disease, losing ~60-70% by symptom onset.
+      Their spontaneous pacemaking creates oxidative stress, contributing to vulnerability.
+      The lateral SNc (calbindin-negative) is more vulnerable than the medial SNc (calbindin-positive)."
+    status: stable
+
+  - id: locus_coeruleus_noradrenergic
+    label: "Locus Coeruleus Noradrenergic Neurons (A6)"
+    morphology:
+      soma: "Medium (20–30 µm), oval-to-spindle; human LC has neuromelanin"
+      dendrites: "Elongated, fusiform; dendrites extend within LC and into surrounding tegmentum"
+      axon: "Extremely broad projections throughout CNS (cortex, hippocampus, cerebellum, spinal cord)"
+      spine_type: "Aspiny"
+    markers:
+      protein: ["Dopamine-β-hydroxylase (DBH)", "Tyrosine Hydroxylase (TH)", "NET (SLC6A2)", "Norpinephrine"]
+      rna: ["DBH", "TH", "SLC6A2", "PHOX2A/B"]
+      transcription_factors: ["Phox2a", "Phox2b"]
+    electrophysiology:
+      firing: "Tonic (1–5 Hz) and phasic (burst) modes; broad AP (~2 ms)"
+      input_resistance: "~150–300 MΩ"
+      channels: "HCN, SK, T-type Ca2+"
+    synapse_target:
+      postsynaptic: "Widespread; cortex, hippocampus, cerebellum, and spinal cord"
+      neurotransmitter: "Norepinephrine (volume transmission); α1, α2, β-adrenergic receptors"
+    developmental_origin: "Rhombomere 1 (isthmus); dorsal hindbrain"
+    example_image: "https://neuromorpho.org/neuron_info.jsp?neuron_id=505"
+    notes: >
+      "LC is the only source of norepinephrine in the forebrain (~30,000 neurons in human,
+      ~1,500 in mouse). It is one of the earliest sites of tau pathology in AD (Braak stage I)
+      and α-synuclein pathology in PD (Braak stage 2). LC projects to nearly the entire
+      CNS, making it a candidate 'driver' of pathogenesis spreading."
+    status: stable
+
+  - id: basal_forebrain_cholinergic_neurons
+    label: "Basal Forebrain Cholinergic Neurons (Ch1–Ch4)"
+    morphology:
+      soma: "Large (25–50 µm), multipolar; some elongated"
+      dendrites: "Radial, broad; vertically oriented"
+      axon: "Widespread projections; Ch4 (NBM) to entire cortex; Ch1/2 (medial septum/DB) to hippocampus"
+      spine_type: "Smooth (aspiny)"
+    markers:
+      protein: ["Choline Acetyltransferase (ChAT)", "Vesicular ACh Transporter (VAChT)", "p75NTR", "TrkA"]
+      rna: ["CHAT", "SLC18A3 (VAChT)", "NGFR (p75)", "NTRK1"]
+    electrophysiology:
+      firing: "Bursting and tonic; slow (~5–15 Hz)"
+      input_resistance: "~100–200 MΩ"
+      action_potential: "Broad (2–3 ms)"
+    synapse_target:
+      postsynaptic: "Cortical pyramidal, interneurons, hippocampal cells (nicotinic and muscarinic receptors)"
+      neurotransmitter: "Acetylcholine; volume and synaptic transmission"
+    developmental_origin: "Basal forebrain; medial septal and diagonal band neuroepithelium"
+    example_image: "https://neuromorpho.org/neuron_info.jsp?neuron_id=4792"
+    notes: >
+      "Cholinergic neurons of the basal forebrain are the sole source of acetylcholine to the
+      cortex. They degenerate early and extensively in Alzheimer's disease, correlating with
+      cognitive decline. The nucleus basalis of Meynert (Ch4) provides ~80% of cortical ACh.
+      This degeneration is the basis of the cholinergic hypothesis and the use of AChE inhibitors."
+    status: stable
+
+  # ==========================================================================
+  # GLIAL CELLS
+  # ==========================================================================
+
+  - id: protoplasmic_astrocytes
+    label: "Protoplasmic Astrocytes (Grey Matter)"
+    morphology:
+      soma: "Small (5–10 µm), oval"
+      processes: "Numerous finely branched, bushy processes; each astrocyte covers a 'domain' of 60,000–120,000 synapses"
+      endfeet: "Vascular endfeet cover capillaries; synaptic endfeet contact synapses"
+      spine_type: "N/A (glial fibrils)"
+    markers:
+      protein: ["GFAP (intermediate filaments)", "Aldh1L1 (pan-astrocyte)", "S100B", "EAAT1/GLAST", "EAAT2/GLT-1", "Glutamine Synthetase"]
+      rna: ["GFAP", "ALDH1L1", "SLC1A3 (EAAT1)", "SLC1A2 (EAAT2)", "AQP4"]
+    electrophysiology:
+      special: "Passive membrane; not electrically excitable (no AP); K+ buffering"
+      resting_potential: "~-80 to -90 mV (high K+ permeability)"
+      gap_junctions: "Cx30, Cx43; large astrocyte syncytium"
+    synapse_target: "Tripartite synapse: astrocyte processes wrap synapses"
+    developmental_origin: "Cortical radial glia; VZ/SVZ-derived glioblasts"
+    example_image: "https://neuromorpho.org/neuron_info.jsp?neuron_id=2404"
+    notes: >
+      "Protoplasmic astrocytes are the dominant astrocyte type in grey matter. Their
+      domain organization means each astrocyte covers ~1–2 neurons. They handle
+      K+ buffering, glutamate uptake (~80% via GLT-1/EAAT2), and metabolic support.
+      In neurodegeneration, they become reactive (hypertrophic, GFAP-upregulated) and
+      lose some homeostatic functions."
+    status: stable
+
+  - id: surveilling_microglia
+    label: "Surveilling (Ramified) Microglia"
+    morphology:
+      soma: "Small (5–10 µm), oval"
+      processes: "Highly branched, fine processes with 'terminal boutons'; dynamic, constantly surveying parenchyma"
+      spine_type: "N/A (motile filopodia)"
+    markers:
+      protein: ["Iba1/AIF1", "TMEM119 (resting)", "P2RY12", "CD45 (low)", "FcγRI/II (low)", "CX3CR1"]
+      rna: ["AIF1", "TMEM119", "P2RY12", "CX3CR1", "CSF1R"]
+    electrophysiology:
+      special: "Non-excitable; express ion channels (Kv1.3, Kir2) for membrane potential"
+    synapse_target: "Contact synapses, prune weak synapses (complement-dependent via C3–CR3)"
+    developmental_origin: "Yolk sac; early embryonic (E8.5 in mouse); colonize brain before BBB"
+    example_image: "https://neuromorpho.org/neuron_info.jsp?neuron_id=12251"
+    notes: >
+      "Surveilling microglia are the 'resting' state — constantly sampling the brain
+      parenchyma with their motile processes. They scan ~once/hour the entire
+      extracellular space. Upon detecting damage signals (ATP, complement, TDP-43,
+      Aβ), they transform to an activated (ameboid) state and migrate to the site."
+    status: stable
+
+  - id: myelinating_oligodendrocytes
+    label: "Myelinating Oligodendrocytes"
+    morphology:
+      soma: "Small (8–10 µm), round"
+      processes: "Multiple (20–50) parallel processes; each wraps ~1 mm of axon; 30–50 internodes per cell"
+      spine_type: "N/A"
+      myelin: "Compact, multi-lamellar wrapping; ~100 layers per internode"
+    markers:
+      protein: ["Olig2", "CNPase", "MBP", "MAG", "MOG", "PLP1", "PDGFRα (OPCs)", "NG2 (OPCs)"]
+      rna: ["OLIG2", "CNP", "MBP", "PLP1", "MAG", "MOG"]
+    electrophysiology: "Non-excitable; form electrical isolation via myelin"
+    synapse_target: "Wraps axons; Nodes of Ranvier are gaps between adjacent oligodendrocytes"
+    developmental_origin: "Oligodendrocyte precursor cells (OPCs) from ventral ventricular zone"
+    example_image: "https://neuromorpho.org/neuron_info.jsp?neuron_id=9617"
+    notes: >
+      "Oligodendrocytes myelinate CNS axons — each cell supports multiple internodes.
+      Myelin is critical for saltatory conduction. In neurodegeneration, they can
+      be affected secondarily (Wallerian degeneration, myelin loss). MSA has
+      direct glial cytoplasmic inclusions (GCIs) in oligodendrocytes — a defining
+      feature. In PSP, coiled bodies (tau in oligodendroglia) are common."
+    status: stable
