@@ -1,0 +1,1128 @@
+layer_ii_iii_pyramidal:
+  query_params:
+    species: human
+    cell_type: pyramidal
+  total_available: 3942
+  images_returned: 10
+  note: Human neocortical pyramidal neurons (layers II–III)
+  images:
+  - url: http://neuromorpho.org/images/imageFiles/Tamas/Fig1b_140312-1rm6_pyr.png
+    caption: Fig1b_140312-1rm6_pyr — principal cell / pyramidal in neocortex / layer
+      2-3
+    source: Tamas
+    sex: Female
+    age: '40.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - layer 2-3
+    reference_doi:
+    - 10.7554/eLife.18167
+    nm_id: 107146
+  - url: http://neuromorpho.org/images/imageFiles/Tamas/Fig5c_141009_2og_B.png
+    caption: Fig5c_141009_2og_B — principal cell / pyramidal in neocortex / frontal
+      / layer 1 / layer 2-3
+    source: Tamas
+    sex: Female
+    age: Not Reported
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - frontal
+    - layer 1
+    - layer 2-3
+    reference_doi:
+    - 10.1038/s41593-018-0205-2
+    nm_id: 107159
+  - url: http://neuromorpho.org/images/imageFiles/Tamas/Fig6b_1610052mg_B.png
+    caption: Fig6b_1610052mg_B — principal cell / pyramidal in neocortex / temporo-occipital
+      / layer 1 and layer 2-3
+    source: Tamas
+    sex: Male
+    age: Not Reported
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - temporo-occipital
+    - layer 1 and layer 2-3
+    reference_doi:
+    - 10.1038/s41593-018-0205-2
+    nm_id: 107162
+  - url: http://neuromorpho.org/images/imageFiles/Wittner/Tu2cell3_sc.png
+    caption: Tu2cell3_sc — principal cell / pyramidal in neocortex / temporal / left
+      / layer 2
+    source: Wittner
+    sex: Male
+    age: '59.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - temporal
+    - left
+    - layer 2
+    reference_doi:
+    - 10.1113/JP275413
+    nm_id: 109431
+  - url: http://neuromorpho.org/images/imageFiles/Wittner/Epi30cell1_sc.png
+    caption: Epi30cell1_sc — principal cell / pyramidal in neocortex / temporal /
+      layer 2
+    source: Wittner
+    sex: Male
+    age: '30.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - temporal
+    - layer 2
+    reference_doi:
+    - 10.1117/1.NPh.1.1.011013
+    nm_id: 110647
+  - url: http://neuromorpho.org/images/imageFiles/Szegedi/Fig4_2.png
+    caption: Fig4_2 — principal cell / pyramidal in neocortex / frontal / layer 2-3
+      / right
+    source: Szegedi
+    sex: Male
+    age: '55.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - frontal
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1523/ENEURO.0260-17.2017
+    nm_id: 111974
+  - url: http://neuromorpho.org/images/imageFiles/Szegedi/fig2c_1.png
+    caption: fig2c_1 — principal cell / pyramidal in neocortex / frontal / layer 2-3
+      / right
+    source: Szegedi
+    sex: Female
+    age: '64.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - frontal
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1523/ENEURO.0260-17.2017
+    nm_id: 111975
+  - url: http://neuromorpho.org/images/imageFiles/Szegedi/fig2b_2.png
+    caption: fig2b_2 — principal cell / pyramidal in neocortex / temporo-parietal
+      / layer 2-3 / right
+    source: Szegedi
+    sex: Female
+    age: '68.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - temporo-parietal
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1523/ENEURO.0260-17.2017
+    nm_id: 111977
+  - url: http://neuromorpho.org/images/imageFiles/Szegedi/Fig2_1.png
+    caption: Fig2_1 — principal cell / pyramidal in neocortex / temporal / layer 2-3
+      / right
+    source: Szegedi
+    sex: Male
+    age: '58.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - temporal
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1523/ENEURO.0260-17.2017
+    nm_id: 111980
+  - url: http://neuromorpho.org/images/imageFiles/Szegedi/Fig1_2.png
+    caption: Fig1_2 — principal cell / pyramidal in neocortex / temporal / layer 2-3
+      / left
+    source: Szegedi
+    sex: Male
+    age: '49.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - neocortex
+    - temporal
+    - layer 2-3
+    - left
+    reference_doi:
+    - 10.1523/ENEURO.0260-17.2017
+    nm_id: 111981
+layer_v_pyramidal:
+  query_params:
+    species: human
+    cell_type: pyramidal
+  total_available: 3942
+  images_returned: 38
+  note: Human neocortical pyramidal neurons (layers V–VI)
+  images:
+  - url: http://neuromorpho.org/images/imageFiles/Allman/02a_pyramidal2aFI.png
+    caption: 02a_pyramidal2aFI — pyramidal / principal cell in neocortex / fronto-insula
+      / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - fronto-insula
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1042
+  - url: http://neuromorpho.org/images/imageFiles/Allman/02b_pyramidal1aACC.png
+    caption: 02b_pyramidal1aACC — pyramidal / principal cell in neocortex / anterior
+      cingulate / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - anterior cingulate
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1043
+  - url: http://neuromorpho.org/images/imageFiles/Allman/02b_pyramidal1aFI.png
+    caption: 02b_pyramidal1aFI — pyramidal / principal cell in neocortex / fronto-insula
+      / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - fronto-insula
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1044
+  - url: http://neuromorpho.org/images/imageFiles/Allman/03a_pyramidal9aFI.png
+    caption: 03a_pyramidal9aFI — pyramidal / principal cell in neocortex / fronto-insula
+      / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - fronto-insula
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1045
+  - url: http://neuromorpho.org/images/imageFiles/Allman/03b_pyramidal2aACC.png
+    caption: 03b_pyramidal2aACC — pyramidal / principal cell in neocortex / anterior
+      cingulate / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - anterior cingulate
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1046
+  - url: http://neuromorpho.org/images/imageFiles/Allman/03b_pyramidal3aACC.png
+    caption: 03b_pyramidal3aACC — pyramidal / principal cell in neocortex / anterior
+      cingulate / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - anterior cingulate
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1047
+  - url: http://neuromorpho.org/images/imageFiles/Allman/03b_pyramidal3aFI.png
+    caption: 03b_pyramidal3aFI — pyramidal / principal cell in neocortex / fronto-insula
+      / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - fronto-insula
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1048
+  - url: http://neuromorpho.org/images/imageFiles/Allman/03b_pyramidal4aFI.png
+    caption: 03b_pyramidal4aFI — pyramidal / principal cell in neocortex / fronto-insula
+      / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - fronto-insula
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1049
+  - url: http://neuromorpho.org/images/imageFiles/Allman/03b_pyramidal9aFI.png
+    caption: 03b_pyramidal9aFI — pyramidal / principal cell in neocortex / fronto-insula
+      / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - fronto-insula
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1050
+  - url: http://neuromorpho.org/images/imageFiles/Allman/04a_pyramidal4aACC.png
+    caption: 04a_pyramidal4aACC — pyramidal / principal cell in neocortex / anterior
+      cingulate / layer 5
+    source: Allman
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - pyramidal
+    - principal cell
+    region:
+    - neocortex
+    - anterior cingulate
+    - layer 5
+    reference_doi:
+    - 10.1016/j.neuroscience.2006.04.084
+    nm_id: 1051
+betz_cells:
+  query_params:
+    species: human
+    cell_type: pyramidal
+    brain_region: motor
+  total_available: 60
+  images_returned: 50
+  note: Primary motor cortex pyramidal (includes Betz cells)
+  images:
+  - url: http://neuromorpho.org/images/imageFiles/Hrvoj-Mihic_Semendeferi/Green_19weeks_Neuron4.png
+    caption: Green_19weeks_Neuron4 — principal cell / pyramidal / induced-pluripotent-stem-cell
+      (iPSC)-derived in neocortex / frontal / motor / right
+    source: Hrvoj-Mihic_Semendeferi
+    sex: Not reported
+    age: Not Reported
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    - induced-pluripotent-stem-cell (iPSC)-derived
+    region:
+    - neocortex
+    - frontal
+    - motor
+    - right
+    reference_doi:
+    - 10.7554/eLife.37527
+    nm_id: 125771
+  - url: http://neuromorpho.org/images/imageFiles/Hrvoj-Mihic_Semendeferi/Green_19weeks_Neuron5.png
+    caption: Green_19weeks_Neuron5 — principal cell / pyramidal / induced-pluripotent-stem-cell
+      (iPSC)-derived in neocortex / frontal / motor / right
+    source: Hrvoj-Mihic_Semendeferi
+    sex: Not reported
+    age: Not Reported
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    - induced-pluripotent-stem-cell (iPSC)-derived
+    region:
+    - neocortex
+    - frontal
+    - motor
+    - right
+    reference_doi:
+    - 10.7554/eLife.37527
+    nm_id: 125772
+  - url: http://neuromorpho.org/images/imageFiles/Hrvoj-Mihic_Semendeferi/Green_19weeks_Neuron6.png
+    caption: Green_19weeks_Neuron6 — principal cell / pyramidal / induced-pluripotent-stem-cell
+      (iPSC)-derived in neocortex / frontal / motor / right
+    source: Hrvoj-Mihic_Semendeferi
+    sex: Not reported
+    age: Not Reported
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    - induced-pluripotent-stem-cell (iPSC)-derived
+    region:
+    - neocortex
+    - frontal
+    - motor
+    - right
+    reference_doi:
+    - 10.7554/eLife.37527
+    nm_id: 125773
+  - url: http://neuromorpho.org/images/imageFiles/Hrvoj-Mihic_Semendeferi/Green_19weeks_Neuron3.png
+    caption: Green_19weeks_Neuron3 — principal cell / pyramidal / induced-pluripotent-stem-cell
+      (iPSC)-derived in neocortex / frontal / motor / right
+    source: Hrvoj-Mihic_Semendeferi
+    sex: Not reported
+    age: Not Reported
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    - induced-pluripotent-stem-cell (iPSC)-derived
+    region:
+    - neocortex
+    - frontal
+    - motor
+    - right
+    reference_doi:
+    - 10.7554/eLife.37527
+    nm_id: 125774
+  - url: http://neuromorpho.org/images/imageFiles/Hrvoj-Mihic_Semendeferi/Green_19weeks_Neuron2.png
+    caption: Green_19weeks_Neuron2 — principal cell / pyramidal / induced-pluripotent-stem-cell
+      (iPSC)-derived in neocortex / frontal / motor / right
+    source: Hrvoj-Mihic_Semendeferi
+    sex: Not reported
+    age: Not Reported
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    - induced-pluripotent-stem-cell (iPSC)-derived
+    region:
+    - neocortex
+    - frontal
+    - motor
+    - right
+    reference_doi:
+    - 10.7554/eLife.37527
+    nm_id: 125775
+entorhinal_stellate_cells:
+  query_params:
+    species: human
+    cell_type: stellate
+  total_available: 11
+  images_returned: 11
+  note: Human stellate neurons (entorhinal-like)
+  images:
+  - url: null
+    caption: 14-CrossShaped_S2-22_S20c — Unknown / stellate in amygdala / central
+    source: Rasia-Filho
+    sex: Male
+    age: '47.0'
+    cell_type_labels:
+    - Unknown
+    - stellate
+    region:
+    - amygdala
+    - central
+    reference_doi:
+    - 10.1002/jnr.25319
+    nm_id: 283316
+  - url: null
+    caption: S2-2-CrossShaped_S20a — Unknown / stellate in amygdala / central
+    source: Rasia-Filho
+    sex: Male
+    age: '47.0'
+    cell_type_labels:
+    - Unknown
+    - stellate
+    region:
+    - amygdala
+    - central
+    reference_doi:
+    - 10.1002/jnr.25319
+    nm_id: 283327
+  - url: null
+    caption: 5-21-CrossShaped_S20d — Unknown / stellate in amygdala / central
+    source: Rasia-Filho
+    sex: Male
+    age: '47.0'
+    cell_type_labels:
+    - Unknown
+    - stellate
+    region:
+    - amygdala
+    - central
+    reference_doi:
+    - 10.1002/jnr.25319
+    nm_id: 283338
+  - url: null
+    caption: S3-23-CrossShaped_S20b — Unknown / stellate in amygdala / central
+    source: Rasia-Filho
+    sex: Male
+    age: '47.0'
+    cell_type_labels:
+    - Unknown
+    - stellate
+    region:
+    - amygdala
+    - central
+    reference_doi:
+    - 10.1002/jnr.25319
+    nm_id: 283339
+  - url: http://neuromorpho.org/images/imageFiles/Jacobs/189-1-10dw.png
+    caption: 189-1-10dw — stellate / interneuron in cerebellum / cerebellar cortex
+      / stratum moleculare / dorsal / left
+    source: Jacobs
+    sex: Male
+    age: '54.0'
+    cell_type_labels:
+    - stellate
+    - interneuron
+    region:
+    - cerebellum
+    - cerebellar cortex
+    - stratum moleculare
+    - dorsal
+    - left
+    reference_doi:
+    - 10.3389/fnana.2014.00024
+    nm_id: 32544
+basket_cells_pv:
+  query_params:
+    species: human
+    cell_type: interneuron
+  total_available: 234
+  images_returned: 50
+  note: Human aspiry interneurons (includes PV+ basket cells)
+  images:
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-03-010-11-13-01_656411100_m.png
+    caption: H17-03-010-11-13-01_656411100_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus
+    source: Allen Cell Types
+    sex: Female
+    age: '38.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    reference_doi:
+    - 10.1016/j.neuron.2016.10.019
+    nm_id: 102399
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-06-005-12-15-01_605485782_m.png
+    caption: H17-06-005-12-15-01_605485782_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus
+    source: Allen Cell Types
+    sex: Male
+    age: '38.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    reference_doi:
+    - 10.1016/j.neuron.2016.10.019
+    nm_id: 102403
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-06-012-14-08-05_649667451_m.png
+    caption: H17-06-012-14-08-05_649667451_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus
+    source: Allen Cell Types
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    reference_doi:
+    - 10.1016/j.neuron.2016.10.019
+    nm_id: 102405
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H16-06-013-11-16-01_687434349_m.png
+    caption: H16-06-013-11-16-01_687434349_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Female
+    age: '34.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102573
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H16-06-013-12-08-03_691757016_m.png
+    caption: H16-06-013-12-08-03_691757016_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Female
+    age: '34.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102576
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H16-06-013-12-08-06_695330591_m.png
+    caption: H16-06-013-12-08-06_695330591_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Female
+    age: '34.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102577
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-03-005-11-08-01_713511748_m.png
+    caption: H17-03-005-11-08-01_713511748_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Male
+    age: '60.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102578
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-03-009-11-11-03_669918567_m.png
+    caption: H17-03-009-11-11-03_669918567_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Male
+    age: '18.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102581
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-03-009-11-11-09_667294513_m.png
+    caption: H17-03-009-11-11-09_667294513_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Male
+    age: '18.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102583
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-03-013-11-08-04_692297214_m.png
+    caption: H17-03-013-11-08-04_692297214_m — interneuron / Aspiny in neocortex /
+      occipital / superior frontal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Female
+    age: '41.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - superior frontal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102585
+somatostatin_positive_interneurons:
+  query_params:
+    species: human
+    cell_type: interneuron
+  total_available: 234
+  images_returned: 50
+  note: Human aspiry interneurons (includes SST+ Martinotti)
+  images:
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-03-010-11-13-01_656411100_m.png
+    caption: H17-03-010-11-13-01_656411100_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus
+    source: Allen Cell Types
+    sex: Female
+    age: '38.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    reference_doi:
+    - 10.1016/j.neuron.2016.10.019
+    nm_id: 102399
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-06-005-12-15-01_605485782_m.png
+    caption: H17-06-005-12-15-01_605485782_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus
+    source: Allen Cell Types
+    sex: Male
+    age: '38.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    reference_doi:
+    - 10.1016/j.neuron.2016.10.019
+    nm_id: 102403
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H17-06-012-14-08-05_649667451_m.png
+    caption: H17-06-012-14-08-05_649667451_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus
+    source: Allen Cell Types
+    sex: Male
+    age: '23.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    reference_doi:
+    - 10.1016/j.neuron.2016.10.019
+    nm_id: 102405
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H16-06-013-11-16-01_687434349_m.png
+    caption: H16-06-013-11-16-01_687434349_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Female
+    age: '34.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102573
+  - url: http://neuromorpho.org/images/imageFiles/Allen Cell Types/H16-06-013-12-08-03_691757016_m.png
+    caption: H16-06-013-12-08-03_691757016_m — interneuron / Aspiny in neocortex /
+      occipital / middle temporal gyrus / layer 2-3 / right
+    source: Allen Cell Types
+    sex: Female
+    age: '34.0'
+    cell_type_labels:
+    - interneuron
+    - Aspiny
+    region:
+    - neocortex
+    - occipital
+    - middle temporal gyrus
+    - layer 2-3
+    - right
+    reference_doi:
+    - 10.1016/j.neuron.2015.02.022
+    nm_id: 102576
+dentate_granule_cells:
+  query_params:
+    species: human
+    brain_region: hippocampus
+  total_available: 139
+  images_returned: 50
+  note: Human hippocampal neurons
+  images:
+  - url: http://neuromorpho.org/images/imageFiles/DeFelipe/13-human-hcca1-idab1-porta6-sec1-cel3soma-z-corr-1-7.png
+    caption: 13-human-hcca1-idab1-porta6-sec1-cel3soma-z-corr-1-7 — principal cell
+      / pyramidal in hippocampus / CA1 / pyramidal layer
+    source: DeFelipe
+    sex: Male
+    age: '45.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - hippocampus
+    - CA1
+    - pyramidal layer
+    reference_doi:
+    - 10.1093/cercor/bhz122
+    nm_id: 147055
+  - url: http://neuromorpho.org/images/imageFiles/DeFelipe/36-human-hcca1-idab1-porta4-sec1-cel12-S_soma-z-corr-1-7.png
+    caption: 36-human-hcca1-idab1-porta4-sec1-cel12-S_soma-z-corr-1-7 — principal
+      cell / pyramidal in hippocampus / CA1 / pyramidal layer
+    source: DeFelipe
+    sex: Male
+    age: '45.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - hippocampus
+    - CA1
+    - pyramidal layer
+    reference_doi:
+    - 10.1093/cercor/bhz122
+    nm_id: 147056
+  - url: http://neuromorpho.org/images/imageFiles/DeFelipe/52-human-hcca-idab1-porta4-sec1-cel17-soma-z-corr-1-7.png
+    caption: 52-human-hcca-idab1-porta4-sec1-cel17-soma-z-corr-1-7 — principal cell
+      / pyramidal in hippocampus / CA1 / pyramidal layer
+    source: DeFelipe
+    sex: Male
+    age: '45.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - hippocampus
+    - CA1
+    - pyramidal layer
+    reference_doi:
+    - 10.1093/cercor/bhz122
+    nm_id: 147058
+  - url: http://neuromorpho.org/images/imageFiles/DeFelipe/12-human-hcca1-idab1-porta5-sec1-cel9-soma-corr1-7z.png
+    caption: 12-human-hcca1-idab1-porta5-sec1-cel9-soma-corr1-7z — principal cell
+      / pyramidal in hippocampus / CA1 / pyramidal layer
+    source: DeFelipe
+    sex: Male
+    age: '45.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - hippocampus
+    - CA1
+    - pyramidal layer
+    reference_doi:
+    - 10.1093/cercor/bhz122
+    nm_id: 147060
+  - url: http://neuromorpho.org/images/imageFiles/DeFelipe/40-Human-hcca1-idab1-porta5-sec1-cel12-soma-z-corr-1-7.png
+    caption: 40-Human-hcca1-idab1-porta5-sec1-cel12-soma-z-corr-1-7 — principal cell
+      / pyramidal in hippocampus / CA1 / pyramidal layer
+    source: DeFelipe
+    sex: Male
+    age: '45.0'
+    cell_type_labels:
+    - principal cell
+    - pyramidal
+    region:
+    - hippocampus
+    - CA1
+    - pyramidal layer
+    reference_doi:
+    - 10.1093/cercor/bhz122
+    nm_id: 147062
+cerebellar_granule_cells:
+  query_params:
+    species: mouse
+    brain_region: cerebellum
+    cell_type: granule
+  total_available: 0
+  images_returned: 0
+  note: Mouse cerebellar granule cells (few human cerebellar in NM)
+  images: []
+purkinje_cells:
+  query_params:
+    species: mouse
+    brain_region: cerebellum
+    cell_type: Purkinje
+  total_available: 861
+  images_returned: 50
+  note: Mouse Purkinje cells
+  images:
+  - url: http://neuromorpho.org/images/imageFiles/Dusart/Purkinje-slice-ageP43-6.png
+    caption: Purkinje-slice-ageP43-6 — Purkinje / principal cell in cerebellum / cerebellar
+      cortex / Purkinje layer
+    source: Dusart
+    sex: Not reported
+    age: '43.0'
+    cell_type_labels:
+    - Purkinje
+    - principal cell
+    region:
+    - cerebellum
+    - cerebellar cortex
+    - Purkinje layer
+    reference_doi:
+    - 10.1523/JNEUROSCI.2977-12.2013
+    nm_id: 10069
+  - url: http://neuromorpho.org/images/imageFiles/Dusart/Purkinje-slice-ageP37-5.png
+    caption: Purkinje-slice-ageP37-5 — Purkinje / principal cell in cerebellum / cerebellar
+      cortex / Purkinje layer
+    source: Dusart
+    sex: Not reported
+    age: '37.0'
+    cell_type_labels:
+    - Purkinje
+    - principal cell
+    region:
+    - cerebellum
+    - cerebellar cortex
+    - Purkinje layer
+    reference_doi:
+    - 10.1523/JNEUROSCI.2977-12.2013
+    nm_id: 10070
+  - url: http://neuromorpho.org/images/imageFiles/Dusart/Purkinje-slice-ageP35-4.png
+    caption: Purkinje-slice-ageP35-4 — Purkinje / principal cell in cerebellum / cerebellar
+      cortex / Purkinje layer
+    source: Dusart
+    sex: Not reported
+    age: '35.0'
+    cell_type_labels:
+    - Purkinje
+    - principal cell
+    region:
+    - cerebellum
+    - cerebellar cortex
+    - Purkinje layer
+    reference_doi:
+    - 10.1523/JNEUROSCI.2977-12.2013
+    nm_id: 10071
+  - url: http://neuromorpho.org/images/imageFiles/Dusart/Purkinje-slice-ageP35-2.png
+    caption: Purkinje-slice-ageP35-2 — Purkinje / principal cell in cerebellum / cerebellar
+      cortex / Purkinje layer
+    source: Dusart
+    sex: Not reported
+    age: '35.0'
+    cell_type_labels:
+    - Purkinje
+    - principal cell
+    region:
+    - cerebellum
+    - cerebellar cortex
+    - Purkinje layer
+    reference_doi:
+    - 10.1523/JNEUROSCI.2977-12.2013
+    nm_id: 10072
+  - url: http://neuromorpho.org/images/imageFiles/Dusart/Purkinje-slice-ageP35-1.png
+    caption: Purkinje-slice-ageP35-1 — Purkinje / principal cell in cerebellum / cerebellar
+      cortex / Purkinje layer
+    source: Dusart
+    sex: Not reported
+    age: '35.0'
+    cell_type_labels:
+    - Purkinje
+    - principal cell
+    region:
+    - cerebellum
+    - cerebellar cortex
+    - Purkinje layer
+    reference_doi:
+    - 10.1523/JNEUROSCI.2977-12.2013
+    nm_id: 10073
+striatal_medium_spiny_neurons:
+  query_params:
+    species: rat
+    brain_region: striatum
+    cell_type: medium_spiny
+  total_available: 0
+  images_returned: 0
+  note: Rat striatal medium spiny neurons
+  images: []
+snc_dopaminergic_neurons:
+  query_params:
+    species: mouse
+    brain_region: substantia_nigra
+  total_available: 0
+  images_returned: 0
+  note: Mouse substantia nigra neurons
+  images: []
+locus_coeruleus_noradrenergic:
+  query_params:
+    species: rat
+    brain_region: locus_coeruleus
+  total_available: 0
+  images_returned: 0
+  note: Rat locus coeruleus neurons
+  images: []
+protoplasmic_astrocytes:
+  query_params:
+    species: mouse
+    cell_type: astrocyte
+  total_available: 5739
+  images_returned: 50
+  note: Mouse astrocytes (NeuroMorpho has few human glia)
+  images:
+  - url: http://neuromorpho.org/images/imageFiles/Zheng/WT-astrocytes.png
+    caption: WT-astrocytes — Glia / astrocyte / GFAP-positive in hippocampus / CA3
+    source: Zheng
+    sex: Female
+    age: '9.0'
+    cell_type_labels:
+    - Glia
+    - astrocyte
+    - GFAP-positive
+    region:
+    - hippocampus
+    - CA3
+    reference_doi:
+    - 10.1016/j.neuron.2018.10.031
+    nm_id: 117262
+  - url: http://neuromorpho.org/images/imageFiles/Zheng/PS19-C3aR-KO-astrocytes2.png
+    caption: PS19-C3aR-KO-astrocytes2 — Glia / astrocyte / GFAP-positive in hippocampus
+      / CA3
+    source: Zheng
+    sex: Female
+    age: '9.0'
+    cell_type_labels:
+    - Glia
+    - astrocyte
+    - GFAP-positive
+    region:
+    - hippocampus
+    - CA3
+    reference_doi:
+    - 10.1016/j.neuron.2018.10.031
+    nm_id: 117265
+  - url: http://neuromorpho.org/images/imageFiles/Zheng/PS19-C3aR-KO-astrocytes1.png
+    caption: PS19-C3aR-KO-astrocytes1 — Glia / astrocyte / GFAP-positive in hippocampus
+      / CA3
+    source: Zheng
+    sex: Female
+    age: '9.0'
+    cell_type_labels:
+    - Glia
+    - astrocyte
+    - GFAP-positive
+    region:
+    - hippocampus
+    - CA3
+    reference_doi:
+    - 10.1016/j.neuron.2018.10.031
+    nm_id: 117266
+  - url: http://neuromorpho.org/images/imageFiles/Zheng/PS19-astrocytes.png
+    caption: PS19-astrocytes — Glia / astrocyte / GFAP-positive in hippocampus / CA3
+    source: Zheng
+    sex: Female
+    age: '9.0'
+    cell_type_labels:
+    - Glia
+    - astrocyte
+    - GFAP-positive
+    region:
+    - hippocampus
+    - CA3
+    reference_doi:
+    - 10.1016/j.neuron.2018.10.031
+    nm_id: 117267
+  - url: http://neuromorpho.org/images/imageFiles/Zheng/C3aR-KO-astrocytes.png
+    caption: C3aR-KO-astrocytes — Glia / astrocyte / GFAP-positive in hippocampus
+      / CA3
+    source: Zheng
+    sex: Female
+    age: '9.0'
+    cell_type_labels:
+    - Glia
+    - astrocyte
+    - GFAP-positive
+    region:
+    - hippocampus
+    - CA3
+    reference_doi:
+    - 10.1016/j.neuron.2018.10.031
+    nm_id: 117269
+oligodendrocytes:
+  query_params:
+    species: rat
+    cell_type: oligodendrocyte
+  total_available: 0
+  images_returned: 0
+  note: Rat oligodendrocytes
+  images: []
+_sources:
+  neuromorpho:
+    url: https://neuromorpho.org
+    total_human_neurons: 15676
+    description: Database of 3D neuronal reconstructions with PNG images
+  human_protein_atlas:
+    url: https://www.proteinatlas.org
+    brain_section_url: https://www.proteinatlas.org/humanproteome/brain
+    description: IHC, IF, and RNA-seq data for protein expression in human brain regions
+  allen_cell_types:
+    url: https://celltypes.brain-map.org
+    description: Electrophysiological and morphological characterization of human
+      cortical neurons
+  cell_image_library:
+    url: https://www.cellimagelibrary.org
+    description: Curated cell images from ASCB
+  brain_image_library:
+    url: https://www.brainimagelibrary.org
+    description: Curated neuropathology and neuroanatomy images
+_query_instructions:
+  neuromorpho_query_example:
+    url_template: https://neuromorpho.org/api/neuron/select?q=species:{species}&fq=cell_type:{cell_type}&rows=10
+    description: Substitute species and cell_type values
+  protein_atlas_query_example:
+    url_template: https://www.proteinatlas.org/search/{gene}?format=json
+    description: Substitute a gene symbol (e.g. GFAP, SLC17A7, TH)
