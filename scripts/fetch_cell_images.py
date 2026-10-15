@@ -21,7 +21,7 @@ import sys, json, time
 from pathlib import Path
 from urllib.request import urlopen, Request
 from urllib.error import URLError
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 try:
     import yaml
@@ -41,76 +41,118 @@ NM_API = "https://neuromorpho.org/api/neuron/select"
 # `fq` = filter queries (remaining params).  We query species first,
 # then filter on brain_region, cell_type etc.
 QUERY_MAP = {
+    # -- Cortical pyramidal --
     "layer_ii_iii_pyramidal": {
         "params": {"species": "human", "cell_type": "pyramidal"},
-        "max": 10,
+        "max": 12,
         "note": "Human neocortical pyramidal neurons (layers II–III)",
         "layer_filter": "layer 2"
     },
     "layer_v_pyramidal": {
         "params": {"species": "human", "cell_type": "pyramidal"},
-        "max": 10,
+        "max": 12,
         "note": "Human neocortical pyramidal neurons (layers V–VI)",
         "layer_filter": "layer 5"
     },
     "betz_cells": {
         "params": {"species": "human", "cell_type": "pyramidal", "brain_region": "motor"},
-        "max": 5,
+        "max": 8,
         "note": "Primary motor cortex pyramidal (includes Betz cells)"
     },
     "entorhinal_stellate_cells": {
         "params": {"species": "human", "cell_type": "stellate"},
-        "max": 5,
+        "max": 8,
         "note": "Human stellate neurons (entorhinal-like)"
     },
+    # -- Interneurons --
     "basket_cells_pv": {
         "params": {"species": "human", "cell_type": "interneuron"},
-        "max": 10,
+        "max": 12,
         "note": "Human aspiry interneurons (includes PV+ basket cells)"
+    },
+    "chandelier_cells": {
+        "params": {"species": "human", "cell_type": "interneuron"},
+        "max": 6,
+        "note": "Human aspiry interneurons (includes chandelier cells)"
     },
     "somatostatin_positive_interneurons": {
         "params": {"species": "human", "cell_type": "interneuron"},
-        "max": 5,
+        "max": 8,
         "note": "Human aspiry interneurons (includes SST+ Martinotti)"
     },
+    # -- Hippocampal --
     "dentate_granule_cells": {
         "params": {"species": "human", "brain_region": "hippocampus"},
-        "max": 5,
+        "max": 8,
         "note": "Human hippocampal neurons"
     },
+    "ca1_pyramidal": {
+        "params": {"species": "human", "brain_region": "hippocampus"},
+        "max": 8,
+        "note": "Human hippocampal CA1 pyramidal neurons"
+    },
+    "ca3_pyramidal": {
+        "params": {"species": "rat", "brain_region": "hippocampus", "cell_type": "pyramidal"},
+        "max": 6,
+        "note": "Rat hippocampal pyramidal (CA3-like)"
+    },
+    # -- Cerebellar --
     "cerebellar_granule_cells": {
         "params": {"species": "mouse", "brain_region": "cerebellum", "cell_type": "granule"},
-        "max": 5,
-        "note": "Mouse cerebellar granule cells (few human cerebellar in NM)"
+        "max": 6,
+        "note": "Mouse cerebellar granule cells"
     },
     "purkinje_cells": {
         "params": {"species": "mouse", "brain_region": "cerebellum", "cell_type": "Purkinje"},
-        "max": 5,
+        "max": 8,
         "note": "Mouse Purkinje cells"
     },
+    # -- Basal ganglia --
     "striatal_medium_spiny_neurons": {
-        "params": {"species": "rat", "brain_region": "striatum", "cell_type": "medium_spiny"},
-        "max": 5,
+        "params": {"species": "rat", "brain_region": "striatum", "cell_type": "medium spiny"},
+        "max": 8,
         "note": "Rat striatal medium spiny neurons"
     },
     "snc_dopaminergic_neurons": {
-        "params": {"species": "mouse", "brain_region": "substantia_nigra"},
-        "max": 5,
+        "params": {"species": "mouse", "brain_region": "substantia nigra"},
+        "max": 6,
         "note": "Mouse substantia nigra neurons"
     },
-    "locus_coeruleus_noradrenergic": {
-        "params": {"species": "rat", "brain_region": "locus_coeruleus"},
-        "max": 5,
-        "note": "Rat locus coeruleus neurons"
+    "vta_dopaminergic_neurons": {
+        "params": {"species": "mouse", "brain_region": "ventral tegmental"},
+        "max": 6,
+        "note": "Mouse VTA dopaminergic neurons"
     },
+    # -- Brainstem neuromodulatory --
+    "locus_coeruleus_noradrenergic": {
+        "params": {"species": "rat", "brain_region": "locus coeruleus"},
+        "max": 6,
+        "note": "Rat locus coeruleus noradrenergic neurons"
+    },
+    "raphe_serotonergic_neurons": {
+        "params": {"species": "rat", "brain_region": "raphe"},
+        "max": 6,
+        "note": "Rat raphe serotonergic neurons"
+    },
+    # -- Glial --
     "protoplasmic_astrocytes": {
         "params": {"species": "mouse", "cell_type": "astrocyte"},
-        "max": 5,
-        "note": "Mouse astrocytes (NeuroMorpho has few human glia)"
+        "max": 8,
+        "note": "Mouse astrocytes"
     },
-    "oligodendrocytes": {
+    "reactive_astrocytes": {
+        "params": {"species": "mouse", "cell_type": "reactive astrocyte"},
+        "max": 6,
+        "note": "Mouse reactive astrocytes"
+    },
+    "surveilling_microglia": {
+        "params": {"species": "mouse", "cell_type": "microglia"},
+        "max": 6,
+        "note": "Mouse microglia"
+    },
+    "myelinating_oligodendrocytes": {
         "params": {"species": "rat", "cell_type": "oligodendrocyte"},
-        "max": 5,
+        "max": 6,
         "note": "Rat oligodendrocytes"
     },
 }
@@ -177,8 +219,14 @@ def fetch_all_references():
             region = n.get("brain_region", [])
             ct_labels = n.get("cell_type", [])
 
+            # Normalize to HTTPS and skip empty URLs
+            raw_url = n.get("png_url", "") or ""
+            safe_url = raw_url.replace("http://", "https://") if raw_url else ""
+            if not safe_url:
+                continue
+
             images.append({
-                "url": n.get("png_url", ""),
+                "url": safe_url,
                 "caption": (
                     f"{n.get('neuron_name', '')} — "
                     f"{' / '.join(ct_labels) if isinstance(ct_labels, list) else ct_labels} "
