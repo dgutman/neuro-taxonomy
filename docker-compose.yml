@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  neuro-taxonomy:
+    build: .
+    image: neuro-taxonomy:latest
+    container_name: neuro-taxonomy
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    volumes:
+      # Mount the data directory for live updates
+      - ./data:/app/data
+      - ./regions.yaml:/app/regions.yaml
+      - ./regions_mouse.yaml:/app/regions_mouse.yaml
+      - ./cell_types.yaml:/app/cell_types.yaml
+      - ./cell_type_profiles.yaml:/app/cell_type_profiles.yaml
+      - ./cell_region_distribution.yaml:/app/cell_region_distribution.yaml
+      - ./pathologies.yaml:/app/pathologies.yaml
+      - ./cross_links.yaml:/app/cross_links.yaml
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/api/stats"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

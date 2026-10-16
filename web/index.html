@@ -6,7 +6,12 @@
 <title>Neuro-Taxonomy Dashboard</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
 <style>
-  :root {
+  /* ════════════════════════════════════════
+     THEMES — switch via .theme-* on <html>
+     ════════════════════════════════════════ */
+
+  /* ── Theme: Dark (default) ── */
+  :root, .theme-dark {
     --bg: #0f1117;
     --surface: #1a1d27;
     --surface2: #242838;
@@ -21,9 +26,105 @@
     --teal: #5adff0;
     --purple: #b05af0;
     --pink: #f05a9a;
+    --shadow: rgba(0,0,0,0.3);
     --radius: 8px;
     --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+
+  /* ── Theme: Light ── */
+  .theme-light {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface2: #edf0f7;
+    --border: #d1d6e4;
+    --text: #1e2233;
+    --text-dim: #6b7194;
+    --accent: #4a6cf7;
+    --accent-dim: #3451d1;
+    --green: #1a9e60;
+    --orange: #d47b28;
+    --red: #d42a2a;
+    --teal: #0d8e9e;
+    --purple: #8b3cc7;
+    --pink: #c73a7a;
+    --shadow: rgba(0,0,0,0.08);
+  }
+
+  /* ── Theme: Sepia ── */
+  .theme-sepia {
+    --bg: #faf0e6;
+    --surface: #fdf6ed;
+    --surface2: #f5ead9;
+    --border: #dcc9b5;
+    --text: #3d3229;
+    --text-dim: #8a7a68;
+    --accent: #8b5e3c;
+    --accent-dim: #6d472c;
+    --green: #4d7c3b;
+    --orange: #a86628;
+    --red: #a83232;
+    --teal: #2d7a82;
+    --purple: #6b3d8c;
+    --pink: #8c3a5e;
+    --shadow: rgba(60,50,30,0.1);
+  }
+
+  /* ── Theme: High Contrast ── */
+  .theme-highcontrast {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface2: #f0f0f0;
+    --border: #000000;
+    --text: #000000;
+    --text-dim: #333333;
+    --accent: #0044cc;
+    --accent-dim: #002288;
+    --green: #006633;
+    --orange: #994400;
+    --red: #cc0000;
+    --teal: #006666;
+    --purple: #660099;
+    --pink: #990055;
+    --shadow: transparent;
+  }
+
+  /* ── Theme: Terminal ── */
+  .theme-terminal {
+    --bg: #0c0c0c;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --border: #2a2a2a;
+    --text: #c8c8c8;
+    --text-dim: #606060;
+    --accent: #00ff5a;
+    --accent-dim: #00cc44;
+    --green: #00ff5a;
+    --orange: #ffb000;
+    --red: #ff3333;
+    --teal: #33ffff;
+    --purple: #aa66ff;
+    --pink: #ff3399;
+    --shadow: rgba(0,0,0,0.6);
+  }
+
+  /* ── Theme: Midnight ── */
+  .theme-midnight {
+    --bg: #0a0e1a;
+    --surface: #111627;
+    --surface2: #1a2040;
+    --border: #28305a;
+    --text: #c8d0e8;
+    --text-dim: #6870a0;
+    --accent: #7c9cff;
+    --accent-dim: #5070dd;
+    --green: #4ae0a0;
+    --orange: #f0b060;
+    --red: #f06060;
+    --teal: #60dff0;
+    --purple: #b070f0;
+    --pink: #f060a0;
+    --shadow: rgba(0,0,32,0.4);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -362,6 +463,25 @@
     <div class="sidebar-header">
       🧠 Neuro-Taxonomy
       <span>v1</span>
+      <div style="margin-left:auto;position:relative">
+        <select id="themeSelect" onchange="switchTheme(this.value)" style="
+          background:var(--bg);
+          color:var(--text);
+          border:1px solid var(--border);
+          border-radius:6px;
+          padding:3px 6px;
+          font-size:11px;
+          cursor:pointer;
+          outline:none;
+        ">
+          <option value="theme-dark">🌙 Dark</option>
+          <option value="theme-light">☀️ Light</option>
+          <option value="theme-sepia">📜 Sepia</option>
+          <option value="theme-highcontrast">🔳 High Contrast</option>
+          <option value="theme-terminal">💻 Terminal</option>
+          <option value="theme-midnight">🌃 Midnight</option>
+        </select>
+      </div>
     </div>
     <div class="sidebar-search">
       <input type="text" id="searchInput" placeholder="Search regions, cells, pathologies..." oninput="onSearch(this.value)">
@@ -921,6 +1041,20 @@ async function onSearch(query) {
     }
   }, 300);
 }
+
+// ── Theme Switcher ──
+function switchTheme(theme) {
+  document.documentElement.className = theme;
+  localStorage.setItem('neuro-taxonomy-theme', theme);
+}
+
+// Restore saved theme
+(function() {
+  const saved = localStorage.getItem('neuro-taxonomy-theme') || 'theme-dark';
+  document.documentElement.className = saved;
+  const sel = document.getElementById('themeSelect');
+  if (sel) sel.value = saved;
+})();
 
 // ── Boot ──
 init();
